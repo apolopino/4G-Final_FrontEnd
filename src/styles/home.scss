@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css?family=Niramit:300,300i,700');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// colores
+$primero: #1d8cf8;
+$segundo: #4f537b;
+$tercero: #11cdef;
+$cuarto: #00bf9a;
+$quinto: #ff8d72;
+$sexto: #fd5d93;
+$final: red;
+
+// timeline variables
+$body-bg: #1e1e2f;
+$timeline-before-bg : #222a42;
+$timeline-body-bg: #27293d;
+$timeline-body-round: 3px;
+$timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
+
+body {
+    font-family: 'K2D', sans-serif;
+    background: $body-bg;
+    letter-spacing: 1px;
+}
+
+// container
+.container {
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+// tipografia
+p {
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 14px;
+    opacity: .8;
+}
+
+// timeline style
+.timeline {
+    position: relative;
+    padding-left: 4rem;
+    margin: 0 0 0 30px;
+    color: white;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: $timeline-body-bg;
+    }
+
+    .timeline-container {
+        position: relative;
+        margin-bottom: 2.5rem;;
+
+        .timeline-icon {
+            position: absolute;
+            left: -88px;
+            top: 4px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 2rem;
+            background: $segundo;
+
+            i {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        .timeline-body {
+            background: $timeline-body-bg;
+            border-radius: $timeline-body-round;
+            padding: 20px 20px 15px;
+            box-shadow: $timeline-body-shadow;
+
+            &:before {
+                content: '';
+                background: inherit;
+                width: 20px;
+                height: 20px;
+                display: block;
+                position: absolute;
+                left: -10px;
+                transform: rotate(45deg);
+                border-radius: 0 0 0 2px;
+            }
+
+            .timeline-title {
+                margin-bottom: 1.4rem;
+
+                .badge {
+                    background: $segundo;
+                    padding: 4px 8px;
+                    border-radius: 3px;
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+
+            .timeline-subtitle {
+                font-weight: 300;
+                font-style: italic;
+                opacity: .4;
+                margin-top: 16px;
+                font-size: 11px;
+            }
+        }
+
+        // 1 Timeline
+        &.primero {
+            .badge,
+            .timeline-icon {
+                background: $primero!important;
+            }
+        }
+
+        // 2 Timeline
+        &.segundo {
+            .badge,
+            .timeline-icon {
+                background: $segundo !important;
+            }
+        }
+
+        // 3 Timeline
+        &.tercero {
+            .badge,
+            .timeline-icon {
+                background: $tercero !important;
+            }
+        }
+
+        // 4 Timeline
+        &.cuarto {
+            .badge,
+            .timeline-icon {
+                background: $cuarto !important;
+            }
+        }
+
+        // 5 Timeline
+        &.quinto {
+            .badge,
+            .timeline-icon {
+                background: $quinto !important;
+            }
+        }
+
+         // 6 Timeline
+        &.sexto {
+            .badge,
+            .timeline-icon {
+                background: $sexto !important;
+            }
+        }
+
+        // Final Timeline
+
+         &.final {
+            .badge,
+            .timeline-icon {
+                background: $final !important;
+            }
+        }
+
+    }
+}
+
