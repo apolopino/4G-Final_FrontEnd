@@ -151,11 +151,12 @@ div.button, div.checker, div.radio, div.selector, div.uploader {
 }
 
 .card {
-    padding: 25px;
-    margin-bottom: 20px;
-    border: initial;
-    background: #2b2d46;
-    border-radius: calc(.15rem - 1px);
+    // Card styles are messing up the rest of the application. Should use custom class for it
+    // padding: 25px;
+    // margin-bottom: 20px;
+    // border: initial;
+    // background: #2b2d46;
+    // border-radius: calc(.15rem - 1px);
     box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);
 }
 
