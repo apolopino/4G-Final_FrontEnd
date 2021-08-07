@@ -13,5 +13,27 @@ export const Detalle = () => {
 		SetDetalle(true);
 	}, []);
 
-	return <div>Vista detalle</div>;
+	return (
+		<div className="container">
+			<div className="row">
+				<div className="col-12 text-center">
+					<iframe
+						width="560"
+						height="315"
+						src="https://www.youtube-nocookie.com/embed/PvJ2l2yEftM"
+						title="YouTube video player"
+						frameBorder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowFullScreen
+					/>
+				</div>
+			</div>
+
+			<div className="row">Row de titulo</div>
+
+			<div className="row">Row de contenido</div>
+
+			<div className="row">Row de fotos</div>
+		</div>
+	);
 };
