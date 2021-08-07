@@ -1,9 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			challengeDetails: [
+			routineDetail: [
 				{
-					// cargar los detalles del desafío
+					// cargar los detalles de la receta/rutina
 				}
 			]
 		},
@@ -18,8 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				*/
 			},
 
-			getChallenges: () => {
-				//usar esta función para traer los detalles del desafío
+			getRoutineDetail: () => {
+				//usar esta función para traer los detalles de la receta/rutina
 				const store = getStore();
 				const URL = "URL";
 				const OBJCONFIG = {
@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch(URL, OBJCONFIG)
 					.then(res => res.json()) //de texto plano a Json
-					.then(data => setStore({ challengeDetails: data })); //guardo el detalle del desafio en el store
+					.then(data => setStore({ routineDetail: data })); //guardo el detalle de la receta/rutina en el store
 			}
 		}
 	};
