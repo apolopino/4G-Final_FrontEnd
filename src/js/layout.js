@@ -37,8 +37,10 @@ const Layout = () => {
 						<Route exact path="/dashboard">
 							<Dashboard />
 						</Route>
+
 						<Route exact path="/detalle">
-							<Detalle />
+							{/* Cambiar rutina por receta para acceder al store recetas */}
+							<Detalle tipo="receta" />
 						</Route>
 
 						<Route>

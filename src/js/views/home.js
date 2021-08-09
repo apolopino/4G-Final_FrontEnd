@@ -2,6 +2,9 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 
+//debug detalle
+import { Detalle } from "./detalle";
+
 export const Home = () => (
 	<div className="container">
 		<div className="row">
@@ -108,5 +111,10 @@ export const Home = () => (
 				</div>
 			</div>
 		</div>
+
+		{/* /Debug detalle
+		<div>
+			<Detalle tipo="rutinas" />
+		</div> */}
 	</div>
 );
