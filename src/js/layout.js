@@ -6,6 +6,8 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import { Dashboard } from "./views/dashboard";
+import { Detalle } from "./views/detalle";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -35,6 +37,12 @@ const Layout = () => {
 						<Route exact path="/dashboard">
 							<Dashboard />
 						</Route>
+
+						<Route exact path="/detalle">
+							{/* Cambiar rutina por receta para acceder al store recetas */}
+							<Detalle tipo="receta" />
+						</Route>
+
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
