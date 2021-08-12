@@ -6,6 +6,8 @@ import { Context } from "../store/appContext";
 import { ChallengeCard } from "./challengeCard";
 
 export const Onboard = () => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
@@ -16,17 +18,18 @@ export const Onboard = () => {
 			</div>
 			<div className="container text-light">
 				<div className="row p-5">
-					{/* Primera card con data dummy - esta hay que pasarla al store (ver diagrama) */}
-					<ChallengeCard
-						image="https://i.stack.imgur.com/y9DpT.jpg"
-						titulo="Desafio 1"
-						content="Descripción del desafío"
-						buttonText="Me animo!"
-						url="/detalle"
-					/>
-					<ChallengeCard />
-					<ChallengeCard />
-					<ChallengeCard />
+					{store.desafiosDisponibles.map((item, index) => {
+						return (
+							<ChallengeCard
+								key={index}
+								image={item.image}
+								titulo={item.titulo}
+								content={item.content}
+								buttonText={item.buttonText}
+								url={item.url}
+							/>
+						);
+					})}
 				</div>
 			</div>
 		</div>
