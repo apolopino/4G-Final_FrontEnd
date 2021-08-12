@@ -15,7 +15,7 @@ export const ChallengeCard = props => {
 	};
 
 	return (
-		<div className="col-md-3 text-dark">
+		<div className="col-lg-3 col-md-6 mb-3 text-dark">
 			<div className="card card-no-border text-center h-100 bg-light">
 				<img
 					src={"image" in props ? props.image : "https://i.stack.imgur.com/y9DpT.jpg"}
