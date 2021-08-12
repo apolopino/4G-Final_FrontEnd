@@ -1,5 +1,5 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import { Todo } from "./to-do";
 import "../../styles/timeline.scss";
 
 export const Timeline = () => {
@@ -121,6 +121,7 @@ export const Timeline = () => {
 					</div>
 				</div>
 			</div>
+			<Todo />
 		</div>
 	);
 };
