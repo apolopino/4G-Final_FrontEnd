@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link, Redirect, useParams, useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Context } from "../store/appContext";
+import "../../styles/challengeCard.scss";
 
 export const ChallengeCard = props => {
 	console.log("el props.redirect es ", props.url);
@@ -15,7 +16,7 @@ export const ChallengeCard = props => {
 
 	return (
 		<div className="col-md-3 text-dark">
-			<div className="card text-center h-100 bg-light">
+			<div className="card card-no-border text-center h-100 bg-light">
 				<img
 					src={"image" in props ? props.image : "https://i.stack.imgur.com/y9DpT.jpg"}
 					className="card-img-top"
