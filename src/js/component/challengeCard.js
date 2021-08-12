@@ -23,7 +23,9 @@ export const ChallengeCard = props => {
 					alt="..."
 				/>
 				<div className="card-body d-flex flex-column">
-					<h5 className="card-title">{"titulo" in props ? props.titulo : "Challenge Title"}</h5>
+					<Link to={props.detalleDesafio}>
+						<h5 className="card-title">{"titulo" in props ? props.titulo : "Challenge Title"}</h5>
+					</Link>
 					<p className="card-text">
 						{"content" in props
 							? props.content
@@ -45,5 +47,6 @@ ChallengeCard.propTypes = {
 	titulo: PropTypes.string,
 	content: PropTypes.string,
 	buttonText: PropTypes.string,
-	url: PropTypes.string
+	url: PropTypes.string,
+	detalleDesafio: PropTypes.string
 };

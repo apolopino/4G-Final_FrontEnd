@@ -35,7 +35,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					titulo: "Desafio 1",
 					content: "Desafio para ordenar tu dia y tener tiempo para la familia",
 					buttonText: "Me animo!",
-					url: "/detalle"
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
 				},
 
 				{
@@ -44,7 +45,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					titulo: "Desafio 2",
 					content: "Desafío vida sana: come sano, ejercítate y descubre sus beneficios",
 					buttonText: "Con todo!",
-					url: "/detalle"
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
 				},
 
 				{
@@ -52,7 +54,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					titulo: "Desafio 3",
 					content: "Desafío desconexión: mindfullness y relajación todos los días",
 					buttonText: "Estar zen",
-					url: "/detalle"
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
 				},
 
 				{
@@ -61,7 +64,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					titulo: "Desafio 4",
 					content: "El cabronazo de los desafíos, saldrás vivo?",
 					buttonText: "A morir!",
-					url: "/detalle"
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
 				}
 			]
 		},

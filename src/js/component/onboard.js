@@ -27,6 +27,7 @@ export const Onboard = () => {
 								content={item.content}
 								buttonText={item.buttonText}
 								url={item.url}
+								detalleDesafio={item.detalleDesafio}
 							/>
 						);
 					})}
