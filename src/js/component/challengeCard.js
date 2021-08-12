@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link, Redirect, useParams, useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import { Context } from "../store/appContext";
 
-export const ChallengeList = props => {
+export const ChallengeCard = props => {
+	console.log("el props.redirect es ", props.url);
+	const history = useHistory();
+
+	const redirect = url => {
+		console.log("la url recibid aes ", url);
+		history.push(url);
+	};
+
 	return (
-		<div className="col-md-3">
+		<div className="col-md-3 text-dark">
 			<div className="card text-center h-100 bg-light">
 				<img
 					src={"image" in props ? props.image : "https://i.stack.imgur.com/y9DpT.jpg"}
@@ -19,18 +28,18 @@ export const ChallengeList = props => {
 							? props.content
 							: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor sapien vitae congue volutpat."}
 					</p>
-					<Link to={typeof props.url == "undefined" ? "#" : props.url}>
-						<button className="btn btn-primary mt-auto">
-							{typeof props.buttonText === "undefined" ? "Select" : props.buttonText}
-						</button>
-					</Link>
+					{/* <Link to={typeof props.url == "undefined" ? "#" : props.url}> */}
+					<Button variant="primary" className="mt-auto" onClick={() => redirect(props.url)}>
+						{typeof props.buttonText === "undefined" ? "Select" : props.buttonText}
+					</Button>
+					{/* </Link> */}
 				</div>
 			</div>
 		</div>
 	);
 };
 
-ChallengeList.propTypes = {
+ChallengeCard.propTypes = {
 	image: PropTypes.string,
 	titulo: PropTypes.string,
 	content: PropTypes.string,
