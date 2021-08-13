@@ -4,6 +4,8 @@ import { Link, Redirect, useParams, useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Context } from "../store/appContext";
 import "../../styles/challengeCard.scss";
+import { OverlayTrigger } from "react-bootstrap";
+import { Tooltip } from "react-bootstrap";
 
 export const ChallengeCard = props => {
 	console.log("el props.redirect es ", props.url);
@@ -23,19 +25,29 @@ export const ChallengeCard = props => {
 					alt="..."
 				/>
 				<div className="card-body d-flex flex-column">
-					<Link to={props.detalleDesafio}>
-						<h5 className="card-title">{"titulo" in props ? props.titulo : "Challenge Title"}</h5>
-					</Link>
+					<OverlayTrigger
+						key={props.index}
+						placement="bottom"
+						overlay={<Tooltip id={`tooltip-a-${props.index}`}>Ver detalles</Tooltip>}>
+						<Link to={props.detalleDesafio}>
+							<h5 className="card-title">{"titulo" in props ? props.titulo : "Challenge Title"}</h5>
+						</Link>
+					</OverlayTrigger>
+
 					<p className="card-text">
 						{"content" in props
 							? props.content
 							: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor sapien vitae congue volutpat."}
 					</p>
-					{/* <Link to={typeof props.url == "undefined" ? "#" : props.url}> */}
-					<Button variant="primary" className="mt-auto" onClick={() => redirect(props.url)}>
-						{typeof props.buttonText === "undefined" ? "Select" : props.buttonText}
-					</Button>
-					{/* </Link> */}
+
+					<OverlayTrigger
+						key={props.index}
+						placement="top"
+						overlay={<Tooltip id={`tooltip-${props.index}`}>Inscribir Desafío</Tooltip>}>
+						<Button variant="primary" className="mt-auto" onClick={() => redirect(props.url)}>
+							{typeof props.buttonText === "undefined" ? "Select" : props.buttonText}
+						</Button>
+					</OverlayTrigger>
 				</div>
 			</div>
 		</div>
@@ -48,5 +60,6 @@ ChallengeCard.propTypes = {
 	content: PropTypes.string,
 	buttonText: PropTypes.string,
 	url: PropTypes.string,
-	detalleDesafio: PropTypes.string
+	detalleDesafio: PropTypes.string,
+	index: PropTypes.number
 };

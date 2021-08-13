@@ -28,6 +28,7 @@ export const Onboard = () => {
 								buttonText={item.buttonText}
 								url={item.url}
 								detalleDesafio={item.detalleDesafio}
+								index={index}
 							/>
 						);
 					})}
