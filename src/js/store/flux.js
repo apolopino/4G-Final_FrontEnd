@@ -27,7 +27,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				]
 			},
 
-			setName: {}
+			setName: {},
+
+			desafiosDisponibles: [
+				{
+					image: "https://garajedelrock.com/wp-content/uploads/2020/05/serj-tankian.jpg",
+					titulo: "Desafio 1",
+					content: "Desafio para ordenar tu dia y tener tiempo para la familia",
+					buttonText: "Me animo!",
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
+				},
+
+				{
+					image:
+						"https://ichef.bbci.co.uk/news/640/cpsprodpb/150EA/production/_107005268_gettyimages-611696954.jpg",
+					titulo: "Desafio 2",
+					content: "Desafío vida sana: come sano, ejercítate y descubre sus beneficios",
+					buttonText: "Con todo!",
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
+				},
+
+				{
+					image: "https://interrailero.com/wp-content/uploads/2019/08/que-hacer-en-santiago-de-chile.jpg",
+					titulo: "Desafio 3",
+					content: "Desafío desconexión: mindfullness y relajación todos los días",
+					buttonText: "Estar zen",
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
+				},
+
+				{
+					image:
+						"https://s03.s3c.es/imag/_v0/770x420/2/5/5/490x_espacio-latinoamerica-america-latina-noche.jpg",
+					titulo: "Desafio 4",
+					content: "El cabronazo de los desafíos, saldrás vivo?",
+					buttonText: "A morir!",
+					url: "/detalle",
+					detalleDesafio: "URL-del-componente"
+				}
+			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

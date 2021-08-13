@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Timeline } from "../component/timeline";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import { Onboard } from "../component/onboard";
-import { Challenge } from "../component/challenge";
 
 export const Dashboard = () => {
+	console.log("loading dashboard component");
+
 	const [onboard, setOnboard] = useState(false);
 
 	useEffect(() => {
@@ -23,7 +25,7 @@ export const Dashboard = () => {
 	} else {
 		return (
 			<div className="container">
-				<Challenge />
+				<Timeline />
 			</div>
 		);
 	}

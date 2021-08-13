@@ -6,7 +6,7 @@ export const Todo = () => (
 	<div className="container">
 		<div className="row">
 			<div className="col-md-12">
-				<div className="card card-white">
+				<div className="card-to-do card-white">
 					<div className="card-body">
 						<form action="">
 							<input
