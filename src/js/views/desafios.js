@@ -14,91 +14,82 @@ import "../../styles/desafios.scss";
 export const Desafios = () => {
 	return (
 		<div className="container-page">
-			<nav className="slctbar navbaravbar-dark bg-dark mb-3">
-				<Link to="/">
-					<button className="btn btn-outline-success" type="button">
-						Home <span className="sr-only">(current)</span>
-					</button>
-				</Link>
-
-				<ul className="nav-item float-right">
-					<a className="nav-link" href="#">
-						Logout
-					</a>
-				</ul>
-				<ul className="nav-item text-center">
+			<row>
+				<div className="col-sm-12 bg-light">
 					<img src={img1} className="img-fluid" alt="Responsive image" />
-				</ul>
-			</nav>
-
-			<div className="jumbotron bg-muted">
-				<div className="container">
-					<h1 className="col text-light float-left mb-">Con este desafio:</h1>
-
-					<div className="container">
-						<div className="row">
-							<div className="col mx-auto fas fa-dumbbell fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
-							<div className="col mx-auto fa fa-cutlery fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
-							<div className="col mx-auto fas fa-th-list fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
-						</div>
-					</div>
-
-					<div className="container align-items-center">
-						<div className="row align-items-center justify-content-between">
-							<div className="col">
-								Ordena tu rutina de ejercicios ocacionales Lorem ipsum dolor sit amet
-							</div>
-							<div className="col">
-								Prepara comidas saludables que te permitan Lorem ipsum dolor sit amet
-							</div>
-							<div className="col">Organiza tu rutina diaria Lorem ipsum dolor sit amet</div>
-						</div>
-					</div>
-
-					<div className="container align-items-center">
-						<div className="row align-items-center justify-content-between">
-							<button
-								type="button"
-								className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
-								aria-label="Middle Align">
-								<span className="" aria-hidden="true"></span>1 Rutina de 30min cada 2 dias.
-							</button>
-							<button
-								type="button"
-								className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
-								aria-label="Middle Align">
-								<span className="" aria-hidden="true"></span>1 Receta sencilla para preparar al dia.
-								dias.
-							</button>
-							<button
-								type="button"
-								className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
-								aria-label="Middle Align">
-								<span className="" aria-hidden="true"></span>2 Actividades que ayudaran a organizar tu
-								dia.
-							</button>
-						</div>
-					</div>
-
-					<div className="row">
-						<div className="col-md-4">
-							<ul>
-								<li>Recibe un resumen diario de tu avance.</li>
-								<li>Recibe notificaciones diarias de tus actividades para el dia.</li>
-								<li>Trackea tu progreso diario.</li>
-							</ul>
-						</div>
-					</div>
-
-					<p className="row">
-						<div className="col-md-6 offset-md-5">
-							<a className="btn btn-light btn-lg" href="#" role="button">
-								Comenzar
-							</a>
-						</div>
-					</p>
 				</div>
-			</div>
+			</row>
+
+			<row>
+				<div className="jumbotron bg-muted">
+					<div className="container">
+						<h1 className="col text-light float-left mb-">Con este desafio:</h1>
+
+						<div className="container">
+							<div className="row">
+								<div className="col mx-auto fas fa-dumbbell fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
+								<div className="col mx-auto fa fa-cutlery fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
+								<div className="col mx-auto fas fa-th-list fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
+							</div>
+						</div>
+
+						<div className="container align-items-center">
+							<div className="row align-items-center justify-content-between">
+								<div className="col">
+									Ordena tu rutina de ejercicios ocacionales Lorem ipsum dolor sit amet
+								</div>
+								<div className="col">
+									Prepara comidas saludables que te permitan Lorem ipsum dolor sit amet
+								</div>
+								<div className="col">Organiza tu rutina diaria Lorem ipsum dolor sit amet</div>
+							</div>
+						</div>
+
+						<div className="container align-items-center">
+							<div className="row align-items-center justify-content-between">
+								<button
+									type="button"
+									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
+									aria-label="Middle Align">
+									<span className="" aria-hidden="true"></span>1 Rutina de 30min cada 2 dias.
+								</button>
+								<button
+									type="button"
+									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
+									aria-label="Middle Align">
+									<span className="" aria-hidden="true"></span>1 Receta sencilla para preparar al dia.
+									dias.
+								</button>
+								<button
+									type="button"
+									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
+									aria-label="Middle Align">
+									<span className="" aria-hidden="true"></span>2 Actividades que ayudaran a organizar
+									tu dia.
+								</button>
+							</div>
+						</div>
+
+						<div className="row">
+							<div className="col-md-4">
+								<ul>
+									<li>Recibe un resumen diario de tu avance.</li>
+									<li>Recibe notificaciones diarias de tus actividades para el dia.</li>
+									<li>Trackea tu progreso diario.</li>
+								</ul>
+							</div>
+						</div>
+
+						<p className="row">
+							<div className="col-md-6 offset-md-5">
+								<a className="btn btn-light btn-lg" href="#" role="button">
+									Comenzar
+								</a>
+							</div>
+						</p>
+					</div>
+				</div>
+			</row>
 		</div>
 	);
 };
