@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/landing.scss";
 
+// pendiente: ACTIVAR LOS BOTONES DEL SITE PARA LLAMAR AL MODAL
 export const Home = () => {
 	const [show, setShow] = useState(false);
 
@@ -31,25 +32,59 @@ export const Home = () => {
 				</p>
 			</Jumbotron>
 
-			<div className="prev-img text-center">
-				<img src="..." className="rounded" alt="Responsive image" />
-				<img src="..." className="rounded" alt="Responsive image" />
-				<img src="..." className="rounded" alt="Responsive image" />
-				<p className="lead">
-					<a className="btn btn-light btn-lg" href="#" role="button">
-						Comienza Ahora
-					</a>
-				</p>
+			{/* esto tenemos que cambiarlo por 3 cards */}
+			<div className="container">
+				<div className="row prev-img text-center">
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+				</div>
+				<div className="row justify-content-center">
+					<p className="lead mt-5">
+						<a className="btn btn-light btn-lg" href="#" role="button">
+							Comienza Ahora
+						</a>
+					</p>
+				</div>
 			</div>
 
 			<Jumbotron bg-muted>
-				<h1>Comienza a mejorar tu dia</h1>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat.
-				</p>
-				<img src="..." className="rounded float-right" alt="Responsive image" />
+				<div className="row">
+					<div className="col-sm-8">
+						<h1>Comienza a mejorar tu dia</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris nisi ut aliquip ex ea commodo consequat.
+						</p>
+					</div>
+
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+				</div>
 			</Jumbotron>
 		</div>
 	);
