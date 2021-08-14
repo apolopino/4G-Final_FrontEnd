@@ -67,7 +67,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					url: "/detalle",
 					detalleDesafio: "URL-del-componente"
 				}
-			]
+			],
+			isLogged: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

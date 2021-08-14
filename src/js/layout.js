@@ -3,14 +3,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import { Dashboard } from "./views/dashboard";
-import { Detalle } from "./views/detalle";
-
+import { Landing } from "./views/home";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { NavbarModule } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Onboard } from "./component/onboard";
 
@@ -24,13 +22,10 @@ const Layout = () => {
 		<div className="d-flex flex-column">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<NavbarModule />
 					<Switch>
 						<Route exact path="/">
 							<Home />
-						</Route>
-						<Route exact path="/demo">
-							<Demo />
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
@@ -38,12 +33,9 @@ const Layout = () => {
 						<Route exact path="/dashboard">
 							<Dashboard />
 						</Route>
-
-						<Route exact path="/detalle">
-							{/* Cambiar rutina por receta para acceder al store recetas */}
-							<Detalle tipo="receta" />
+						<Route exact path="/landing">
+							<Landing />
 						</Route>
-
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

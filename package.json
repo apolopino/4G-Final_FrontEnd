@@ -78,7 +78,6 @@
 	},
 	"dependencies": {
 		"bootstrap": "^4.6.0",
-		"gpg": "^0.6.0",
 		"jquery": "^3.6.0",
 		"popper.js": "^1.16.1",
 		"prop-types": "^15.6.1",
