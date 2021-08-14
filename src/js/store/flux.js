@@ -35,8 +35,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					titulo: "Desafio 1",
 					content: "Desafio para ordenar tu dia y tener tiempo para la familia",
 					buttonText: "Me animo!",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
+					url: "#",
+					detalleDesafio: "/desafio"
 				},
 
 				{
