@@ -13,7 +13,7 @@ export const Dashboard = () => {
 
 	useEffect(() => {
 		// ir a la base de datos y revisar si el usuario tiene desafios y actualizar el estado. Ahora solo lo seteo manualmente. Onboard = true es que no tiene desafios y hay que hacerle onboarding
-		setOnboard(true);
+		setOnboard(false);
 	}, []);
 
 	if (onboard === true) {
