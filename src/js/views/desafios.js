@@ -21,7 +21,7 @@ export const Desafios = () => {
 			</row>
 
 			<row>
-				<div className="jumbotron bg-muted">
+				<div className="jumbotron jumbotron-desafios bg-muted">
 					<div className="container">
 						<h1 className="col text-light float-left mb-">Con este desafio:</h1>
 
@@ -51,21 +51,21 @@ export const Desafios = () => {
 									type="button"
 									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
 									aria-label="Middle Align">
-									<span className="" aria-hidden="true"></span>1 Rutina de 30min cada 2 dias.
+									<span className="" aria-hidden="true" />1 Rutina de 30min cada 2 dias.
 								</button>
 								<button
 									type="button"
 									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
 									aria-label="Middle Align">
-									<span className="" aria-hidden="true"></span>1 Receta sencilla para preparar al dia.
+									<span className="" aria-hidden="true" />1 Receta sencilla para preparar al dia.
 									dias.
 								</button>
 								<button
 									type="button"
 									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
 									aria-label="Middle Align">
-									<span className="" aria-hidden="true"></span>2 Actividades que ayudaran a organizar
-									tu dia.
+									<span className="" aria-hidden="true" />2 Actividades que ayudaran a organizar tu
+									dia.
 								</button>
 							</div>
 						</div>

@@ -20,7 +20,7 @@ export const Home = () => {
 
 	return (
 		<div className="container-page center">
-			<Jumbotron bg-muted>
+			<Jumbotron className="bg-muted">
 				<h1>Life Planner</h1>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -66,7 +66,7 @@ export const Home = () => {
 				</div>
 			</div>
 
-			<Jumbotron bg-muted>
+			<Jumbotron className="bg-muted">
 				<div className="row">
 					<div className="col-sm-8">
 						<h1>Comienza a mejorar tu dia</h1>
