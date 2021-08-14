@@ -1,112 +1,101 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
+import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { Navbar, Nav, NavDropdown, Modal, Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "../../styles/landing.scss";
 
-export const Home = () => (
-	<div className="container">
-		<div className="row">
-			<div className="col-md-12">
-				<div className="card card-white">
-					<div className="card-body">
-						<form action="">
-							<input
-								type="text"
-								className="form-control add-task"
-								placeholder="Puedes agregar una nueva tarea"
-							/>
-						</form>
-						<ul className="nav nav-pills todo-nav">
-							<li role="presentation" className="nav-item all-task active">
-								<a href="#" className="nav-link">
-									Tareas
-								</a>
-							</li>
-							<li role="presentation" className="nav-item active-task">
-								<a href="#" className="nav-link">
-									Por hacer
-								</a>
-							</li>
-							<li role="presentation" className="nav-item completed-task">
-								<a href="#" className="nav-link">
-									Completados
-								</a>
-							</li>
-						</ul>
-						<div className="todo-list">
-							<div className="todo-item1">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Toma 8 vasos de agua</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item2">
-								<div className="checker">
-									<input type="checkbox" />
-								</div>
-								<span>Medita 30min</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
+export const Home = () => {
+	const [show, setShow] = useState(false);
 
-							<div className="todo-item3">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Realiza una rutina de: Piernas, abdomen y espalda</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item4">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Tomar una ducha de agua fría</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item5">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>No comer nada despues de las 8pm</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item6">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Leer un libro durante 2 horas</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item7">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Mantente alejado de los dispositivos electronicos despues de las 10pm</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	return (
+		<div className="container-page center">
+			{/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+				<Navbar.Brand href="/">Inicio</Navbar.Brand>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse id="responsive-navbar-nav">
+					<Nav className="mr-auto" />
+					<Nav>
+						<Nav.Link href="login" onClick={handleShow}>
+							Registrarse
+						</Nav.Link>
+						<Nav.Link eventKey={2} href="signup">
+							Ingresar
+						</Nav.Link>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar> */}
+
+			<Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Iniciar Sesion</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<Form.Group controlId="formBasicEmail">
+						<Form.Label>Correo electronico</Form.Label>
+						<Form.Control type="email" placeholder="Enter email" />
+						<Form.Text className="text-muted">Nunca compartiremos tus datos.</Form.Text>
+					</Form.Group>
+
+					<Form.Group controlId="formBasicPassword">
+						<Form.Label>Contraseña</Form.Label>
+						<Form.Control type="password" placeholder="Password" />
+					</Form.Group>
+					<Button variant="primary" type="submit">
+						Submit
+					</Button>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={handleClose}>
+						Cerrar
+					</Button>
+					<Button variant="primary" onClick={handleClose}>
+						Guardar Cambios
+					</Button>
+				</Modal.Footer>
+			</Modal>
+
+			<Jumbotron bg-muted>
+				<h1>Life Planner</h1>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat.
+				</p>
+				<p>
+					<Button variant="btn btn-light btn-lg">Empieza Ahora</Button>
+				</p>
+			</Jumbotron>
+
+			<div className="prev-img text-center">
+				<img src="..." className="rounded" alt="Responsive image" />
+				<img src="..." className="rounded" alt="Responsive image" />
+				<img src="..." className="rounded" alt="Responsive image" />
+				<p className="lead">
+					<a className="btn btn-light btn-lg" href="#" role="button">
+						Comienza Ahora
+					</a>
+				</p>
 			</div>
+
+			<Jumbotron bg-muted>
+				<h1>Comienza a mejorar tu dia</h1>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat.
+				</p>
+				<img src="..." className="rounded float-right" alt="Responsive image" />
+			</Jumbotron>
 		</div>
-	</div>
-);
+	);
+};
