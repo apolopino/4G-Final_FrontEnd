@@ -9,6 +9,10 @@ export const NavbarModule = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
+	const [registerShow, setRegisterShow] = useState(false);
+	const handleRegisterClose = () => setRegisterShow(false);
+	const handleRegisterShow = () => setRegisterShow(true);
+
 	// Store
 	const { store, actions } = useContext(Context);
 
@@ -17,7 +21,7 @@ export const NavbarModule = () => {
 		return (
 			<div className="ml-auto pr-5">
 				<Nav>
-					<Nav.Link href="#">Register</Nav.Link>
+					<Nav.Link onClick={handleRegisterShow}>Register</Nav.Link>
 					<Nav.Link className="mr-sm-2" onClick={handleShow}>
 						Login
 					</Nav.Link>
@@ -37,7 +41,7 @@ export const NavbarModule = () => {
 		);
 	};
 
-	const loginModal = () => {
+	const modals = () => {
 		return (
 			<div>
 				<Modal show={show} onHide={handleClose}>
@@ -46,13 +50,13 @@ export const NavbarModule = () => {
 					</Modal.Header>
 					<Form>
 						<Modal.Body>
-							<Form.Group controlId="formBasicEmail">
+							<Form.Group controlId="loginEmail">
 								<Form.Label>Correo electronico</Form.Label>
 								<Form.Control type="email" placeholder="Enter email" />
 								<Form.Text className="text-muted">Nunca compartiremos tus datos.</Form.Text>
 							</Form.Group>
 
-							<Form.Group controlId="formBasicPassword">
+							<Form.Group controlId="loginPassword">
 								<Form.Label>Contraseña</Form.Label>
 								<Form.Control type="password" placeholder="Password" />
 							</Form.Group>
@@ -68,19 +72,53 @@ export const NavbarModule = () => {
 						</Modal.Footer>
 					</Form>
 				</Modal>
+
+				{/* REGISTER MODAL */}
+				<Modal show={registerShow} onHide={handleRegisterClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>Registrarse</Modal.Title>
+					</Modal.Header>
+					<Form>
+						<Modal.Body>
+							<Form.Group className="mb-3" controlId="registerName">
+								<Form.Label>Nombre</Form.Label>
+								<Form.Control type="text" placeholder="First name" />
+							</Form.Group>
+
+							<Form.Group controlId="registerEmail">
+								<Form.Label>Correo electronico</Form.Label>
+								<Form.Control type="email" placeholder="Enter email" />
+							</Form.Group>
+
+							<Form.Group controlId="registerPass">
+								<Form.Label>Contraseña</Form.Label>
+								<Form.Control type="password" placeholder="Contraseña" />
+							</Form.Group>
+
+							<Form.Group controlId="registerPassValidate">
+								<Form.Control type="password" placeholder="Repetir Contraseña" />
+							</Form.Group>
+						</Modal.Body>
+
+						<Modal.Footer className="justify-content-md-center">
+							<Button variant="primary" onClick={handleRegisterClose}>
+								Registrar
+							</Button>
+							<Button variant="secondary" onClick={handleRegisterClose}>
+								Cancel
+							</Button>
+						</Modal.Footer>
+					</Form>
+				</Modal>
 			</div>
 		);
 	};
 
 	return (
 		<div>
-			<Button variant="primary" onClick={handleShow}>
-				Launch demo modal
-			</Button>
-
 			<Navbar bg="light" expand="lg">
 				<Navbar.Brand className="pl-5" href="#home">
-					React-Bootstrap
+					Life Planner
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
@@ -89,8 +127,8 @@ export const NavbarModule = () => {
 				</Navbar.Collapse>
 			</Navbar>
 
-			{/* Este es el modal para hacer login. No deberia ni cargarse en el site si store.isLogged = true */}
-			{store.isLogged === true ? "" : loginModal()}
+			{/* Carga los modals en caso que no este logueado */}
+			{store.isLogged === true ? "" : modals()}
 		</div>
 	);
 };
