@@ -33,16 +33,18 @@ export const Desafios = () => {
 
 			<div className="jumbotron bg-muted">
 				<div className="container">
-					<h1 className="row text-light float-left mb-">Con este desafio:</h1>
+					<h1 className="col text-light float-left mb-">Con este desafio:</h1>
 
-					<div className="row container spheres justify-content-between">
-						<div className="circ" />
-						<div className="circ" />
-						<div className="circ" />
+					<div className="container">
+						<div className="row">
+							<div className="col mx-auto fas fa-dumbbell fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
+							<div className="col mx-auto fa fa-cutlery fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
+							<div className="col mx-auto fas fa-th-list fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
+						</div>
 					</div>
 
-					<div className="container align-items-center justify-content-between">
-						<div className="row align-items-center">
+					<div className="container align-items-center">
+						<div className="row align-items-center justify-content-between">
 							<div className="col">
 								Ordena tu rutina de ejercicios ocacionales Lorem ipsum dolor sit amet
 							</div>
@@ -53,17 +55,30 @@ export const Desafios = () => {
 						</div>
 					</div>
 
-					<p className="row lead d-flex justify-content-between">
-						<a className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0" href="#" role="button">
-							1 Rutina de 30min cada 2 dias.
-						</a>
-						<a className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0" href="#" role="button">
-							1 Receta sencilla para preparar al dia.
-						</a>
-						<a className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0" href="#" role="button">
-							2 Actividades que ayudaran a organizar tu dia.
-						</a>
-					</p>
+					<div className="container align-items-center">
+						<div className="row align-items-center justify-content-between">
+							<button
+								type="button"
+								className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
+								aria-label="Middle Align">
+								<span className="" aria-hidden="true"></span>1 Rutina de 30min cada 2 dias.
+							</button>
+							<button
+								type="button"
+								className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
+								aria-label="Middle Align">
+								<span className="" aria-hidden="true"></span>1 Receta sencilla para preparar al dia.
+								dias.
+							</button>
+							<button
+								type="button"
+								className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
+								aria-label="Middle Align">
+								<span className="" aria-hidden="true"></span>2 Actividades que ayudaran a organizar tu
+								dia.
+							</button>
+						</div>
+					</div>
 
 					<div className="row">
 						<div className="col-md-4">
@@ -78,7 +93,7 @@ export const Desafios = () => {
 					<p className="row">
 						<div className="col-md-6 offset-md-5">
 							<a className="btn btn-light btn-lg" href="#" role="button">
-								Comenzar.
+								Comenzar
 							</a>
 						</div>
 					</p>

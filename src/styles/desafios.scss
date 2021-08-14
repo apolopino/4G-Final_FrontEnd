@@ -14,13 +14,24 @@
     height: 50px;
     border-radius: 50px;
 }
+
 .line {
-    background-color: grey;
-    width: 100px;
-    height: 1px;
+    content: '';
+    display:block;
+    width: 100%;
+    height: 10px;
+    position: relative;
+}
+line::before {
+    content: '';
+    display:block;
+    width: 100%;
+    height: 10px;
+    background: grey;
     background-position-x: absolute;
 }
 .spheres {
     background-position-x: absolute;
+    text-align: center;
 }
 
