@@ -68,10 +68,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					detalleDesafio: "URL-del-componente"
 				}
 			],
-			isLogged: false
+
+			isLogged: false,
+
+			showOnboard: true
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			setShowOnboard: status => {
+				const store = getStore();
+				console.log("triggered action: setShowOnboard ", status);
+				setStore({ showOnboard: status });
+			},
+
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},

@@ -4,6 +4,9 @@ import { Navbar, Nav, NavDropdown, Modal, Button, Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const NavbarModule = () => {
+	// Store
+	const { store, actions } = useContext(Context);
+
 	// Modal controls
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -17,11 +20,15 @@ export const NavbarModule = () => {
 
 	const handleLogin = () => {
 		handleClose();
+		actions.setShowOnboard(false);
 		history.push("/dashboard");
 	};
 
-	// Store
-	const { store, actions } = useContext(Context);
+	const handleRegister = () => {
+		handleRegisterClose();
+		actions.setShowOnboard(true);
+		history.push("/dashboard");
+	};
 
 	const loginLinks = () => {
 		// esto se muestra si es usuario debe loguearse. Al hacerlo, poner un action que cambie el estado de isLogged en el store
@@ -109,7 +116,7 @@ export const NavbarModule = () => {
 						</Modal.Body>
 
 						<Modal.Footer className="justify-content-md-center">
-							<Button variant="primary" onClick={handleRegisterClose}>
+							<Button variant="primary" onClick={handleRegister}>
 								Registrar
 							</Button>
 							<Button variant="secondary" onClick={handleRegisterClose}>

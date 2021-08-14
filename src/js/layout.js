@@ -5,7 +5,6 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { Single } from "./views/single";
 import { Dashboard } from "./views/dashboard";
-import { Landing } from "./views/home";
 import { Detalle } from "./views/detalle";
 import injectContext from "./store/appContext";
 
@@ -33,9 +32,6 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/dashboard">
 							<Dashboard />
-						</Route>
-						<Route exact path="/landing">
-							<Landing />
 						</Route>
 						<Route exact path="/detalle">
 							<Detalle tipo="rutina" />

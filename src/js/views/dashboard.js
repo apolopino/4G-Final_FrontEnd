@@ -9,12 +9,15 @@ import { Onboard } from "../component/onboard";
 export const Dashboard = () => {
 	console.log("loading dashboard component");
 
-	const [onboard, setOnboard] = useState(false);
+	// const [onboard, setOnboard] = useState(false);
+	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
 		// ir a la base de datos y revisar si el usuario tiene desafios y actualizar el estado. Ahora solo lo seteo manualmente. Onboard = true es que no tiene desafios y hay que hacerle onboarding
-		setOnboard(false);
+		// setOnboard(false);
 	}, []);
+
+	let onboard = store.showOnboard;
 
 	if (onboard === true) {
 		return (
