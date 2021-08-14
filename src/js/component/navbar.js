@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, NavDropdown, Modal, Button } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Modal, Button, Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const NavbarModule = () => {
@@ -18,7 +18,7 @@ export const NavbarModule = () => {
 			<div className="ml-auto pr-5">
 				<Nav>
 					<Nav.Link href="#">Register</Nav.Link>
-					<Nav.Link className="mr-sm-2" href="#link">
+					<Nav.Link className="mr-sm-2" onClick={handleShow}>
 						Login
 					</Nav.Link>
 				</Nav>
@@ -33,6 +33,41 @@ export const NavbarModule = () => {
 				<Nav>
 					<Nav.Link href="#">Logout</Nav.Link>
 				</Nav>
+			</div>
+		);
+	};
+
+	const loginModal = () => {
+		return (
+			<div>
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>Iniciar sesion</Modal.Title>
+					</Modal.Header>
+					<Form>
+						<Modal.Body>
+							<Form.Group controlId="formBasicEmail">
+								<Form.Label>Correo electronico</Form.Label>
+								<Form.Control type="email" placeholder="Enter email" />
+								<Form.Text className="text-muted">Nunca compartiremos tus datos.</Form.Text>
+							</Form.Group>
+
+							<Form.Group controlId="formBasicPassword">
+								<Form.Label>Contraseña</Form.Label>
+								<Form.Control type="password" placeholder="Password" />
+							</Form.Group>
+						</Modal.Body>
+
+						<Modal.Footer className="justify-content-md-center">
+							<Button variant="primary" onClick={handleClose}>
+								Login
+							</Button>
+							<Button variant="secondary" onClick={handleClose}>
+								Cancel
+							</Button>
+						</Modal.Footer>
+					</Form>
+				</Modal>
 			</div>
 		);
 	};
@@ -55,20 +90,7 @@ export const NavbarModule = () => {
 			</Navbar>
 
 			{/* Este es el modal para hacer login. No deberia ni cargarse en el site si store.isLogged = true */}
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-					<Modal.Title>Iniciar sesion</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>Woohoo, you&aposre reading this text in a modal!</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
-						Close
-					</Button>
-					<Button variant="primary" onClick={handleClose}>
-						Save Changes
-					</Button>
-				</Modal.Footer>
-			</Modal>
+			{store.isLogged === true ? "" : loginModal()}
 		</div>
 	);
 };

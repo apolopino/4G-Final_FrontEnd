@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			isLogged: true
+			isLogged: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

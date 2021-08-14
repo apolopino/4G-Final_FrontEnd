@@ -19,51 +19,6 @@ export const Home = () => {
 
 	return (
 		<div className="container-page center">
-			{/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-				<Navbar.Brand href="/">Inicio</Navbar.Brand>
-				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="mr-auto" />
-					<Nav>
-						<Nav.Link href="login" onClick={handleShow}>
-							Registrarse
-						</Nav.Link>
-						<Nav.Link eventKey={2} href="signup">
-							Ingresar
-						</Nav.Link>
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar> */}
-
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-					<Modal.Title>Iniciar Sesion</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<Form.Group controlId="formBasicEmail">
-						<Form.Label>Correo electronico</Form.Label>
-						<Form.Control type="email" placeholder="Enter email" />
-						<Form.Text className="text-muted">Nunca compartiremos tus datos.</Form.Text>
-					</Form.Group>
-
-					<Form.Group controlId="formBasicPassword">
-						<Form.Label>Contraseña</Form.Label>
-						<Form.Control type="password" placeholder="Password" />
-					</Form.Group>
-					<Button variant="primary" type="submit">
-						Submit
-					</Button>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
-						Cerrar
-					</Button>
-					<Button variant="primary" onClick={handleClose}>
-						Guardar Cambios
-					</Button>
-				</Modal.Footer>
-			</Modal>
-
 			<Jumbotron bg-muted>
 				<h1>Life Planner</h1>
 				<p>
