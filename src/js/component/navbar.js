@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Modal, Button, Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
@@ -12,6 +12,13 @@ export const NavbarModule = () => {
 	const [registerShow, setRegisterShow] = useState(false);
 	const handleRegisterClose = () => setRegisterShow(false);
 	const handleRegisterShow = () => setRegisterShow(true);
+
+	const history = useHistory();
+
+	const handleLogin = () => {
+		handleClose();
+		history.push("/dashboard");
+	};
 
 	// Store
 	const { store, actions } = useContext(Context);
@@ -44,6 +51,7 @@ export const NavbarModule = () => {
 	const modals = () => {
 		return (
 			<div>
+				{/* Login modal */}
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>
 						<Modal.Title>Iniciar sesion</Modal.Title>
@@ -63,7 +71,7 @@ export const NavbarModule = () => {
 						</Modal.Body>
 
 						<Modal.Footer className="justify-content-md-center">
-							<Button variant="primary" onClick={handleClose}>
+							<Button variant="primary" onClick={handleLogin}>
 								Login
 							</Button>
 							<Button variant="secondary" onClick={handleClose}>
