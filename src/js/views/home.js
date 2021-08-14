@@ -1,112 +1,91 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
+import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { Navbar, Nav, NavDropdown, Modal, Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "../../styles/landing.scss";
 
-export const Home = () => (
-	<div className="container">
-		<div className="row">
-			<div className="col-md-12">
-				<div className="card card-white">
-					<div className="card-body">
-						<form action="">
-							<input
-								type="text"
-								className="form-control add-task"
-								placeholder="Puedes agregar una nueva tarea"
-							/>
-						</form>
-						<ul className="nav nav-pills todo-nav">
-							<li role="presentation" className="nav-item all-task active">
-								<a href="#" className="nav-link">
-									Tareas
-								</a>
-							</li>
-							<li role="presentation" className="nav-item active-task">
-								<a href="#" className="nav-link">
-									Por hacer
-								</a>
-							</li>
-							<li role="presentation" className="nav-item completed-task">
-								<a href="#" className="nav-link">
-									Completados
-								</a>
-							</li>
-						</ul>
-						<div className="todo-list">
-							<div className="todo-item1">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Toma 8 vasos de agua</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item2">
-								<div className="checker">
-									<input type="checkbox" />
-								</div>
-								<span>Medita 30min</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
+// pendiente: ACTIVAR LOS BOTONES DEL SITE PARA LLAMAR AL MODAL
+export const Home = () => {
+	const [show, setShow] = useState(false);
 
-							<div className="todo-item3">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Realiza una rutina de: Piernas, abdomen y espalda</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item4">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Tomar una ducha de agua fría</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item5">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>No comer nada despues de las 8pm</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item6">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Leer un libro durante 2 horas</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item7">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Mantente alejado de los dispositivos electronicos despues de las 10pm</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-						</div>
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	return (
+		<div className="container-page center">
+			<Jumbotron bg-muted>
+				<h1>Life Planner</h1>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat.
+				</p>
+				<p>
+					<Button variant="btn btn-light btn-lg">Empieza Ahora</Button>
+				</p>
+			</Jumbotron>
+
+			{/* esto tenemos que cambiarlo por 3 cards */}
+			<div className="container">
+				<div className="row prev-img text-center">
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
 					</div>
 				</div>
+				<div className="row justify-content-center">
+					<p className="lead mt-5">
+						<a className="btn btn-light btn-lg" href="#" role="button">
+							Comienza Ahora
+						</a>
+					</p>
+				</div>
 			</div>
+
+			<Jumbotron bg-muted>
+				<div className="row">
+					<div className="col-sm-8">
+						<h1>Comienza a mejorar tu dia</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris nisi ut aliquip ex ea commodo consequat.
+						</p>
+					</div>
+
+					<div className="col-sm-4">
+						<img
+							src="https://icountryschool.cl/wp-content/uploads/2020/08/placeholder.png"
+							className="rounded img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+				</div>
+			</Jumbotron>
 		</div>
-	</div>
-);
+	);
+};
