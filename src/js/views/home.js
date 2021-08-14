@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/landing.scss";
 
+<<<<<<< HEAD
 // pendiente: ACTIVAR LOS BOTONES DEL SITE PARA LLAMAR AL MODAL
 export const Home = () => {
 	const [show, setShow] = useState(false);
@@ -88,4 +89,10 @@ export const Home = () => {
 			</Jumbotron>
 		</div>
 	);
+=======
+export const Home = () => {
+	console.log("loading Home view");
+
+	return <div className="text-light"> esto es el home </div>;
+>>>>>>> develop
 };

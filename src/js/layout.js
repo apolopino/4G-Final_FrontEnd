@@ -5,11 +5,13 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { Single } from "./views/single";
 import { Dashboard } from "./views/dashboard";
-import { Landing } from "./views/home";
+import { Detalle } from "./views/detalle";
+
 import injectContext from "./store/appContext";
 
 import { NavbarModule } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Onboard } from "./component/onboard";
 
 //create your first component
 const Layout = () => {
@@ -32,9 +34,12 @@ const Layout = () => {
 						<Route exact path="/dashboard">
 							<Dashboard />
 						</Route>
-						<Route exact path="/landing">
-							<Landing />
+
+						<Route exact path="/detalle">
+							{/* Cambiar rutina por receta para acceder al store recetas */}
+							<Detalle tipo="receta" />
 						</Route>
+
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
