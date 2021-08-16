@@ -1,9 +1,18 @@
 import React from "react";
 import "../../styles/timeline.scss";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export const Timeline = () => {
 	console.log("loading Timeline component");
+
+	const rutinaDiaria = id => {
+		alert("Se ha clickeado el Rutina id ", id);
+	};
+
+	const recetaDiaria = id => {
+		alert("Se ha clickeado la receta id", id);
+	};
 
 	return (
 		<div className="timeline-wrapper">
@@ -23,7 +32,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container segundo">
