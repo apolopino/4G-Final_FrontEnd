@@ -18,13 +18,13 @@ $final: red;
 // timeline variables
 $body-bg: #1e1e2f;
 $timeline-before-bg : #222a42;
-$timeline-body-bg: #27293d;
+$timeline-body-bg: #292b3d;
 $timeline-body-round: 3px;
 $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 body {
     font-family: 'K2D', sans-serif;
-    background: $body-bg;
+    background: #1e1e2f!important;
     letter-spacing: 1px;
 }
 
@@ -56,7 +56,7 @@ p {
         top: 0;
         width: 4px;
         height: 100%;
-        background: gray;
+        background: $timeline-body-bg;
     }
 
     .timeline-container {
