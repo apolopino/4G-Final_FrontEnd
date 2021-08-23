@@ -25,7 +25,14 @@ body{
     padding: 15px;
     margin: 32px 0;
     border-radius: 1%;
-    background: #4f537b;
+    background: #585871;
+}
+
+.todo-item {
+    padding: 15px;
+    margin: 32px 0;
+    border-radius: 0;
+    background: #786d94;
 }
 
 .todo-item1 {
@@ -155,7 +162,7 @@ div.button, div.checker, div.radio, div.selector, div.uploader {
     padding: 25px;
     margin-bottom: 20px;
     border: initial;
-    background: #2b2d46;
+    background: #827a9a;
     border-radius: calc(.15rem - 1px);
     box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);
 }

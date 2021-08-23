@@ -55,7 +55,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container tercero">
@@ -73,7 +78,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container cuarto">
@@ -91,7 +101,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container quinto">
@@ -109,7 +124,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container sexto">
@@ -127,7 +147,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container final">
@@ -145,7 +170,12 @@ export const Timeline = () => {
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 			</div>

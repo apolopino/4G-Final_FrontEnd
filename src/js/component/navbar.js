@@ -132,7 +132,7 @@ export const NavbarModule = () => {
 	return (
 		<div>
 			<Navbar bg="light" expand="lg">
-				<Navbar.Brand className="pl-5" href="#home">
+				<Navbar.Brand className="pl-5" href="/">
 					Life Planner
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
