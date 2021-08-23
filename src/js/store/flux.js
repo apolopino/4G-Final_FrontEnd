@@ -69,11 +69,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
+			desafiosList: [],
+
 			isLogged: false,
 
 			showOnboard: true
 		},
 		actions: {
+			// getDesafios: () => {
+			// 	const URL = "https://3001-white-leopard-omsrf9vd.ws-us16.gitpod.io/desafios";
+			// 	const OBJCONFIG = {
+			// 		method: "GET",
+			// 		headers: {
+			// 			"content-type": "application/json"
+			// 		}
+			// 	};
+			// 	fetch(URL, OBJCONFIG)
+			// 		.then(res => res.json())
+			// 		.then(data => setStore({ desafiosD: data.desafios }));
+			// },
+
+			listaDesafios: () => {
+				fetch("https://3001-white-leopard-omsrf9vd.ws-us16.gitpod.io/desafios", {
+					method: "GET"
+				})
+					.then(res => res.json())
+					.then(json => {
+						console.log("response from backend", json.desafios);
+						setStore({ desafiosList: json.desafios });
+					});
+			},
+
 			// Use getActions to call a function within a fuction
 			setShowOnboard: status => {
 				const store = getStore();

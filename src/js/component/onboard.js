@@ -8,6 +8,11 @@ import { ChallengeCard } from "./challengeCard";
 export const Onboard = () => {
 	const { store, actions } = useContext(Context);
 
+	useEffect(() => {
+		console.log("cargando actions/getdesafios");
+		actions.listaDesafios();
+	}, []);
+
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
@@ -18,14 +23,15 @@ export const Onboard = () => {
 			</div>
 			<div className="container text-light">
 				<div className="row p-5">
-					{store.desafiosDisponibles.map((item, index) => {
+					{/* {store.desafiosDisponibles.map((item, index) => { */}
+					{store.desafiosList.map((item, index) => {
 						return (
 							<ChallengeCard
 								key={index}
 								image={item.image}
-								titulo={item.titulo}
-								content={item.content}
-								buttonText={item.buttonText}
+								titulo={item.nombreDesafio}
+								content={item.descripcion}
+								buttonText="Seleccionar"
 								url={item.url}
 								detalleDesafio={item.detalleDesafio}
 								index={index}
