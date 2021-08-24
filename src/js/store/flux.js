@@ -1,6 +1,19 @@
+const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			user: {
+				expires: "",
+				token: "",
+				nombre: "",
+				email: "",
+				userId: "",
+				userName: ""
+			},
+			message: "",
+			userList: [],
+
 			routineDetail: {
 				// cargar los detalles de la receta/rutina
 				nombre: "Rutina de prueba",
@@ -75,6 +88,53 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			getToken: () => {
+				const tokenLocal = localStorage.getItem("token");
+				// busca traer el contenido de token del backend
+				const userLocal = JSON.parse(localStorage.getItem("user"));
+				setStore({
+					user: {
+						token: tokenLocal,
+						user: userLocal
+					}
+				});
+				console.log("-->", tokenLocal);
+				console.log("-->", JSON.stringify(userLocal));
+			},
+			setLogin: user => {
+				fetch(URLBACKEND + "/login", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						if (data.hasOwnProperty("token")) {
+							const dataUser = {
+								expires: data.expires,
+								token: data.token,
+								nombre: data.nombre,
+								email: data.user.email,
+								userId: data.userId,
+								userName: data.userName
+							};
+							setStore({ user: { ...dataUser } });
+
+							console.log("--USER--", dataUser);
+
+							if (typeof Storage !== "undefined") {
+								localStorage.setItem("token", data.token);
+								localStorage.setItem("user", JSON.stringify(data.user));
+							} else {
+								// LocalStorage no soportado en este navegador
+							}
+						} else {
+							setStore({ message: data.msg });
+						}
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+			},
 			setShowOnboard: status => {
 				const store = getStore();
 				console.log("triggered action: setShowOnboard ", status);

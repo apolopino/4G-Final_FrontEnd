@@ -32,6 +32,7 @@ export const NavbarModule = () => {
 
 	const loginLinks = () => {
 		// esto se muestra si es usuario debe loguearse. Al hacerlo, poner un action que cambie el estado de isLogged en el store
+
 		return (
 			<div className="ml-auto pr-5">
 				<Nav>
@@ -56,6 +57,26 @@ export const NavbarModule = () => {
 	};
 
 	const modals = () => {
+		//login+register
+		const { store, actions } = useContext(Context);
+		const [email, setEmail] = useState("");
+		const [password, setPassword] = useState("");
+
+		const handlerClick = e => {
+			e.preventDefault();
+
+			const user = {
+				email: email,
+				password: password
+			};
+
+			actions.setLogin(user);
+		};
+
+		useEffect(() => {
+			actions.getToken();
+		}, []);
+
 		return (
 			<div>
 				{/* Login modal */}
@@ -67,18 +88,28 @@ export const NavbarModule = () => {
 						<Modal.Body>
 							<Form.Group controlId="loginEmail">
 								<Form.Label>Correo electronico</Form.Label>
-								<Form.Control type="email" placeholder="Enter email" />
+								<Form.Control
+									value={email}
+									onChange={e => setEmail(e.target.value)}
+									type="email"
+									placeholder="Enter email"
+								/>
 								<Form.Text className="text-muted">Nunca compartiremos tus datos.</Form.Text>
 							</Form.Group>
 
 							<Form.Group controlId="loginPassword">
 								<Form.Label>Contraseña</Form.Label>
-								<Form.Control type="password" placeholder="Password" />
+								<Form.Control
+									value={password}
+									onChange={e => setPassword(e.target.value)}
+									type="password"
+									placeholder="Password"
+								/>
 							</Form.Group>
 						</Modal.Body>
 
 						<Modal.Footer className="justify-content-md-center">
-							<Button variant="primary" onClick={handleLogin}>
+							<Button variant="primary" onClick={e => handlerClick(e)}>
 								Login
 							</Button>
 							<Button variant="secondary" onClick={handleClose}>
