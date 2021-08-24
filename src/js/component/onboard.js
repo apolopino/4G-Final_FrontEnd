@@ -32,8 +32,9 @@ export const Onboard = () => {
 								titulo={item.nombreDesafio}
 								content={item.descripcion}
 								buttonText="Seleccionar"
-								url={item.url}
-								detalleDesafio={item.detalleDesafio}
+								// next line sets an action and passes the challenge Id to assign to the user
+								url={item.id}
+								detalleDesafio={`/desafios/${item.id}`}
 								index={index}
 							/>
 						);

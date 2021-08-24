@@ -100,6 +100,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			setChallenge: id => {
+				return console.log("se inscribira el desafio con id ", id);
+			},
+
 			// Use getActions to call a function within a fuction
 			setShowOnboard: status => {
 				const store = getStore();
