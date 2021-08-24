@@ -12,6 +12,18 @@ import Figure from "react-bootstrap/Figure";
 import "../../styles/desafios.scss";
 
 export const Desafios = () => {
+	const { store, actions } = useContext(Context);
+	const params = useParams();
+
+	let url = {};
+
+	useEffect(() => {
+		// estoy obteniendo el segundo elemento de la list, no es el elemento con el desafio if = params.id
+		// params.id saca el id de la url que le di en routes
+		let objeto = store.desafiosList[params.id];
+		console.log("chequeo el objeto", objeto);
+	}, []);
+
 	return (
 		<div className="container-page">
 			<row>

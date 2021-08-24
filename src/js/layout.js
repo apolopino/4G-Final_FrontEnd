@@ -37,7 +37,10 @@ const Layout = () => {
 						<Route exact path="/detalle">
 							<Detalle tipo="rutina" />
 						</Route>
-						<Route exact path="/desafio">
+						{/* <Route exact path="/desafio">
+							<Desafios />
+						</Route> */}
+						<Route exact path="/desafios/:id">
 							<Desafios />
 						</Route>
 						<Route>
