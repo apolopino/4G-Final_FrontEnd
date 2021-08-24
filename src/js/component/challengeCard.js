@@ -16,6 +16,15 @@ export const ChallengeCard = props => {
 		history.push(url);
 	};
 
+	let string = props.content;
+	const limit = 50;
+
+	function getExcerpt(string, limit) {
+		let shortText = string;
+		shortText = shortText.substr(0, shortText.lastIndexOf(" ", limit)) + "...";
+		return shortText;
+	}
+
 	return (
 		<div className="col-lg-3 col-md-6 mb-3 text-dark">
 			<div className="card card-no-border text-center h-100 bg-light">
@@ -36,7 +45,7 @@ export const ChallengeCard = props => {
 
 					<p className="card-text">
 						{"content" in props
-							? props.content
+							? getExcerpt(string, limit)
 							: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor sapien vitae congue volutpat."}
 					</p>
 

@@ -28,7 +28,7 @@ export const Onboard = () => {
 						return (
 							<ChallengeCard
 								key={index}
-								image={item.image}
+								image={item.photoURL}
 								titulo={item.nombreDesafio}
 								content={item.descripcion}
 								buttonText="Seleccionar"
