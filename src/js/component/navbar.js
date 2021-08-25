@@ -49,7 +49,7 @@ export const NavbarModule = () => {
 		actions.setLogin(user);
 		handleClose();
 		actions.setShowOnboard(false);
-		history.push("/dashboard/:");
+		history.push("/dashboard");
 	};
 
 	const handleRegister = e => {
@@ -62,6 +62,8 @@ export const NavbarModule = () => {
 			};
 
 			actions.setRegister(user);
+			handleRegisterClose();
+			actions.setShowOnboard(true);
 			history.push("/dashboard");
 		} else {
 			setPasswordMsg("Las password no son iguales");
