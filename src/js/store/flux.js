@@ -8,8 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				token: "",
 				nombre: "",
 				email: "",
-				userId: "",
-				userName: ""
+				userId: ""
 			},
 			message: "",
 			userList: [],
@@ -83,6 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 
 			isLogged: false,
+			messageLogged: "",
 
 			showOnboard: true
 		},
@@ -116,8 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								token: data.token,
 								nombre: data.nombre,
 								email: data.user.email,
-								userId: data.userId,
-								userName: data.userName
+								userId: data.userId
 							};
 							setStore({ user: { ...dataUser } });
 
@@ -134,6 +133,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.catch(error => console.log("Error loading message from backend", error));
+			},
+			setRegister: user => {
+				fetch(URLBACKEND + "/register", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageLogged: data.msg });
+					});
 			},
 			setShowOnboard: status => {
 				const store = getStore();
