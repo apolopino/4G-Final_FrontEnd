@@ -7,24 +7,33 @@
 }
 
 // colores
-$primero: #1d8cf8;
-$segundo: #4f537b;
-$tercero: #11cdef;
-$cuarto: #00bf9a;
-$quinto: #ff8d72;
-$sexto: #fd5d93;
-$final: red;
+//$primero: #1d8cf8;
+//$segundo: #4f537b;
+//$tercero: #11cdef;
+//$cuarto: #00bf9a;
+//$quinto: #ff8d72;
+//$sexto: #fd5d93;
+//$final: red;
+
+
+$primero: #8f87a5;
+$segundo: #8f87a5;
+$tercero: #8f87a5;
+$cuarto: #8f87a5;
+$quinto: #8f87a5;
+$sexto: #8f87a5;
+$final: #8f87a5;
 
 // timeline variables
 $body-bg: #1e1e2f;
 $timeline-before-bg : #222a42;
-$timeline-body-bg: #27293d;
+$timeline-body-bg: #292b3d;
 $timeline-body-round: 3px;
 $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 body {
     font-family: 'K2D', sans-serif;
-    background: $body-bg;
+    background: #454558 !important;
     letter-spacing: 1px;
 }
 
@@ -72,7 +81,7 @@ p {
             border-radius: 50%;
             text-align: center;
             font-size: 2rem;
-            background: $segundo;
+            background: #8f87a5;
 
             i {
                 position: absolute;

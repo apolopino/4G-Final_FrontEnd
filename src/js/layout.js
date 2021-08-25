@@ -12,6 +12,7 @@ import injectContext from "./store/appContext";
 import { NavbarModule } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Onboard } from "./component/onboard";
+import { Todo } from "./views/to-do";
 
 //create your first component
 const Layout = () => {
@@ -40,11 +41,13 @@ const Layout = () => {
 						<Route exact path="/desafio">
 							<Desafios />
 						</Route>
+						<Route exact path="/to-do">
+							<Todo />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
-					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

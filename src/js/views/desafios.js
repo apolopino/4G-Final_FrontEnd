@@ -25,7 +25,7 @@ export const Desafios = () => {
 					<div className="container">
 						<h1 className="col text-light float-left mb-">Con este desafio:</h1>
 
-						<div className="container">
+						<div className="container-cards">
 							<div className="row">
 								<div className="col mx-auto fas fa-dumbbell fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
 								<div className="col mx-auto fa fa-cutlery fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
