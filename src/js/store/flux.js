@@ -92,11 +92,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const tokenLocal = localStorage.getItem("token");
 				// busca traer el contenido de token del backend
 				const userLocal = JSON.parse(localStorage.getItem("user"));
+				const isLoggedLocal = JSON.parse(localStorage.getItem("isLogged"));
 				setStore({
 					user: {
 						token: tokenLocal,
 						user: userLocal
-					}
+					},
+					isLogged: isLoggedLocal
 				});
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
@@ -118,13 +120,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 								email: data.user.email,
 								userId: data.userId
 							};
-							setStore({ user: { ...dataUser } });
+							setStore({ user: { ...dataUser }, isLogged: true });
 
 							console.log("--USER--", dataUser);
 
 							if (typeof Storage !== "undefined") {
 								localStorage.setItem("token", data.token);
 								localStorage.setItem("user", JSON.stringify(data.user));
+								localStorage.setItem("isLogged", true);
 							} else {
 								// LocalStorage no soportado en este navegador
 							}
@@ -145,6 +148,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("--data--", data);
 						setStore({ messageLogged: data.msg });
 					});
+			},
+			setLogout: history => {
+				localStorage.clear();
+				setStore({
+					user: {
+						expires: "",
+						token: "",
+						nombre: "",
+						email: "",
+						userId: ""
+					},
+					isLogged: false
+				});
+				history.push("/");
 			},
 			setShowOnboard: status => {
 				const store = getStore();
