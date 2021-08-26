@@ -27,6 +27,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				]
 			},
 
+			desafioDetail: [
+				{
+					descripcion: "Descripcion larga del desafio 2",
+					"dias del desafio": [],
+					feat1: "feature 1",
+					feat2: "feature 2",
+					feat3: "feature 3",
+					id: 2,
+					nombreDesafio: "Desafio 2",
+					photoURL:
+						"http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2019/12/knowledge-10520101920.jpg"
+				}
+			],
+
 			setName: {},
 
 			desafiosList: [],
