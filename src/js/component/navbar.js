@@ -37,7 +37,7 @@ export const NavbarModule = () => {
 		history.push("/dashboard");
 	}; */
 
-	//LOGIN+REGISTER
+	//LOGIN+REGISTER+LOGOUT
 	const handleLogin = e => {
 		e.preventDefault();
 
@@ -48,8 +48,8 @@ export const NavbarModule = () => {
 
 		actions.setLogin(user);
 		handleClose();
-		actions.setShowOnboard(false);
-		history.push("/dashboard");
+		/* actions.setShowOnboard(false);
+		history.push("/dashboard"); */
 	};
 
 	const handleRegister = e => {
@@ -60,17 +60,23 @@ export const NavbarModule = () => {
 				password: passwordReg1,
 				nombre: nombreReg
 			};
-
 			actions.setRegister(user);
 			handleRegisterClose();
-			actions.setShowOnboard(true);
-			history.push("/dashboard");
+			/* actions.setShowOnboard(true);
+			history.push("/dashboard"); */
 		} else {
 			setPasswordMsg("Las password no son iguales");
 		}
 	};
 
+	const handleLogout = e => {
+		e.preventDefault();
+		console.log(1);
+		actions.setLogout(history);
+	};
+
 	useEffect(() => {
+		if (!store.isLogged) history.push("/");
 		actions.getToken();
 	}, []);
 
@@ -94,7 +100,7 @@ export const NavbarModule = () => {
 		return (
 			<div className="ml-auto pr-5">
 				<Nav>
-					<Nav.Link href="#">Logout</Nav.Link>
+					<Nav.Link onClick={handleLogout}>Logout</Nav.Link>
 				</Nav>
 			</div>
 		);
