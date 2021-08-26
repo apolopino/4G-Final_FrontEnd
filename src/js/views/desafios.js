@@ -18,10 +18,18 @@ export const Desafios = () => {
 	let url = {};
 
 	useEffect(() => {
-		// estoy obteniendo el segundo elemento de la list, no es el elemento con el desafio if = params.id
-		// params.id saca el id de la url que le di en routes
-		let objeto = store.desafiosList[params.id];
-		console.log("chequeo el objeto", objeto);
+		let object = store.desafiosList;
+		let desafioId = parseInt(params.id);
+
+		const detalleDesafio = object.find(findChallenge);
+
+		actions.activeDesafio(detalleDesafio);
+
+		function findChallenge(objeto) {
+			return objeto.id === desafioId;
+		}
+
+		// console.log(object.find(findChallenge));
 	}, []);
 
 	//Hay que hacer que los siguientes elementos del desafio los saque del store:
@@ -40,12 +48,37 @@ export const Desafios = () => {
 	// 	"nombreDesafio": "Desafio 2",
 	// 	"photoURL": "http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2019/12/knowledge-10520101920.jpg"
 	// }]
+	// Falta: cambiar todos los elementos, ya los saca del store usando el elemento activeDesafio
 
 	return (
 		<div className="container-page">
 			<row>
+				<div
+					className="jumbotron"
+					style={{
+						backgroundImage: `url(${store.activeDesafio.photoURL})`,
+						backgroundPosition: "left",
+						backgroundRepeat: "no-repeat",
+						boxShadow: "inset 2000px 0 0 0 rgba(0, 0, 0, 0.5)",
+						backgroundColor: "#FFF"
+					}}>
+					<h1 className="display-4">Hello, world!</h1>
+					<p className="lead">
+						This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+						featured content or information.
+					</p>
+					<hr className="my-4" />
+					<p>
+						It uses utility classes for typography and spacing to space content out within the larger
+						container.
+					</p>
+					<a className="btn btn-primary btn-lg" href="#" role="button">
+						Learn more
+					</a>
+				</div>
+
 				<div className="col-sm-12 bg-light">
-					<img src={img1} className="img-fluid" alt="Responsive image" />
+					<img src={store.activeDesafio.photoURL} className="img-fluid" alt="Responsive image" />
 				</div>
 			</row>
 

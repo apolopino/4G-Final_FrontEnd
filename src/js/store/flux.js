@@ -43,6 +43,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setName: {},
 
+			activeDesafio: {},
+
 			desafiosList: [],
 
 			isLogged: false,
@@ -50,6 +52,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
+			activeDesafio: detalleDesafio => {
+				setStore({ activeDesafio: detalleDesafio });
+			},
+
 			listaDesafios: () => {
 				fetch("https://3001-white-leopard-omsrf9vd.ws-us16.gitpod.io/desafios", {
 					method: "GET"
