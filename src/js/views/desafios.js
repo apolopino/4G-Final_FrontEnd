@@ -56,23 +56,25 @@ export const Desafios = () => {
 	return (
 		<div className="container-page">
 			<div className="row">
-				<div
-					className="jumbotron text-light"
-					style={{
-						backgroundImage: `url(${store.activeDesafio.photoURL})`,
-						backgroundPosition: "left",
-						backgroundRepeat: "no-repeat",
-						boxShadow: "inset 2000px 0 0 0 rgba(0, 0, 0, 0.5)",
-						backgroundColor: "#FFF",
-						backgroundSize: "cover"
-					}}>
-					<h1 className="display-4">{store.activeDesafio.nombreDesafio}</h1>
-					<p className="lead">{store.activeDesafio.descripcion}</p>
-					<hr className="my-4" />
-					<p>Este desafío dura {store.activeDesafio.duracion} días</p>
-					<a className="btn btn-primary btn-lg" href="#" role="button">
-						Inscribir
-					</a>
+				<div className="container">
+					<div
+						className="jumbotron text-light"
+						style={{
+							backgroundImage: `url(${store.activeDesafio.photoURL})`,
+							backgroundPosition: "left",
+							backgroundRepeat: "no-repeat",
+							boxShadow: "inset 2000px 0 0 0 rgba(0, 0, 0, 0.5)",
+							backgroundColor: "#FFF",
+							backgroundSize: "cover"
+						}}>
+						<h1 className="display-4">{store.activeDesafio.nombreDesafio}</h1>
+						<p className="lead">{store.activeDesafio.descripcion}</p>
+						<hr className="my-4" />
+						<p>Este desafío dura {store.activeDesafio.duracion} días</p>
+						<a className="btn btn-primary btn-lg" href="#" role="button">
+							Inscribir
+						</a>
+					</div>
 				</div>
 			</div>
 
