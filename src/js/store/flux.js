@@ -1,4 +1,4 @@
-const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io";
+const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us15.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -103,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
 			},
-			setLogin: user => {
+			setLogin: (user, history) => {
 				fetch(URLBACKEND + "/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -128,6 +128,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 								localStorage.setItem("token", data.token);
 								localStorage.setItem("user", JSON.stringify(data.user));
 								localStorage.setItem("isLogged", true);
+
+								history.push("/dashboard");
 							} else {
 								// LocalStorage no soportado en este navegador
 							}
@@ -137,7 +139,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-			setRegister: user => {
+			setRegister: (user, history) => {
 				fetch(URLBACKEND + "/register", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -147,6 +149,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log("--data--", data);
 						setStore({ messageLogged: data.msg });
+
+						const userLogin = {
+							email: user.email,
+							password: user.password
+						};
+
+						getActions().setLogin(userLogin, history);
 					});
 			},
 			setLogout: history => {

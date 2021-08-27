@@ -46,7 +46,7 @@ export const NavbarModule = () => {
 			password: password
 		};
 
-		actions.setLogin(user);
+		actions.setLogin(user, history);
 		handleClose();
 		/* actions.setShowOnboard(false);
 		history.push("/dashboard"); */
@@ -60,10 +60,9 @@ export const NavbarModule = () => {
 				password: passwordReg1,
 				nombre: nombreReg
 			};
-			actions.setRegister(user);
+			actions.setRegister(user, history);
 			handleRegisterClose();
-			/* actions.setShowOnboard(true);
-			history.push("/dashboard"); */
+			actions.setShowOnboard(true);
 		} else {
 			setPasswordMsg("Las password no son iguales");
 		}
@@ -76,7 +75,7 @@ export const NavbarModule = () => {
 	};
 
 	useEffect(() => {
-		if (!store.isLogged) history.push("/");
+		/* if (!store.isLogged) history.push("/"); */
 		actions.getToken();
 	}, []);
 
@@ -100,6 +99,8 @@ export const NavbarModule = () => {
 		return (
 			<div className="ml-auto pr-5">
 				<Nav>
+					<Nav.Link href="/">Home</Nav.Link>
+					<Nav.Link href="/dashboard">Dashboard</Nav.Link>
 					<Nav.Link onClick={handleLogout}>Logout</Nav.Link>
 				</Nav>
 			</div>
@@ -136,6 +137,7 @@ export const NavbarModule = () => {
 									placeholder="Password"
 								/>
 							</Form.Group>
+							<Link to="/recuperacion">¿Olvidaste tu contraseña?</Link>
 						</Modal.Body>
 
 						<Modal.Footer className="justify-content-md-center">
@@ -214,7 +216,7 @@ export const NavbarModule = () => {
 	return (
 		<div>
 			<Navbar bg="light" expand="lg">
-				<Navbar.Brand className="pl-5" href="#home">
+				<Navbar.Brand className="pl-5" href="/">
 					Life Planner
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
