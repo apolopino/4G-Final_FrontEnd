@@ -8,13 +8,25 @@ import { OverlayTrigger } from "react-bootstrap";
 import { Tooltip } from "react-bootstrap";
 
 export const ChallengeCard = props => {
-	console.log("el props.redirect es ", props.url);
+	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
-	const redirect = url => {
-		console.log("la url recibid aes ", url);
-		history.push(url);
-	};
+	const challengeID = props.url;
+	console.log("props.id tiene ", challengeID);
+
+	// const redirect = url => {
+	// 	console.log("la url recibid aes ", url);
+	// 	history.push(url);
+	// };
+
+	let string = props.content;
+	const limit = 50;
+
+	function getExcerpt(string, limit) {
+		let shortText = string;
+		shortText = shortText.substr(0, shortText.lastIndexOf(" ", limit)) + "...";
+		return shortText;
+	}
 
 	return (
 		<div className="col-lg-3 col-md-6 mb-3 text-dark">
@@ -40,7 +52,7 @@ export const ChallengeCard = props => {
 
 					<p className="card-text">
 						{"content" in props
-							? props.content
+							? getExcerpt(string, limit)
 							: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor sapien vitae congue volutpat."}
 					</p>
 
@@ -48,7 +60,7 @@ export const ChallengeCard = props => {
 						key={props.index}
 						placement="top"
 						overlay={<Tooltip id={`tooltip-${props.index}`}>Inscribir Desafío</Tooltip>}>
-						<Button variant="primary" className="mt-auto" onClick={() => redirect(props.url)}>
+						<Button variant="primary" className="mt-auto" onClick={() => actions.setChallenge(challengeID)}>
 							{typeof props.buttonText === "undefined" ? "Select" : props.buttonText}
 						</Button>
 					</OverlayTrigger>

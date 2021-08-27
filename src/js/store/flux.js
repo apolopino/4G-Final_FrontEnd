@@ -39,47 +39,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				]
 			},
 
-			setName: {},
-
-			desafiosDisponibles: [
+			desafioDetail: [
 				{
-					image: "https://garajedelrock.com/wp-content/uploads/2020/05/serj-tankian.jpg",
-					titulo: "Desafio 1",
-					content: "Desafio para ordenar tu dia y tener tiempo para la familia",
-					buttonText: "Me animo!",
-					url: "#",
-					detalleDesafio: "/desafio"
-				},
-
-				{
-					image:
-						"https://ichef.bbci.co.uk/news/640/cpsprodpb/150EA/production/_107005268_gettyimages-611696954.jpg",
-					titulo: "Desafio 2",
-					content: "Desafío vida sana: come sano, ejercítate y descubre sus beneficios",
-					buttonText: "Con todo!",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
-				},
-
-				{
-					image: "https://interrailero.com/wp-content/uploads/2019/08/que-hacer-en-santiago-de-chile.jpg",
-					titulo: "Desafio 3",
-					content: "Desafío desconexión: mindfullness y relajación todos los días",
-					buttonText: "Estar zen",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
-				},
-
-				{
-					image:
-						"https://s03.s3c.es/imag/_v0/770x420/2/5/5/490x_espacio-latinoamerica-america-latina-noche.jpg",
-					titulo: "Desafio 4",
-					content: "El cabronazo de los desafíos, saldrás vivo?",
-					buttonText: "A morir!",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
+					descripcion: "Descripcion larga del desafio 2",
+					"dias del desafio": [],
+					feat1: "feature 1",
+					feat2: "feature 2",
+					feat3: "feature 3",
+					id: 2,
+					nombreDesafio: "Desafio 2",
+					photoURL:
+						"http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2019/12/knowledge-10520101920.jpg"
 				}
 			],
+
+			setName: {},
+
+			activeDesafio: {},
+
+			desafiosList: [],
 
 			isLogged: false,
 			messageLogged: "",
@@ -87,6 +65,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
+			activeDesafio: detalleDesafio => {
+				let duracion = detalleDesafio["dias del desafio"].length;
+				detalleDesafio.duracion = duracion;
+				setStore({ activeDesafio: detalleDesafio });
+			},
+
+			listaDesafios: () => {
+				fetch("https://3001-white-leopard-omsrf9vd.ws-us15.gitpod.io/desafios", {
+					method: "GET"
+				})
+					.then(res => res.json())
+					.then(json => {
+						console.log("response from backend", json.desafios);
+						setStore({ desafiosList: json.desafios });
+					});
+			},
+
+			setChallenge: id => {
+				return console.log("se inscribira el desafio con id ", id);
+			},
+
 			// Use getActions to call a function within a fuction
 			getToken: () => {
 				const tokenLocal = localStorage.getItem("token");

@@ -8,6 +8,11 @@ import { ChallengeCard } from "./challengeCard";
 export const Onboard = () => {
 	const { store, actions } = useContext(Context);
 
+	useEffect(() => {
+		console.log("cargando actions/getdesafios");
+		actions.listaDesafios();
+	}, []);
+
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
@@ -18,16 +23,18 @@ export const Onboard = () => {
 			</div>
 			<div className="container text-light">
 				<div className="row p-5">
-					{store.desafiosDisponibles.map((item, index) => {
+					{/* {store.desafiosDisponibles.map((item, index) => { */}
+					{store.desafiosList.map((item, index) => {
 						return (
 							<ChallengeCard
 								key={index}
-								image={item.image}
-								titulo={item.titulo}
-								content={item.content}
-								buttonText={item.buttonText}
-								url={item.url}
-								detalleDesafio={item.detalleDesafio}
+								image={item.photoURL}
+								titulo={item.nombreDesafio}
+								content={item.descripcion}
+								buttonText="Seleccionar"
+								// next line sets an action and passes the challenge Id to assign to the user
+								url={item.id}
+								detalleDesafio={`/desafios/${item.id}`}
 								index={index}
 							/>
 						);
