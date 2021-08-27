@@ -1,4 +1,4 @@
-const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us15.gitpod.io";
+const URLBACKEND = "https://3001-white-leopard-omsrf9vd.ws-us15.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {

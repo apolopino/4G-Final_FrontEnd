@@ -32,10 +32,7 @@ Wrapper.propTypes = {
 	children: PropTypes.any
 };
 
-
-
 const Layout = () => {
-
 	const basename = process.env.BASENAME || "";
 
 	return (
