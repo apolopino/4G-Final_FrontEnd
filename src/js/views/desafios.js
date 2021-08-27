@@ -81,12 +81,13 @@ export const Desafios = () => {
 			<div className="jumbotron jumbotron-desafios bg-muted">
 				<div className="container">
 					<h1 className="col text-light float-left mb-">Con este desafio:</h1>
-
+          
 					<div className="row">
 						<div className="col-sm-4">
 							<div className="card bg-dark" style={{ width: "18rem" }}>
 								<div className="card-body">
 									<p className="card-text">{store.activeDesafio.feat1}</p>
+
 								</div>
 							</div>
 						</div>

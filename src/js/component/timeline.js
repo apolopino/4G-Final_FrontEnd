@@ -1,9 +1,18 @@
 import React from "react";
-import { Todo } from "./to-do";
 import "../../styles/timeline.scss";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export const Timeline = () => {
 	console.log("loading Timeline component");
+
+	const rutinaDiaria = id => {
+		alert("Se ha clickeado el Rutina id ", id);
+	};
+
+	const recetaDiaria = id => {
+		alert("Se ha clickeado la receta id", id);
+	};
 
 	return (
 		<div className="timeline-wrapper">
@@ -14,14 +23,21 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 1</span>
+							<Link to="/to-do">
+								<button className="badge">Día 1</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container segundo">
@@ -30,14 +46,21 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 2</span>
+							<Link to="/to-do">
+								<button className="badge">Día 2</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container tercero">
@@ -46,14 +69,21 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 3</span>
+							<Link to="/to-do">
+								<button className="badge">Día 3</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container cuarto">
@@ -62,14 +92,21 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 4</span>
+							<Link to="/to-do">
+								<button className="badge">Día 4</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container quinto">
@@ -78,14 +115,21 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 5</span>
+							<Link to="/to-do">
+								<button className="badge">Día 5</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container sexto">
@@ -94,14 +138,21 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 6</span>
+							<Link to="/to-do">
+								<button className="badge">Día 6</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 				<div className="timeline-container final">
@@ -110,18 +161,24 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<span className="badge">Día 7</span>
+							<Link to="/to-do">
+								<button className="badge">Día 7</button>
+							</Link>
 						</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
 							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
 							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
 						</p>
-						<p className="timeline-subtitle">Duración</p>
+						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
+						</Button>
+						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+							Ver receta del dia <i className="fas fa-utensils" />
+						</Button>
 					</div>
 				</div>
 			</div>
-			<Todo />
 		</div>
 	);
 };

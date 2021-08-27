@@ -15,25 +15,8 @@ export const Todo = () => (
 								placeholder="Puedes agregar una nueva tarea"
 							/>
 						</form>
-						<ul className="nav nav-pills todo-nav">
-							<li role="presentation" className="nav-item all-task active">
-								<a href="#" className="nav-link">
-									Tareas
-								</a>
-							</li>
-							<li role="presentation" className="nav-item active-task">
-								<a href="#" className="nav-link">
-									Por hacer
-								</a>
-							</li>
-							<li role="presentation" className="nav-item completed-task">
-								<a href="#" className="nav-link">
-									Completados
-								</a>
-							</li>
-						</ul>
 						<div className="todo-list">
-							<div className="todo-item1">
+							<div className="todo-item">
 								<div className="checker">
 									{" "}
 									<input type="checkbox" />{" "}
@@ -43,7 +26,7 @@ export const Todo = () => (
 									<i className="icon-close" />
 								</a>
 							</div>
-							<div className="todo-item2">
+							<div className="todo-item">
 								<div className="checker">
 									<input type="checkbox" />
 								</div>
@@ -53,7 +36,7 @@ export const Todo = () => (
 								</a>
 							</div>
 
-							<div className="todo-item3">
+							<div className="todo-item">
 								<div className="checker">
 									{" "}
 									<input type="checkbox" />{" "}
@@ -63,7 +46,7 @@ export const Todo = () => (
 									<i className="icon-close" />
 								</a>
 							</div>
-							<div className="todo-item4">
+							<div className="todo-item">
 								<div className="checker">
 									{" "}
 									<input type="checkbox" />{" "}
@@ -73,7 +56,7 @@ export const Todo = () => (
 									<i className="icon-close" />
 								</a>
 							</div>
-							<div className="todo-item5">
+							<div className="todo-item">
 								<div className="checker">
 									{" "}
 									<input type="checkbox" />{" "}
@@ -83,7 +66,7 @@ export const Todo = () => (
 									<i className="icon-close" />
 								</a>
 							</div>
-							<div className="todo-item6">
+							<div className="todo-item">
 								<div className="checker">
 									{" "}
 									<input type="checkbox" />{" "}
@@ -93,7 +76,7 @@ export const Todo = () => (
 									<i className="icon-close" />
 								</a>
 							</div>
-							<div className="todo-item7">
+							<div className="todo-item">
 								<div className="checker">
 									{" "}
 									<input type="checkbox" />{" "}

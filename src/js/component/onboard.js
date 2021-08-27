@@ -16,7 +16,7 @@ export const Onboard = () => {
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
-				<h2>Bienvenido!</h2>
+				<h2>Bienvenido</h2>
 			</div>
 			<div className="row justify-content-center">
 				<h3>Para comenzar, elige un desafío</h3>
