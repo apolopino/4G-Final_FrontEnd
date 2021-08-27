@@ -7,11 +7,11 @@ export const Timeline = () => {
 	console.log("loading Timeline component");
 
 	const rutinaDiaria = id => {
-		alert("Se ha clickeado el Rutina id ", id);
+		console.log("Se ha clickeado el Rutina id ", id);
 	};
 
 	const recetaDiaria = id => {
-		alert("Se ha clickeado la receta id", id);
+		console.log("Se ha clickeado la receta id", id);
 	};
 
 	return (
@@ -24,7 +24,9 @@ export const Timeline = () => {
 					<div className="timeline-body">
 						<h4 className="timeline-title">
 							<Link to="/to-do">
-								<button className="badge">Día 1</button>
+								<button type="button" className="btn badge">
+									Día 1
+								</button>
 							</Link>
 						</h4>
 						<p>

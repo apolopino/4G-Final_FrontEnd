@@ -1,4 +1,4 @@
-const URLBACKEND = "https://3001-white-leopard-omsrf9vd.ws-us15.gitpod.io";
+const URLBACKEND = "https://3001-black-guanaco-73rv2uu8.ws-us16.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			listaDesafios: () => {
-				fetch("https://3001-white-leopard-omsrf9vd.ws-us15.gitpod.io/desafios", {
+				fetch(URLBACKEND + "/desafios", {
 					method: "GET"
 				})
 					.then(res => res.json())

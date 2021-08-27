@@ -13,6 +13,7 @@ import injectContext, { Context } from "./store/appContext";
 import { NavbarModule } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Onboard } from "./component/onboard";
+import { Timeline } from "./component/timeline";
 
 const Wrapper = ({ children }) => {
 	const { store, actions } = useContext(Context);
@@ -62,6 +63,9 @@ const Layout = () => {
 							</Route>
 							<Route exact path="/desafios/:id">
 								<Desafios />
+							</Route>
+							<Route exact path="/timeline/:id">
+								<Timeline />
 							</Route>
 							<Route>
 								<h1>Not found!</h1>
