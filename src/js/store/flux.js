@@ -53,11 +53,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			activeDesafio: detalleDesafio => {
+				let duracion = detalleDesafio["dias del desafio"].length;
+				detalleDesafio.duracion = duracion;
 				setStore({ activeDesafio: detalleDesafio });
 			},
 
 			listaDesafios: () => {
-				fetch("https://3001-white-leopard-omsrf9vd.ws-us16.gitpod.io/desafios", {
+				fetch("https://3001-white-leopard-omsrf9vd.ws-us15.gitpod.io/desafios", {
 					method: "GET"
 				})
 					.then(res => res.json())

@@ -28,9 +28,12 @@ export const Desafios = () => {
 		function findChallenge(objeto) {
 			return objeto.id === desafioId;
 		}
-
-		// console.log(object.find(findChallenge));
 	}, []);
+
+	console.log("duracion ", store.activeDesafio.duracion);
+	// duracionAA = duracion.length;
+
+	// console.log(duracionAA);
 
 	//Hay que hacer que los siguientes elementos del desafio los saque del store:
 	// Titulo
@@ -52,106 +55,58 @@ export const Desafios = () => {
 
 	return (
 		<div className="container-page">
-			<row>
+			<div className="row">
 				<div
-					className="jumbotron"
+					className="jumbotron text-light"
 					style={{
 						backgroundImage: `url(${store.activeDesafio.photoURL})`,
 						backgroundPosition: "left",
 						backgroundRepeat: "no-repeat",
 						boxShadow: "inset 2000px 0 0 0 rgba(0, 0, 0, 0.5)",
-						backgroundColor: "#FFF"
+						backgroundColor: "#FFF",
+						backgroundSize: "cover"
 					}}>
-					<h1 className="display-4">Hello, world!</h1>
-					<p className="lead">
-						This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-						featured content or information.
-					</p>
+					<h1 className="display-4">{store.activeDesafio.nombreDesafio}</h1>
+					<p className="lead">{store.activeDesafio.descripcion}</p>
 					<hr className="my-4" />
-					<p>
-						It uses utility classes for typography and spacing to space content out within the larger
-						container.
-					</p>
+					<p>Este desafío dura {store.activeDesafio.duracion} días</p>
 					<a className="btn btn-primary btn-lg" href="#" role="button">
-						Learn more
+						Inscribir
 					</a>
 				</div>
+			</div>
 
-				<div className="col-sm-12 bg-light">
-					<img src={store.activeDesafio.photoURL} className="img-fluid" alt="Responsive image" />
-				</div>
-			</row>
+			<div className="jumbotron jumbotron-desafios bg-muted">
+				<div className="container">
+					<h1 className="col text-light float-left mb-">Con este desafio:</h1>
 
-			<row>
-				<div className="jumbotron jumbotron-desafios bg-muted">
-					<div className="container">
-						<h1 className="col text-light float-left mb-">Con este desafio:</h1>
-
-						<div className="container">
-							<div className="row">
-								<div className="col mx-auto fas fa-dumbbell fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
-								<div className="col mx-auto fa fa-cutlery fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
-								<div className="col mx-auto fas fa-th-list fa-lg p-sm-0 p-md-0 p-lg-0 p-x-0" />
-							</div>
-						</div>
-
-						<div className="container align-items-center">
-							<div className="row align-items-center justify-content-between">
-								<div className="col">
-									Ordena tu rutina de ejercicios ocacionales Lorem ipsum dolor sit amet
+					<div className="row">
+						<div className="col-sm-4">
+							<div className="card bg-dark" style={{ width: "18rem" }}>
+								<div className="card-body">
+									<p className="card-text">{store.activeDesafio.feat1}</p>
 								</div>
-								<div className="col">
-									Prepara comidas saludables que te permitan Lorem ipsum dolor sit amet
+							</div>
+						</div>
+
+						<div className="col-sm-4">
+							<div className="card bg-dark" style={{ width: "18rem" }}>
+								<div className="card-body">
+									<p className="card-text">{store.activeDesafio.feat2}</p>
 								</div>
-								<div className="col">Organiza tu rutina diaria Lorem ipsum dolor sit amet</div>
 							</div>
 						</div>
 
-						<div className="container align-items-center">
-							<div className="row align-items-center justify-content-between">
-								<button
-									type="button"
-									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
-									aria-label="Middle Align">
-									<span className="" aria-hidden="true" />1 Rutina de 30min cada 2 dias.
-								</button>
-								<button
-									type="button"
-									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
-									aria-label="Middle Align">
-									<span className="" aria-hidden="true" />1 Receta sencilla para preparar al dia.
-									dias.
-								</button>
-								<button
-									type="button"
-									className="btn btn-secondary btn-lg p-sm-0 p-md-0 p-lg-0 p-x-0"
-									aria-label="Middle Align">
-									<span className="" aria-hidden="true" />2 Actividades que ayudaran a organizar tu
-									dia.
-								</button>
+						<div className="col-sm-4">
+							<div className="card bg-dark" style={{ width: "18rem" }}>
+								<div className="card-body">
+									<p className="card-text">{store.activeDesafio.feat3}</p>
+								</div>
 							</div>
 						</div>
-
-						<div className="row">
-							<div className="col-md-4">
-								<ul>
-									<li>Recibe un resumen diario de tu avance.</li>
-									<li>Recibe notificaciones diarias de tus actividades para el dia.</li>
-									<li>Trackea tu progreso diario.</li>
-								</ul>
-							</div>
-						</div>
-
-						<p className="row">
-							<div className="col-md-6 offset-md-5">
-								<a className="btn btn-light btn-lg" href="#" role="button">
-									Comenzar
-								</a>
-							</div>
-						</p>
 					</div>
 				</div>
-			</row>
+			</div>
 		</div>
 	);
 };
