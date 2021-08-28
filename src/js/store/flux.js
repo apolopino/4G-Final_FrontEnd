@@ -90,6 +90,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setChallenge: id => {
 				return console.log("se inscribira el desafio con id ", id);
+				// Aca se debe enviar todo el objeto activeDesafio. Modificar las cards
+				// para que el usuario no pueda inscribir sin ver el detalle.
 			},
 
 			// Use getActions to call a function within a fuction
@@ -147,6 +149,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
+
 			setRegister: (user, history) => {
 				fetch(URLBACKEND + "/register", {
 					method: "POST",
@@ -166,6 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						getActions().setLogin(userLogin, history);
 					});
 			},
+
 			setLogout: history => {
 				localStorage.clear();
 				setStore({
@@ -180,6 +184,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				history.push("/");
 			},
+
 			setShowOnboard: status => {
 				const store = getStore();
 				console.log("triggered action: setShowOnboard ", status);
@@ -189,6 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))

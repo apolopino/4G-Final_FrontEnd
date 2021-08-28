@@ -9,6 +9,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Figure from "react-bootstrap/Figure";
+import Button from "react-bootstrap/Button";
 import "../../styles/desafios.scss";
 
 export const Desafios = () => {
@@ -31,6 +32,7 @@ export const Desafios = () => {
 	}, []);
 
 	console.log("duracion ", store.activeDesafio.duracion);
+	console.log("objeto activeDesafio:", store.activeDesafio);
 	// duracionAA = duracion.length;
 
 	// console.log(duracionAA);
@@ -69,9 +71,12 @@ export const Desafios = () => {
 				<p className="lead">{store.activeDesafio.descripcion}</p>
 				<hr className="my-4" />
 				<p>Este desafío dura {store.activeDesafio.duracion} días</p>
-				<a className="btn btn-primary btn-lg" href="#" role="button">
-					Inscribir
-				</a>
+				<Button
+					variant="primary"
+					className="mt-auto"
+					onClick={() => actions.setChallenge(store.activeDesafio.id)}>
+					Inscribir desafío
+				</Button>
 			</div>
 
 			<div className="jumbotron jumbotron-desafios bg-muted">

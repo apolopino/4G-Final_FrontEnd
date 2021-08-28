@@ -32,7 +32,7 @@ export const Onboard = () => {
 								image={item.photoURL}
 								titulo={item.nombreDesafio}
 								content={item.descripcion}
-								buttonText="Seleccionar"
+								buttonText="Ver Detalles"
 								// next line sets an action and passes the challenge Id to assign to the user
 								url={item.id}
 								detalleDesafio={`/desafios/${item.id}`}
