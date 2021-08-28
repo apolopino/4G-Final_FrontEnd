@@ -6,7 +6,8 @@ import { ContactUs } from "../component/emailjs";
 export const Recuperacion = () => {
 	return (
 		<div className="container">
-			<ContactUs />
+			{/* <ContactUs /> */}
+			<h1>REcuperacion</h1>
 		</div>
 	);
 };
