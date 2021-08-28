@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import "../../styles/timeline.scss";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { Context } from "../store/appContext";
 
 export const Timeline = () => {
-	console.log("loading Timeline component");
+	const { store, actions } = useContext(Context);
+
+	let userData = store.user.user;
+
+	console.log("datos del usuario en store: ", userData);
+
+	// AP: 28/8 @ 00:28hrs tengo que contar el número de días que tiene el desafío,
+	// contando el numero de días únicos que tienen los to-do de ese usuario
+
+	useEffect(() => {
+		// actions.setDias();
+		console.log("useEffect del Timeline");
+	}, []);
 
 	const rutinaDiaria = id => {
 		console.log("Se ha clickeado el Rutina id ", id);
@@ -23,17 +36,13 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">
-							<Link to="/to-do">
+							<Link to="{store.ALGO.ALGo}">
 								<button type="button" className="btn badge">
 									Día 1
 								</button>
 							</Link>
 						</h4>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam
-							earum ipsa fugiat veniam suscipit, officiis repudiandae, eum recusandae neque dignissimos.
-							Cum fugit laboriosam culpa, repellendus esse commodi deserunt.
-						</p>
+						<p>store.algo</p>
 						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
 							Ver rutina de ejercicio <i className="fas fa-dumbbell" />
 						</Button>

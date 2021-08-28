@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: "",
 				userId: ""
 			},
+
 			message: "",
 			userList: [],
 
@@ -65,6 +66,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
+			// setDias: () => {
+			// 	console.log("se ha activado actions.setDias()");
+			// },
+
 			activeDesafio: detalleDesafio => {
 				let duracion = detalleDesafio["dias del desafio"].length;
 				detalleDesafio.duracion = duracion;
