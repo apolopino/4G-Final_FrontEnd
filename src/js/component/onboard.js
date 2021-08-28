@@ -13,6 +13,8 @@ export const Onboard = () => {
 		actions.listaDesafios();
 	}, []);
 
+	console.log("datos del usuario en store: ", store.user.user);
+
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
