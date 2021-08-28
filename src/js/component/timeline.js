@@ -35,13 +35,7 @@ export const Timeline = () => {
 						<i className="far fa-grin-wink" />
 					</div>
 					<div className="timeline-body">
-						<h4 className="timeline-title">
-							<Link to="{store.ALGO.ALGo}">
-								<button type="button" className="btn badge">
-									Día 1
-								</button>
-							</Link>
-						</h4>
+						<h4 className="timeline-title">Día {1}</h4>
 						<p>store.algo</p>
 						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
 							Ver rutina de ejercicio <i className="fas fa-dumbbell" />

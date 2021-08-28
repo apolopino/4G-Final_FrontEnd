@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: "",
 			userList: [],
 
+			// To be deprecated
 			routineDetail: {
 				// cargar los detalles de la receta/rutina
 				nombre: "Rutina de prueba",
@@ -27,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://mejorconsalud.as.com/fitness/wp-content/uploads/2018/12/jumping-jacks-saltos-tijera-al-aire-libre.jpg"
 				]
 			},
-
+			// To be deprecated
 			recipeDetail: {
 				nombre: "Receta de prueba",
 				video: "https://www.youtube-nocookie.com/embed/PvJ2l2yEftM",
@@ -39,7 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://i.dietdoctor.com/es/wp-content/uploads/2021/03/Keto-sheet-pan-chicken-h.jpg"
 				]
 			},
-
+			// Deprecated
 			desafioDetail: [
 				{
 					descripcion: "Descripcion larga del desafio 2",
@@ -107,12 +108,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
 			},
+
 			setLogin: (user, history) => {
+				// el user recibido tiene email y pass
 				fetch(URLBACKEND + "/login", {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
 				})
+					// backend devuelve user serializado (datos de la tabla de user)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log("--data--", data);
