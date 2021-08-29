@@ -25,13 +25,13 @@ export const Dashboard = () => {
 
 	if (onboard === true) {
 		return (
-			<div className="container">
+			<div className="container mb-5">
 				<Onboard />
 			</div>
 		);
 	} else {
 		return (
-			<div className="container">
+			<div className="container mb-5">
 				<Timeline />
 			</div>
 		);

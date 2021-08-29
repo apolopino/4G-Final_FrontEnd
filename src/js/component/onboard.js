@@ -23,6 +23,7 @@ export const Onboard = () => {
 			</div>
 			<div className="container text-light">
 				<div className="row p-5">
+					{console.log("los desafios son:", store.desafiosList)}
 					{/* {store.desafiosDisponibles.map((item, index) => { */}
 					{store.desafiosList.map((item, index) => {
 						return (

@@ -68,9 +68,15 @@ const Layout = () => {
 							<Route exact path="/recuperacion">
 								<Recuperacion />
 							</Route>
+
 							<Route exact path="/solicitudrecuperacion/:hash">
 								<SolicitudRecuperacion />
+               </Route>
+
+							<Route exact path="/desafios/:id">
+								<Desafios />
 							</Route>
+
 							<Route>
 								<h1>Not found!</h1>
 							</Route>

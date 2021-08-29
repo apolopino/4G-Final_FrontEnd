@@ -55,27 +55,23 @@ export const Desafios = () => {
 
 	return (
 		<div className="container-page">
-			<div className="row">
-				<div className="container">
-					<div
-						className="jumbotron text-light"
-						style={{
-							backgroundImage: `url(${store.activeDesafio.photoURL})`,
-							backgroundPosition: "left",
-							backgroundRepeat: "no-repeat",
-							boxShadow: "inset 2000px 0 0 0 rgba(0, 0, 0, 0.5)",
-							backgroundColor: "#FFF",
-							backgroundSize: "cover"
-						}}>
-						<h1 className="display-4">{store.activeDesafio.nombreDesafio}</h1>
-						<p className="lead">{store.activeDesafio.descripcion}</p>
-						<hr className="my-4" />
-						<p>Este desafío dura {store.activeDesafio.duracion} días</p>
-						<a className="btn btn-primary btn-lg" href="#" role="button">
-							Inscribir
-						</a>
-					</div>
-				</div>
+			<div
+				className="jumbotron text-light"
+				style={{
+					backgroundImage: `url(${store.activeDesafio.photoURL})`,
+					backgroundPosition: "left",
+					backgroundRepeat: "no-repeat",
+					boxShadow: "inset 2000px 0 0 0 rgba(0, 0, 0, 0.5)",
+					backgroundColor: "#FFF",
+					backgroundSize: "cover"
+				}}>
+				<h1 className="display-4">{store.activeDesafio.nombreDesafio}</h1>
+				<p className="lead">{store.activeDesafio.descripcion}</p>
+				<hr className="my-4" />
+				<p>Este desafío dura {store.activeDesafio.duracion} días</p>
+				<a className="btn btn-primary btn-lg" href="#" role="button">
+					Inscribir
+				</a>
 			</div>
 
 			<div className="jumbotron jumbotron-desafios bg-muted">
@@ -84,7 +80,7 @@ export const Desafios = () => {
 
 					<div className="row">
 						<div className="col-sm-4">
-							<div className="card bg-dark" style={{ width: "18rem" }}>
+							<div className="card bg-dark text-light" style={{ width: "18rem" }}>
 								<div className="card-body">
 									<p className="card-text">{store.activeDesafio.feat1}</p>
 								</div>
@@ -92,7 +88,7 @@ export const Desafios = () => {
 						</div>
 
 						<div className="col-sm-4">
-							<div className="card bg-dark" style={{ width: "18rem" }}>
+							<div className="card bg-dark text-light" style={{ width: "18rem" }}>
 								<div className="card-body">
 									<p className="card-text">{store.activeDesafio.feat2}</p>
 								</div>
@@ -100,7 +96,7 @@ export const Desafios = () => {
 						</div>
 
 						<div className="col-sm-4">
-							<div className="card bg-dark" style={{ width: "18rem" }}>
+							<div className="card bg-dark text-light" style={{ width: "18rem" }}>
 								<div className="card-body">
 									<p className="card-text">{store.activeDesafio.feat3}</p>
 								</div>
