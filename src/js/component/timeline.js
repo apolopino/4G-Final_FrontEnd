@@ -16,8 +16,6 @@ export const Timeline = () => {
 
 	useEffect(() => {
 		console.log("useEffect del Timeline");
-		let duracion = store.user.user["duracion"];
-		console.log("la duracion en useeffect es ", duracion);
 	}, []);
 
 	// variable auxiliar para la duracion del desafio
@@ -35,9 +33,9 @@ export const Timeline = () => {
 		let dias = [];
 
 		let numDias = JSON.parse(localStorage.getItem("user"));
-		console.log("elemLocal ", numDias.duracion);
+		numDias = numDias.duracion;
 
-		for (let i = 0; i < 3; i++) {
+		for (let i = 0; i < numDias; i++) {
 			let numDia = i + 1;
 			dias.push(
 				<div className="timeline-container">
