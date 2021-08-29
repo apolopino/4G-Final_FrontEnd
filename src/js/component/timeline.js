@@ -21,12 +21,23 @@ export const Timeline = () => {
 	// variable auxiliar para la duracion del desafio
 	// let duracion = store.user.user.duracion;
 
-	const rutinaDiaria = id => {
-		console.log("Se ha clickeado el Rutina id ", id);
+	const rutinaDiaria = dia => {
+		console.log("Se ha clickeado el Rutina id ", dia);
 	};
 
-	const recetaDiaria = id => {
-		console.log("Se ha clickeado la receta id", id);
+	const recetaDiaria = dia => {
+		console.log("Se ha clickeado la receta id", dia);
+	};
+
+	// esta funcion tiene que estar en el componente To-Do. El dia se le pasa por params (URL).
+	const toDoDiario = dia => {
+		let num = dia;
+		let toDo = JSON.parse(localStorage.getItem("user"));
+		toDo = toDo["to-do del usuario"];
+
+		let listaDia = toDo.filter(element => element.dia === num);
+
+		console.log("los to-do del dia", num, "son: ", listaDia);
 	};
 
 	const createElement = () => {
@@ -44,11 +55,18 @@ export const Timeline = () => {
 					</div>
 					<div className="timeline-body">
 						<h4 className="timeline-title">{`Día ` + numDia}</h4>
-						<p>{`store.algo`}</p>
-						<Button type="button" className="btn btn-light" onClick={() => rutinaDiaria("id")}>
+						{/* Los buttons deben estar en un <Link> el ID se pasa por params (URL) 
+						ejemplo: <Link to={`/todo/${numDia}`} o bien <Link to={`/receta/${numDia}`} */}
+						<Button type="button" className="btn btn-light btn-sm mr-2" onClick={() => toDoDiario(numDia)}>
+							{`Ver to-do del día`} <i className="fas fa-tasks" />
+						</Button>
+						<Button type="button" className="btn btn-light btn-sm" onClick={() => rutinaDiaria(numDia)}>
 							{`Ver rutina de ejercicio`} <i className="fas fa-dumbbell" />
 						</Button>
-						<Button type="button" className="ml-2 btn btn-light" onClick={() => recetaDiaria("id")}>
+						<Button
+							type="button"
+							className="ml-2 btn btn-light btn-sm"
+							onClick={() => recetaDiaria(numDia)}>
 							{`Ver receta del dia`} <i className="fas fa-utensils" />
 						</Button>
 					</div>
