@@ -60,15 +60,19 @@ export const Timeline = () => {
 						<Button type="button" className="btn btn-light btn-sm mr-2" onClick={() => toDoDiario(numDia)}>
 							{`Ver to-do del día`} <i className="fas fa-tasks" />
 						</Button>
-						<Button type="button" className="btn btn-light btn-sm" onClick={() => rutinaDiaria(numDia)}>
-							{`Ver rutina de ejercicio`} <i className="fas fa-dumbbell" />
-						</Button>
-						<Button
-							type="button"
-							className="ml-2 btn btn-light btn-sm"
-							onClick={() => recetaDiaria(numDia)}>
-							{`Ver receta del dia`} <i className="fas fa-utensils" />
-						</Button>
+						<Link to={`detalle/rutina/${numDia}`}>
+							<Button type="button" className="btn btn-light btn-sm" onClick={() => rutinaDiaria(numDia)}>
+								{`Ver rutina de ejercicio`} <i className="fas fa-dumbbell" />
+							</Button>
+						</Link>
+						<Link to={`detalle/receta/${numDia}`}>
+							<Button
+								type="button"
+								className="ml-2 btn btn-light btn-sm"
+								onClick={() => recetaDiaria(numDia)}>
+								{`Ver receta del dia`} <i className="fas fa-utensils" />
+							</Button>
+						</Link>
 					</div>
 				</div>
 			);
