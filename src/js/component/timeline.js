@@ -15,8 +15,9 @@ export const Timeline = () => {
 	// contando el numero de días únicos que tienen los to-do de ese usuario
 
 	useEffect(() => {
-		// actions.setDias();
 		console.log("useEffect del Timeline");
+		let duracion = store.user.user["duracion"];
+		console.log("la duracion en useeffect es ", duracion);
 	}, []);
 
 	// variable auxiliar para la duracion del desafio
@@ -32,6 +33,9 @@ export const Timeline = () => {
 
 	const createElement = () => {
 		let dias = [];
+
+		let numDias = JSON.parse(localStorage.getItem("user"));
+		console.log("elemLocal ", numDias.duracion);
 
 		for (let i = 0; i < 3; i++) {
 			let numDia = i + 1;
