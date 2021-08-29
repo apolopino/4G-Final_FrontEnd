@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: "",
 			userList: [],
 
-			// To be deprecated
+			//Deprecated
 			routineDetail: {
 				// cargar los detalles de la receta/rutina
 				nombre: "Rutina de prueba",
@@ -28,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://mejorconsalud.as.com/fitness/wp-content/uploads/2018/12/jumping-jacks-saltos-tijera-al-aire-libre.jpg"
 				]
 			},
-			// To be deprecated
+			//Deprecated
 			recipeDetail: {
 				nombre: "Receta de prueba",
 				video: "https://www.youtube-nocookie.com/embed/PvJ2l2yEftM",
