@@ -88,10 +88,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			setChallenge: id => {
-				return console.log("se inscribira el desafio con id ", id);
-				// Aca se debe enviar todo el objeto activeDesafio. Modificar las cards
-				// para que el usuario no pueda inscribir sin ver el detalle.
+			setChallenge: history => {
+				const store = getStore();
+				let toDo = [];
+				let extras = [];
+				let userID = JSON.parse(localStorage.getItem("user")).id;
+				let duracion = store.activeDesafio.duracion;
+				let desafio = store.activeDesafio.nombreDesafio;
+				let dias = store.activeDesafio["dias del desafio"];
+
+				dias.map((item, index) => {
+					let dailyTodo = item["to-dos del dia"];
+					let dailyExtras = item["receta/rutina"];
+
+					dailyTodo.map((item, index) => {
+						item.userID = userID;
+						item.done = false;
+						toDo.push(item);
+					});
+
+					dailyExtras.map((item, index) => {
+						item.userID = userID;
+						extras.push(item);
+					});
+				});
+
+				let objeto = {
+					userID: userID,
+					desafio: desafio,
+					duracion: duracion,
+					"to-do del usuario": toDo,
+					"extras del usuario": extras
+				};
+
+				let localUser = {
+					desafio: desafio,
+					duracion: duracion,
+					"to-do del usuario": toDo,
+					"extras del usuario": extras
+				};
+
+				fetch(URLBACKEND + "/setchallenge", {
+					method: "PUT",
+					body: JSON.stringify(objeto),
+					headers: { "Content-type": "application/json" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--Data setChallenge--", data);
+
+						// localStorage.setItem("token", data.token);
+						localStorage.setItem("user", JSON.stringify(data.user));
+						localStorage.setItem("isLogged", true);
+
+						history.push("/dashboard");
+					});
+				// .then(data => {
+				// 	if (typeof Storage !== "undefined") {
+				// 		localStorage.setItem("user", JSON.stringify(data.user));
+				// 		localStorage.setItem("isLogged", true);
+
+				// 		history.push("/dashboard");
+				// 	} else {
+				// 		// LocalStorage no soportado en este navegador
+				// 	}
+				// })
+
+				// history.push("/dashboard");
 			},
 
 			// Use getActions to call a function within a fuction

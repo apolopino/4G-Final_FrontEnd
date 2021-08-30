@@ -1,7 +1,7 @@
 import "../../styles/home.scss";
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import img1 from "/workspace/4G-Final_FrontEnd/src/img/Desafio.png";
 import { Container } from "react-bootstrap";
@@ -15,6 +15,7 @@ import "../../styles/desafios.scss";
 export const Desafios = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	const history = useHistory();
 
 	let url = {};
 
@@ -31,29 +32,8 @@ export const Desafios = () => {
 		}
 	}, []);
 
-	console.log("duracion ", store.activeDesafio.duracion);
-	console.log("objeto activeDesafio:", store.activeDesafio);
-	// duracionAA = duracion.length;
-
-	// console.log(duracionAA);
-
-	//Hay que hacer que los siguientes elementos del desafio los saque del store:
-	// Titulo
-	// Descripcion
-	// Feature 1, 2, y 3
-	// foto
-	// el objeto sacado del store tendrá la siguiente estructura:
-	// [{
-	// 	"descripcion": "Descripcion larga del desafio 2",
-	// 	"dias del desafio": [],
-	// 	"feat1": "feature 1",
-	// 	"feat2": "feature 2",
-	// 	"feat3": "feature 3",
-	// 	"id": 2,
-	// 	"nombreDesafio": "Desafio 2",
-	// 	"photoURL": "http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2019/12/knowledge-10520101920.jpg"
-	// }]
-	// Falta: cambiar todos los elementos, ya los saca del store usando el elemento activeDesafio
+	// console.log("duracion ", store.activeDesafio.duracion);
+	// console.log("objeto activeDesafio:", store.activeDesafio);
 
 	return (
 		<div className="container-page">
@@ -71,10 +51,7 @@ export const Desafios = () => {
 				<p className="lead">{store.activeDesafio.descripcion}</p>
 				<hr className="my-4" />
 				<p>Este desafío dura {store.activeDesafio.duracion} días</p>
-				<Button
-					variant="primary"
-					className="mt-auto"
-					onClick={() => actions.setChallenge(store.activeDesafio.id)}>
+				<Button variant="primary" className="mt-auto" onClick={() => actions.setChallenge(history)}>
 					Inscribir desafío
 				</Button>
 			</div>

@@ -80,8 +80,13 @@ export const Timeline = () => {
 		return dias;
 	};
 
+	let nombreDesafio = JSON.parse(localStorage.getItem("user"));
+	nombreDesafio = nombreDesafio["desafio"];
+	console.log("nobre desafio", nombreDesafio);
+
 	return (
 		<div className="timeline-wrapper">
+			<h4 className="mb-4">Desafío {`"${nombreDesafio}"`}</h4>
 			<div className="timeline">
 				{createElement()}
 				{/* <div className="timeline-container">
