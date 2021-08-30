@@ -7,6 +7,7 @@ import { Home } from "./views/home";
 import { Single } from "./views/single";
 import { Dashboard } from "./views/dashboard";
 import { Detalle } from "./views/detalle";
+import { Todo } from "./views/to-do";
 import { Desafios } from "./views/desafios";
 import { Recuperacion } from "./views/recuperacion";
 import { SolicitudRecuperacion } from "./views/solicitudrecuperacion";
@@ -53,6 +54,9 @@ const Layout = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
+							<Route exact path="/to-do">
+								<Todo />
+							</Route>
 							<Route exact path="/single/:theid">
 								<Single />
 							</Route>
@@ -71,7 +75,7 @@ const Layout = () => {
 
 							<Route exact path="/solicitudrecuperacion/:hash">
 								<SolicitudRecuperacion />
-               </Route>
+							</Route>
 
 							<Route exact path="/desafios/:id">
 								<Desafios />

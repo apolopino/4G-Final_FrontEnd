@@ -1,95 +1,72 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/to-do.scss";
+import { Context } from "../store/appContext";
 
-export const Todo = () => (
-	<div className="container">
-		<div className="row">
-			<div className="col-md-12">
-				<div className="card-to-do card-white">
-					<div className="card-body">
-						<form action="">
+export const Todo = () => {
+	const { store, actions } = useContext(Context);
+
+	var [title, setTitle] = useState("");
+	const handleChange = event => {
+		setTitle(event.target.value);
+	};
+	const deleteItems = indice => {
+		actions.borrarTarea(indice);
+	};
+
+	const handleChangeCheckbox = event => {
+		setTitle(event.target.value);
+	};
+
+	useEffect(() => {
+		actions.obtenerTareas();
+	}, []);
+
+	const handleKeyDown = event => {
+		if (event.key === "Enter") {
+			actions.nuevaTarea(title);
+			setTitle("");
+		}
+	};
+
+	return (
+		<div className="container">
+			<div className="row">
+				<div className="col-md-12">
+					<div className="card-to-do card-white">
+						<div className="card-body">
 							<input
 								type="text"
+								value={title}
 								className="form-control add-task"
 								placeholder="Puedes agregar una nueva tarea"
+								onKeyDown={handleKeyDown}
+								onChange={handleChange}
 							/>
-						</form>
-						<div className="todo-list">
-							<div className="todo-item">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Toma 8 vasos de agua</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item">
-								<div className="checker">
-									<input type="checkbox" />
-								</div>
-								<span>Medita 30min</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-
-							<div className="todo-item">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Realiza una rutina de: Piernas, abdomen y espalda</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Tomar una ducha de agua fría</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>No comer nada despues de las 8pm</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Leer un libro durante 2 horas</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
-							</div>
-							<div className="todo-item">
-								<div className="checker">
-									{" "}
-									<input type="checkbox" />{" "}
-								</div>
-								<span>Mantente alejado de los dispositivos electronicos despues de las 10pm</span>
-								<a href="" className="float-right remove-todo-item">
-									<i className="icon-close" />
-								</a>
+							<div className="todo-list">
+								{store.todoList.map((item, index) => {
+									return (
+										<div key={index} className="todo-item">
+											{/* <div className="checker">
+												{" "}
+												<input type="checkbox" defaultChecked={item.done} />{" "}
+											</div> */}
+											<span>{item.title}</span>
+											<button
+												className="btn btn-light float-right"
+												onClick={() => {
+													deleteItems(index);
+												}}>
+												<i className="fa fa-check" />
+											</button>
+										</div>
+									);
+								})}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-);
+	);
+};

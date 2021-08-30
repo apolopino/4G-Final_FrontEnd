@@ -1,9 +1,11 @@
+import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io";
+const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			todoList: [],
 			user: {
 				expires: "",
 				token: "",
@@ -66,6 +68,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
+			borrarTarea: indice => {
+				const store = getStore();
+				store.todoList.splice(indice, 1);
+				setStore(store);
+			},
+			obtenerTareas: () => {
+				// llamar a la api
+				fetch(URLBACKEND + "/todousuario", {})
+					.then(resp => resp.json())
+					.then(data => {
+						const store = getStore();
+						const todos = data["lista de to-dos"];
+						console.log(store);
+						//todos.filter(element => element.userID === store.user.user.id).forEach(element => {
+						todos.forEach(element => {
+							store.todoList.push({ title: element.actividad, done: element.done });
+						});
+						setStore(store);
+					});
+				// filtrar nuestras tareas?
+			},
+			nuevaTarea: titulo => {
+				// actualizar lista en store
+				const store = getStore();
+				store.todoList.push({ title: titulo, done: false });
+				setStore(store);
+
+				// TODO: enviar nueva tarea a la api
+			},
 			activeDesafio: detalleDesafio => {
 				let duracion = detalleDesafio["dias del desafio"].length;
 				detalleDesafio.duracion = duracion;
