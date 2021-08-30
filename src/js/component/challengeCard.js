@@ -55,15 +55,11 @@ export const ChallengeCard = props => {
 							? getExcerpt(string, limit)
 							: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempor sapien vitae congue volutpat."}
 					</p>
-
-					<OverlayTrigger
-						key={props.index}
-						placement="top"
-						overlay={<Tooltip id={`tooltip-${props.index}`}>Inscribir Desafío</Tooltip>}>
-						<Button variant="primary" className="mt-auto" onClick={() => actions.setChallenge(challengeID)}>
+					<Link to={props.detalleDesafio} className="mt-auto">
+						<Button variant="primary">
 							{typeof props.buttonText === "undefined" ? "Select" : props.buttonText}
 						</Button>
-					</OverlayTrigger>
+					</Link>
 				</div>
 			</div>
 		</div>
