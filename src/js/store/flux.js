@@ -1,4 +1,6 @@
+
 const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
+
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -246,6 +248,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					isLogged: false
 				});
 				history.push("/");
+			},
+
+			setRecuperarPassword: user => {
+				fetch(URLBACKEND + "/solicitudrecuperacion", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+					//AQUI RECIBO MI URL EN MI .THEN
+					//GUARDAR EN EL STORE EN UNA VARIABLE EXCLUSIVA PARA ELLO, PARA PODER SACARLO COMO DATO Y ENVIARLO EN EL MAIL
+				});
+			},
+			setNuevaPassword: user => {
+				fetch(URLBACKEND + "/nueva_password", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				});
 			},
 
 			setShowOnboard: status => {
