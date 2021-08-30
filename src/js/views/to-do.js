@@ -1,15 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/to-do.scss";
 import { Context } from "../store/appContext";
 
 export const Todo = () => {
 	const { store, actions } = useContext(Context);
+	const params = useParams();
 
 	var [title, setTitle] = useState("");
 	const handleChange = event => {
 		setTitle(event.target.value);
 	};
+
 	const deleteItems = indice => {
 		actions.borrarTarea(indice);
 	};
@@ -18,8 +21,14 @@ export const Todo = () => {
 		setTitle(event.target.value);
 	};
 
+	let diaDetalle = parseInt(params.dia);
+	let userTodo = JSON.parse(localStorage.getItem("user"))["to-do del usuario"];
+	let toDoDia = userTodo.filter(element => element.dia === diaDetalle);
+	console.log("el dia es:", diaDetalle);
+	console.log("las to-dos del dia son:", toDoDia);
+
 	useEffect(() => {
-		actions.obtenerTareas();
+		// actions.obtenerTareas();
 	}, []);
 
 	const handleKeyDown = event => {

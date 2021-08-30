@@ -54,7 +54,7 @@ const Layout = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
-							<Route exact path="/to-do">
+							<Route exact path="/to-do/:dia">
 								<Todo />
 							</Route>
 							<Route exact path="/single/:theid">
