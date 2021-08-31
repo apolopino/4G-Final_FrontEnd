@@ -73,7 +73,7 @@ const Layout = () => {
 
 							<Route exact path="/solicitudrecuperacion/:hash">
 								<SolicitudRecuperacion />
-               </Route>
+							</Route>
 
 							<Route exact path="/desafios/:id">
 								<Desafios />
@@ -89,7 +89,6 @@ const Layout = () => {
 							<Route exact path="/detalle/:tipo/:dia">
 								<Detalle tipo="rutina" />
 							</Route>
-
 
 							<Route>
 								<h1>Not found!</h1>

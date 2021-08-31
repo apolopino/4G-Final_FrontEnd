@@ -1,6 +1,4 @@
-
 const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
-
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
