@@ -13,6 +13,8 @@ export const Onboard = () => {
 		actions.listaDesafios();
 	}, []);
 
+	console.log("datos del usuario en store: ", store.user.user);
+
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
@@ -24,7 +26,7 @@ export const Onboard = () => {
 			<div className="container text-light">
 				<div className="row p-5">
 					{console.log("los desafios son:", store.desafiosList)}
-					{/* {store.desafiosDisponibles.map((item, index) => { */}
+
 					{store.desafiosList.map((item, index) => {
 						return (
 							<ChallengeCard
@@ -32,7 +34,7 @@ export const Onboard = () => {
 								image={item.photoURL}
 								titulo={item.nombreDesafio}
 								content={item.descripcion}
-								buttonText="Seleccionar"
+								buttonText="Ver Detalles"
 								// next line sets an action and passes the challenge Id to assign to the user
 								url={item.id}
 								detalleDesafio={`/desafios/${item.id}`}
