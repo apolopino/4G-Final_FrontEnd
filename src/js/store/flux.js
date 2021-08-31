@@ -1,12 +1,11 @@
-
 import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
+const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us15.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io",
+			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us15.gitpod.io",
 
 			todoList: [],
 
