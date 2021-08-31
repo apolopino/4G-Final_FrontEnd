@@ -1,9 +1,15 @@
-const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io";
+import { element } from "prop-types";
+
+const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
+
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io",
+
+			todoList: [],
+
 			user: {
 				expires: "",
 				token: "",
@@ -11,10 +17,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: "",
 				userId: ""
 			},
+
 			message: "",
 			urlrecover: "",
 			userList: [],
 
+			//Deprecated
 			routineDetail: {
 				// cargar los detalles de la receta/rutina
 				nombre: "Rutina de prueba",
@@ -28,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://mejorconsalud.as.com/fitness/wp-content/uploads/2018/12/jumping-jacks-saltos-tijera-al-aire-libre.jpg"
 				]
 			},
-
+			//Deprecated
 			recipeDetail: {
 				nombre: "Receta de prueba",
 				video: "https://www.youtube-nocookie.com/embed/PvJ2l2yEftM",
@@ -40,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://i.dietdoctor.com/es/wp-content/uploads/2021/03/Keto-sheet-pan-chicken-h.jpg"
 				]
 			},
-
+			// Deprecated
 			desafioDetail: [
 				{
 					descripcion: "Descripcion larga del desafio 2",
@@ -57,6 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setName: {},
 
+			activeDia: "",
+
 			activeDesafio: {},
 
 			desafiosList: [],
@@ -67,6 +77,86 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
+			borrarTarea: (idtask, iduser) => {
+				const store = getStore();
+				let elementID = store.todoList.find(item => item.id === idtask).id;
+				console.log("el id de la tarea es", elementID);
+
+				console.log("el id del user es ", iduser);
+
+				let payload = {
+					taskID: elementID,
+					done: true
+				};
+
+				console.log("payload", payload);
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "PUT",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--backresp--", data);
+						getActions().obtenerTareas(iduser);
+					});
+			},
+
+			obtenerTareas: id => {
+				// llamar a la api
+				fetch(URLBACKEND + "/todousuario/" + id, {
+					method: "GET",
+					// body: JSON.stringify(id),
+					headers: { "content-type": "application/json" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						const store = getStore();
+
+						data.forEach(element => {
+							store.todoList.push(element);
+							// let todoDia = data.filter(element => element.dia === 1);
+							// console.log("variable todoDia (flux)", todoDia);
+						});
+						setStore(store);
+					});
+				// filtrar nuestras tareas?
+			},
+
+			nuevaTarea: (titulo, dia) => {
+				const store = getStore();
+				let userID = store.user.user.id;
+
+				let payload = {
+					actividad: titulo,
+					dia: dia,
+					uid: userID
+				};
+
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "POST",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data_bknd--", data);
+						getActions().obtenerTareas(userID);
+					});
+
+				store.todoList.push({ title: titulo, done: false });
+				setStore(store);
+
+				// TODO: enviar nueva tarea a la api
+			},
+
+			activeDia: dia => {
+				setStore({ activeDia: dia });
+			},
+
+
 			activeDesafio: detalleDesafio => {
 				let duracion = detalleDesafio["dias del desafio"].length;
 				detalleDesafio.duracion = duracion;
@@ -74,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			listaDesafios: () => {
-				fetch("https://3001-white-leopard-omsrf9vd.ws-us15.gitpod.io/desafios", {
+				fetch(URLBACKEND + "/desafios", {
 					method: "GET"
 				})
 					.then(res => res.json())
@@ -84,8 +174,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			setChallenge: id => {
-				return console.log("se inscribira el desafio con id ", id);
+			setChallenge: history => {
+				const store = getStore();
+				let toDo = [];
+				let extras = [];
+				let userID = JSON.parse(localStorage.getItem("user")).id;
+				let duracion = store.activeDesafio.duracion;
+				let desafio = store.activeDesafio.nombreDesafio;
+				let dias = store.activeDesafio["dias del desafio"];
+
+				dias.map((item, index) => {
+					let dailyTodo = item["to-dos del dia"];
+					let dailyExtras = item["receta/rutina"];
+
+					dailyTodo.map((item, index) => {
+						item.userID = userID;
+						item.done = false;
+						toDo.push(item);
+					});
+
+					dailyExtras.map((item, index) => {
+						item.userID = userID;
+						extras.push(item);
+					});
+				});
+
+				let objeto = {
+					userID: userID,
+					desafio: desafio,
+					duracion: duracion,
+					"to-do del usuario": toDo,
+					"extras del usuario": extras
+				};
+
+				let localUser = {
+					desafio: desafio,
+					duracion: duracion,
+					"to-do del usuario": toDo,
+					"extras del usuario": extras
+				};
+
+				fetch(URLBACKEND + "/setchallenge", {
+					method: "PUT",
+					body: JSON.stringify(objeto),
+					headers: { "Content-type": "application/json" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--Data setChallenge--", data);
+
+						// localStorage.setItem("token", data.token);
+						localStorage.setItem("user", JSON.stringify(data.user));
+						localStorage.setItem("isLogged", true);
+
+						history.push("/dashboard");
+					});
+				// .then(data => {
+				// 	if (typeof Storage !== "undefined") {
+				// 		localStorage.setItem("user", JSON.stringify(data.user));
+				// 		localStorage.setItem("isLogged", true);
+
+				// 		history.push("/dashboard");
+				// 	} else {
+				// 		// LocalStorage no soportado en este navegador
+				// 	}
+				// })
+
+				// history.push("/dashboard");
 			},
 
 			// Use getActions to call a function within a fuction
@@ -104,12 +259,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
 			},
+
 			setLogin: (user, history) => {
+				// el user recibido tiene email y pass
 				fetch(URLBACKEND + "/login", {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
 				})
+					// backend devuelve user serializado (datos de la tabla de user)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log("--data--", data);
@@ -140,6 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
+
 			setRegister: (user, history) => {
 				fetch(URLBACKEND + "/register", {
 					method: "POST",
@@ -159,6 +318,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						getActions().setLogin(userLogin, history);
 					});
 			},
+
 			setLogout: history => {
 				localStorage.clear();
 				setStore({
@@ -173,6 +333,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				history.push("/");
 			},
+
 			setRecuperarPassword: user => {
 				fetch(URLBACKEND + "/solicitudrecuperacion", {
 					method: "POST",
@@ -201,6 +362,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						history.push("/");
 					});
 			},
+
 			setShowOnboard: status => {
 				const store = getStore();
 				console.log("triggered action: setShowOnboard ", status);
@@ -210,6 +372,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))

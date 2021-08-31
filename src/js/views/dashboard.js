@@ -8,10 +8,10 @@ import { Context } from "../store/appContext";
 import { Onboard } from "../component/onboard";
 
 export const Dashboard = () => {
-	console.log("loading dashboard component");
-
-	// const [onboard, setOnboard] = useState(false);
 	const { store, actions } = useContext(Context);
+
+	const onboard = JSON.parse(localStorage.getItem("user")).desafio;
+	console.log("el objeto en LOCALSTORAGE", onboard);
 
 	const history = useHistory();
 	useEffect(() => {
@@ -21,9 +21,7 @@ export const Dashboard = () => {
 		if (store.isLogged !== true) history.push("/");
 	}, []);
 
-	let onboard = store.showOnboard;
-
-	if (onboard === true) {
+	if (onboard === null) {
 		return (
 			<div className="container mb-5">
 				<Onboard />
