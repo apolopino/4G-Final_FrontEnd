@@ -58,6 +58,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setName: {},
 
+			activeDia: "",
+
 			activeDesafio: {},
 
 			desafiosList: [],
@@ -114,14 +116,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 				// filtrar nuestras tareas?
 			},
-			nuevaTarea: titulo => {
-				// actualizar lista en store
+
+			nuevaTarea: (titulo, dia) => {
 				const store = getStore();
+				let userID = store.user.user.id;
+
+				let payload = {
+					actividad: titulo,
+					dia: dia,
+					uid: userID
+				};
+
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "POST",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data_bknd--", data);
+						getActions().obtenerTareas(userID);
+					});
+
 				store.todoList.push({ title: titulo, done: false });
 				setStore(store);
 
 				// TODO: enviar nueva tarea a la api
 			},
+
+			activeDia: dia => {
+				setStore({ activeDia: dia });
+			},
+
 			activeDesafio: detalleDesafio => {
 				let duracion = detalleDesafio["dias del desafio"].length;
 				detalleDesafio.duracion = duracion;

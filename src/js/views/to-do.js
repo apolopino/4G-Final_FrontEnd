@@ -1,3 +1,4 @@
+import { event } from "jquery";
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -8,6 +9,7 @@ export const Todo = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 	let dia = parseInt(params.id);
+	// actions.activeDia(dia);
 
 	var [title, setTitle] = useState("");
 	const handleChange = event => {
@@ -27,13 +29,17 @@ export const Todo = () => {
 		let user = JSON.parse(localStorage.getItem("user")).id;
 		console.log("el user id es", user);
 		actions.obtenerTareas(user);
+		console.log("el activeDia es", store.activeDia);
 	}, []);
 
 	console.log("el todolist en store es", store.todoList);
 
 	const handleKeyDown = event => {
+		console.log("evento", event);
 		if (event.key === "Enter") {
-			actions.nuevaTarea(title);
+			let dia = parseInt(params.id);
+			actions.nuevaTarea(title, dia);
+
 			setTitle("");
 		}
 	};
