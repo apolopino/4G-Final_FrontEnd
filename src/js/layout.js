@@ -17,7 +17,6 @@ import { NavbarModule } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Onboard } from "./component/onboard";
 import { Timeline } from "./component/timeline";
-import { Todo } from "./views/to-do";
 
 const Wrapper = ({ children }) => {
 	const { store, actions } = useContext(Context);
@@ -97,7 +96,6 @@ const Layout = () => {
 							<Route exact path="/detalle/:tipo/:dia">
 								<Detalle tipo="rutina" />
 							</Route>
-
 
 							<Route>
 								<h1>Not found!</h1>

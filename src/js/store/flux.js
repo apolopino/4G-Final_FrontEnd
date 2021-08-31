@@ -2,7 +2,6 @@ import { element } from "prop-types";
 
 const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -154,7 +153,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			activeDia: dia => {
 				setStore({ activeDia: dia });
 			},
-
 
 			activeDesafio: detalleDesafio => {
 				let duracion = detalleDesafio["dias del desafio"].length;
