@@ -115,10 +115,6 @@ export const Home = () => {
 					Organiza una rutina ajustada a las necesidades del usuario de acuerdo a su estilo de vida y
 					preferencias alimenticias.
 				</p>
-				<p>
-					<h3>Empieza Ahora</h3>
-				</p>
-			</Jumbotron>
 
 			{/* esto tenemos que cambiarlo por 3 cards */}
 			<div className="container-home">
@@ -146,9 +142,8 @@ export const Home = () => {
 					</div>
 				</div>
 				<div className="row justify-content-center">
-					<p className="lead mt-5">
-						<h3>Comienza Ahora</h3>
-					</p>
+					<h2 className="lead mt-5">Registrate y comienza ahora</h2>
+
 				</div>
 			</div>
 
