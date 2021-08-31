@@ -10,6 +10,7 @@ import { Detalle } from "./views/detalle";
 import { Todo } from "./views/to-do";
 import { Desafios } from "./views/desafios";
 import { Recuperacion } from "./views/recuperacion";
+import { Contact } from "./views/contact";
 import { SolicitudRecuperacion } from "./views/solicitudrecuperacion";
 import injectContext, { Context } from "./store/appContext";
 import { NavbarModule } from "./component/navbar";
@@ -73,6 +74,9 @@ const Layout = () => {
 							</Route>
 							<Route exact path="/recuperacion">
 								<Recuperacion />
+							</Route>
+							<Route exact path="/contact">
+								<Contact />
 							</Route>
 
 							<Route exact path="/solicitudrecuperacion/:hash">

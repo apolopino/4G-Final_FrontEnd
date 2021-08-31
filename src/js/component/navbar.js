@@ -85,6 +85,7 @@ export const NavbarModule = () => {
 		return (
 			<div className="ml-auto pr-5">
 				<Nav>
+					<Nav.Link href="/contact">Contacto</Nav.Link>
 					<Nav.Link onClick={handleRegisterShow}>Register</Nav.Link>
 					<Nav.Link className="mr-sm-2" onClick={handleShow}>
 						Login
@@ -100,6 +101,7 @@ export const NavbarModule = () => {
 			<div className="ml-auto pr-5">
 				<Nav>
 					<Nav.Link href="/">Home</Nav.Link>
+					<Nav.Link href="/contact">Contacto</Nav.Link>
 					<Nav.Link href="/dashboard">Dashboard</Nav.Link>
 					<Nav.Link onClick={handleLogout}>Logout</Nav.Link>
 				</Nav>
