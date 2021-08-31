@@ -7,6 +7,7 @@ import { Context } from "../store/appContext";
 export const Todo = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	let dia = parseInt(params.id);
 
 	var [title, setTitle] = useState("");
 	const handleChange = event => {
@@ -21,15 +22,13 @@ export const Todo = () => {
 		setTitle(event.target.value);
 	};
 
-	let diaDetalle = parseInt(params.dia);
-	let userTodo = JSON.parse(localStorage.getItem("user"))["to-do del usuario"];
-	let toDoDia = userTodo.filter(element => element.dia === diaDetalle);
-	console.log("el dia es:", diaDetalle);
-	console.log("las to-dos del dia son:", toDoDia);
-
 	useEffect(() => {
-		// actions.obtenerTareas();
+		let user = JSON.parse(localStorage.getItem("user")).id;
+		console.log("el user id es", user);
+		actions.obtenerTareas(user);
 	}, []);
+
+	console.log("el todolist en store es", store.todoList);
 
 	const handleKeyDown = event => {
 		if (event.key === "Enter") {
@@ -37,6 +36,10 @@ export const Todo = () => {
 			setTitle("");
 		}
 	};
+
+	// let storeList = store.todoList;
+	// let diario = storeList.filter(element => element.dia === dia);
+	// console.log("elementos del dia", dia, ":", diario);
 
 	return (
 		<div className="container">
@@ -53,14 +56,14 @@ export const Todo = () => {
 								onChange={handleChange}
 							/>
 							<div className="todo-list">
-								{store.todoList.map((item, index) => {
+								{store.todoList.filter(element => element.dia === dia).map((item, index) => {
 									return (
 										<div key={index} className="todo-item">
 											{/* <div className="checker">
 												{" "}
 												<input type="checkbox" defaultChecked={item.done} />{" "}
 											</div> */}
-											<span>{item.title}</span>
+											<span>{item.actividad}</span>
 											<button
 												className="btn btn-light float-right"
 												onClick={() => {

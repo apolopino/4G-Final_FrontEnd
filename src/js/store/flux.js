@@ -73,17 +73,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.todoList.splice(indice, 1);
 				setStore(store);
 			},
-			obtenerTareas: () => {
+			obtenerTareas: id => {
 				// llamar a la api
-				fetch(URLBACKEND + "/todousuario", {})
+				fetch(URLBACKEND + "/todousuario/" + id, {
+					method: "GET",
+					// body: JSON.stringify(id),
+					headers: { "content-type": "application/json" }
+				})
 					.then(resp => resp.json())
 					.then(data => {
 						const store = getStore();
-						const todos = data["lista de to-dos"];
-						console.log(store);
-						//todos.filter(element => element.userID === store.user.user.id).forEach(element => {
-						todos.forEach(element => {
-							store.todoList.push({ title: element.actividad, done: element.done });
+
+						data.forEach(element => {
+							store.todoList.push(element);
+							// let todoDia = data.filter(element => element.dia === 1);
+							// console.log("variable todoDia (flux)", todoDia);
 						});
 						setStore(store);
 					});
