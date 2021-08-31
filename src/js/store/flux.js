@@ -1,6 +1,27 @@
+
+import { element } from "prop-types";
+
+const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io",
+
+			todoList: [],
+
+			user: {
+				expires: "",
+				token: "",
+				nombre: "",
+				email: "",
+				userId: ""
+			},
+
+			message: "",
+			userList: [],
+
+			//Deprecated
 			routineDetail: {
 				// cargar los detalles de la receta/rutina
 				nombre: "Rutina de prueba",
@@ -14,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://mejorconsalud.as.com/fitness/wp-content/uploads/2018/12/jumping-jacks-saltos-tijera-al-aire-libre.jpg"
 				]
 			},
-
+			//Deprecated
 			recipeDetail: {
 				nombre: "Receta de prueba",
 				video: "https://www.youtube-nocookie.com/embed/PvJ2l2yEftM",
@@ -26,55 +47,318 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"https://i.dietdoctor.com/es/wp-content/uploads/2021/03/Keto-sheet-pan-chicken-h.jpg"
 				]
 			},
-
-			setName: {},
-
-			desafiosDisponibles: [
+			// Deprecated
+			desafioDetail: [
 				{
-					image: "https://garajedelrock.com/wp-content/uploads/2020/05/serj-tankian.jpg",
-					titulo: "Desafio 1",
-					content: "Desafio para ordenar tu dia y tener tiempo para la familia",
-					buttonText: "Me animo!",
-					url: "#",
-					detalleDesafio: "/desafio"
-				},
-
-				{
-					image:
-						"https://ichef.bbci.co.uk/news/640/cpsprodpb/150EA/production/_107005268_gettyimages-611696954.jpg",
-					titulo: "Desafio 2",
-					content: "Desafío vida sana: come sano, ejercítate y descubre sus beneficios",
-					buttonText: "Con todo!",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
-				},
-
-				{
-					image: "https://interrailero.com/wp-content/uploads/2019/08/que-hacer-en-santiago-de-chile.jpg",
-					titulo: "Desafio 3",
-					content: "Desafío desconexión: mindfullness y relajación todos los días",
-					buttonText: "Estar zen",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
-				},
-
-				{
-					image:
-						"https://s03.s3c.es/imag/_v0/770x420/2/5/5/490x_espacio-latinoamerica-america-latina-noche.jpg",
-					titulo: "Desafio 4",
-					content: "El cabronazo de los desafíos, saldrás vivo?",
-					buttonText: "A morir!",
-					url: "/detalle",
-					detalleDesafio: "URL-del-componente"
+					descripcion: "Descripcion larga del desafio 2",
+					"dias del desafio": [],
+					feat1: "feature 1",
+					feat2: "feature 2",
+					feat3: "feature 3",
+					id: 2,
+					nombreDesafio: "Desafio 2",
+					photoURL:
+						"http://cdn2.dineroenimagen.com/media/dinero/styles/xlarge/public/images/2019/12/knowledge-10520101920.jpg"
 				}
 			],
 
+			setName: {},
+
+			activeDia: "",
+
+			activeDesafio: {},
+
+			desafiosList: [],
+
 			isLogged: false,
+			messageLogged: "",
 
 			showOnboard: true
 		},
 		actions: {
+			borrarTarea: (idtask, iduser) => {
+				const store = getStore();
+				let elementID = store.todoList.find(item => item.id === idtask).id;
+				console.log("el id de la tarea es", elementID);
+
+				console.log("el id del user es ", iduser);
+
+				let payload = {
+					taskID: elementID,
+					done: true
+				};
+
+				console.log("payload", payload);
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "PUT",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--backresp--", data);
+						getActions().obtenerTareas(iduser);
+					});
+			},
+
+			obtenerTareas: id => {
+				// llamar a la api
+				fetch(URLBACKEND + "/todousuario/" + id, {
+					method: "GET",
+					// body: JSON.stringify(id),
+					headers: { "content-type": "application/json" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						const store = getStore();
+
+						data.forEach(element => {
+							store.todoList.push(element);
+							// let todoDia = data.filter(element => element.dia === 1);
+							// console.log("variable todoDia (flux)", todoDia);
+						});
+						setStore(store);
+					});
+				// filtrar nuestras tareas?
+			},
+
+			nuevaTarea: (titulo, dia) => {
+				const store = getStore();
+				let userID = store.user.user.id;
+
+				let payload = {
+					actividad: titulo,
+					dia: dia,
+					uid: userID
+				};
+
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "POST",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data_bknd--", data);
+						getActions().obtenerTareas(userID);
+					});
+
+				store.todoList.push({ title: titulo, done: false });
+				setStore(store);
+
+				// TODO: enviar nueva tarea a la api
+			},
+
+			activeDia: dia => {
+				setStore({ activeDia: dia });
+			},
+
+			activeDesafio: detalleDesafio => {
+				let duracion = detalleDesafio["dias del desafio"].length;
+				detalleDesafio.duracion = duracion;
+				setStore({ activeDesafio: detalleDesafio });
+			},
+
+			listaDesafios: () => {
+				fetch(URLBACKEND + "/desafios", {
+					method: "GET"
+				})
+					.then(res => res.json())
+					.then(json => {
+						console.log("response from backend", json.desafios);
+						setStore({ desafiosList: json.desafios });
+					});
+			},
+
+			setChallenge: history => {
+				const store = getStore();
+				let toDo = [];
+				let extras = [];
+				let userID = JSON.parse(localStorage.getItem("user")).id;
+				let duracion = store.activeDesafio.duracion;
+				let desafio = store.activeDesafio.nombreDesafio;
+				let dias = store.activeDesafio["dias del desafio"];
+
+				dias.map((item, index) => {
+					let dailyTodo = item["to-dos del dia"];
+					let dailyExtras = item["receta/rutina"];
+
+					dailyTodo.map((item, index) => {
+						item.userID = userID;
+						item.done = false;
+						toDo.push(item);
+					});
+
+					dailyExtras.map((item, index) => {
+						item.userID = userID;
+						extras.push(item);
+					});
+				});
+
+				let objeto = {
+					userID: userID,
+					desafio: desafio,
+					duracion: duracion,
+					"to-do del usuario": toDo,
+					"extras del usuario": extras
+				};
+
+				let localUser = {
+					desafio: desafio,
+					duracion: duracion,
+					"to-do del usuario": toDo,
+					"extras del usuario": extras
+				};
+
+				fetch(URLBACKEND + "/setchallenge", {
+					method: "PUT",
+					body: JSON.stringify(objeto),
+					headers: { "Content-type": "application/json" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--Data setChallenge--", data);
+
+						// localStorage.setItem("token", data.token);
+						localStorage.setItem("user", JSON.stringify(data.user));
+						localStorage.setItem("isLogged", true);
+
+						history.push("/dashboard");
+					});
+				// .then(data => {
+				// 	if (typeof Storage !== "undefined") {
+				// 		localStorage.setItem("user", JSON.stringify(data.user));
+				// 		localStorage.setItem("isLogged", true);
+
+				// 		history.push("/dashboard");
+				// 	} else {
+				// 		// LocalStorage no soportado en este navegador
+				// 	}
+				// })
+
+				// history.push("/dashboard");
+			},
+
 			// Use getActions to call a function within a fuction
+			getToken: () => {
+				const tokenLocal = localStorage.getItem("token");
+				// busca traer el contenido de token del backend
+				const userLocal = JSON.parse(localStorage.getItem("user"));
+				const isLoggedLocal = JSON.parse(localStorage.getItem("isLogged"));
+				setStore({
+					user: {
+						token: tokenLocal,
+						user: userLocal
+					},
+					isLogged: isLoggedLocal
+				});
+				console.log("-->", tokenLocal);
+				console.log("-->", JSON.stringify(userLocal));
+			},
+
+			setLogin: (user, history) => {
+				// el user recibido tiene email y pass
+				fetch(URLBACKEND + "/login", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					// backend devuelve user serializado (datos de la tabla de user)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						if (data.hasOwnProperty("token")) {
+							const dataUser = {
+								expires: data.expires,
+								token: data.token,
+								nombre: data.nombre,
+								email: data.user.email,
+								userId: data.userId
+							};
+							setStore({ user: { ...dataUser }, isLogged: true });
+
+							console.log("--USER--", dataUser);
+
+							if (typeof Storage !== "undefined") {
+								localStorage.setItem("token", data.token);
+								localStorage.setItem("user", JSON.stringify(data.user));
+								localStorage.setItem("isLogged", true);
+
+								history.push("/dashboard");
+							} else {
+								// LocalStorage no soportado en este navegador
+							}
+						} else {
+							setStore({ message: data.msg });
+						}
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+			},
+
+			setRegister: (user, history) => {
+				fetch(URLBACKEND + "/register", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageLogged: data.msg });
+
+						const userLogin = {
+							email: user.email,
+							password: user.password
+						};
+
+						getActions().setLogin(userLogin, history);
+					});
+			},
+
+			setLogout: history => {
+				localStorage.clear();
+				setStore({
+					user: {
+						expires: "",
+						token: "",
+						nombre: "",
+						email: "",
+						userId: ""
+					},
+					isLogged: false
+				});
+				history.push("/");
+			},
+
+			setRecuperarPassword: user => {
+				fetch(URLBACKEND + "/solicitudrecuperacion", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+					//la accion deberia ser para hacer el llamado a la API y q ejecute el endpoint a traves del mail
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+					});
+			},
+			setNuevaPassword: (user, history) => {
+				console.log("!", user);
+				fetch(URLBACKEND + "/nueva_password", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageLogged: data.msg });
+						history.push("/");
+					});
+			},
+
 			setShowOnboard: status => {
 				const store = getStore();
 				console.log("triggered action: setShowOnboard ", status);
@@ -84,6 +368,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
