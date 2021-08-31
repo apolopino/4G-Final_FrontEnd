@@ -68,11 +68,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
-			borrarTarea: indice => {
+			borrarTarea: (idtask, iduser) => {
 				const store = getStore();
-				store.todoList.splice(indice, 1);
-				setStore(store);
+				let elementID = store.todoList.find(item => item.id === idtask).id;
+				console.log("el id de la tarea es", elementID);
+
+				console.log("el id del user es ", iduser);
+
+				let payload = {
+					taskID: elementID,
+					done: true
+				};
+
+				console.log("payload", payload);
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "PUT",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--backresp--", data);
+						getActions().obtenerTareas(iduser);
+					});
 			},
+
 			obtenerTareas: id => {
 				// llamar a la api
 				fetch(URLBACKEND + "/todousuario/" + id, {

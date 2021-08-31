@@ -14,8 +14,9 @@ export const Todo = () => {
 		setTitle(event.target.value);
 	};
 
-	const deleteItems = indice => {
-		actions.borrarTarea(indice);
+	const deleteItems = idtask => {
+		let id = JSON.parse(localStorage.getItem("user")).id;
+		actions.borrarTarea(idtask, id);
 	};
 
 	const handleChangeCheckbox = event => {
@@ -67,7 +68,7 @@ export const Todo = () => {
 											<button
 												className="btn btn-light float-right"
 												onClick={() => {
-													deleteItems(index);
+													deleteItems(item.id);
 												}}>
 												<i className="fa fa-check" />
 											</button>
