@@ -12,7 +12,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				userId: ""
 			},
 			message: "",
-			urlrecover: "",
 			userList: [],
 
 			routineDetail: {
@@ -178,13 +177,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
-					//AQUI RECIBO MI URL EN MI .THEN
-					//GUARDAR EN EL STORE EN UNA VARIABLE EXCLUSIVA PARA ELLO, PARA PODER SACARLO COMO DATO Y ENVIARLO EN EL MAIL
+					//la accion deberia ser para hacer el llamado a la API y q ejecute el endpoint a traves del mail
 				})
 					.then(resp => resp.json())
 					.then(data => {
 						console.log("--data--", data);
-						setStore({ urlrecover: data });
 					});
 			},
 			setNuevaPassword: (user, history) => {
