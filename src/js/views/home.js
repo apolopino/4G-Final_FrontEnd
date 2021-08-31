@@ -27,9 +27,6 @@ export const Home = () => {
 					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
 					aliquip ex ea commodo consequat.
 				</p>
-				<p>
-					<Button variant="btn btn-light btn-lg">Empieza Ahora</Button>
-				</p>
 			</Jumbotron>
 
 			{/* esto tenemos que cambiarlo por 3 cards */}
@@ -58,11 +55,7 @@ export const Home = () => {
 					</div>
 				</div>
 				<div className="row justify-content-center">
-					<p className="lead mt-5">
-						<a className="btn btn-light btn-lg" href="#" role="button">
-							Comienza Ahora
-						</a>
-					</p>
+					<h2 className="lead mt-5">Registrate y comienza ahora</h2>
 				</div>
 			</div>
 
