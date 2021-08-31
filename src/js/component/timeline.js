@@ -22,23 +22,27 @@ export const Timeline = () => {
 	// let duracion = store.user.user.duracion;
 
 	const rutinaDiaria = dia => {
-		console.log("Se ha clickeado el Rutina id ", dia);
+		console.log("Se ha clickeado el Rutina del dia ", dia);
 	};
 
 	const recetaDiaria = dia => {
-		console.log("Se ha clickeado la receta id", dia);
+		console.log("Se ha clickeado la receta del dia", dia);
 	};
 
-	// esta funcion tiene que estar en el componente To-Do. El dia se le pasa por params (URL).
 	const toDoDiario = dia => {
-		let num = dia;
-		let toDo = JSON.parse(localStorage.getItem("user"));
-		toDo = toDo["to-do del usuario"];
-
-		let listaDia = toDo.filter(element => element.dia === num);
-
-		console.log("los to-do del dia", num, "son: ", listaDia);
+		console.log("Se ha clickeado el to-do del dia", dia);
 	};
+
+	// // esta funcion tiene que estar en el componente To-Do. El dia se le pasa por params (URL).
+	// const toDoDiario = dia => {
+	// 	let num = dia;
+	// 	let toDo = JSON.parse(localStorage.getItem("user"));
+	// 	toDo = toDo["to-do del usuario"];
+
+	// 	let listaDia = toDo.filter(element => element.dia === num);
+
+	// 	console.log("los to-do del dia", num, "son: ", listaDia);
+	// };
 
 	const createElement = () => {
 		let dias = [];
@@ -57,9 +61,14 @@ export const Timeline = () => {
 						<h4 className="timeline-title">{`Día ` + numDia}</h4>
 						{/* Los buttons deben estar en un <Link> el ID se pasa por params (URL) 
 						ejemplo: <Link to={`/todo/${numDia}`} o bien <Link to={`/receta/${numDia}`} */}
-						<Button type="button" className="btn btn-light btn-sm mr-2" onClick={() => toDoDiario(numDia)}>
-							{`Ver to-do del día`} <i className="fas fa-tasks" />
-						</Button>
+						<Link to={`/to-do/${numDia}`}>
+							<Button
+								type="button"
+								className="btn btn-light btn-sm mr-2"
+								onClick={() => toDoDiario(numDia)}>
+								{`Ver to-do del día`} <i className="fas fa-tasks" />
+							</Button>
+						</Link>
 						<Link to={`detalle/rutina/${numDia}`}>
 							<Button type="button" className="btn btn-light btn-sm" onClick={() => rutinaDiaria(numDia)}>
 								{`Ver rutina de ejercicio`} <i className="fas fa-dumbbell" />

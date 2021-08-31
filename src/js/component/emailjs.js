@@ -6,28 +6,11 @@ import "../../styles/password.scss";
 
 /* import './ContactUs.css'; */
 
-const URLfront = "https://3000-chocolate-bat-k8s1td5r.ws-us16.gitpod.io";
-const URLrecover = URLfront + "/solicitudrecuperacion" + "/hash";
-console.log(URLrecover);
-
 export const ContactUs = () => {
-	/* const { store, actions } = useContext(Context); */
-
-	//aqui va un IF que diga si el mail existe en el registro,
-	//ejecutar la accion que va al endpoint que genera la URL con hash Y QUE SE EJECUTE
-	//la URL como hash sera recibido aqui como parametro para ser parte del correo a enviar por emailJS
-	//si no, que envie una alerta diciendo, usuario no existente
+	const { store, actions } = useContext(Context);
 
 	function sendEmail(e) {
 		e.preventDefault();
-
-		/* const dataEmail = {
-			to_name: "{email}",
-			from_name: "Life Planner",
-			message: "link de recuperacion password"
-		};
- */
-		/* actions.setRecuperarPassword(user); */
 
 		emailjs.sendForm("service_c68bj7m", "template_k8dnosa", e.target, "user_vIs5peWJ64GxsW5fuLdX5").then(
 			result => {
@@ -43,13 +26,13 @@ export const ContactUs = () => {
 	return (
 		<Form className="contact-form justify-content-md-center container mt-3" onSubmit={sendEmail}>
 			{/* <Form.Control type="hidden" name="name" /> */}
-			<h6>Ingresa tus datos para solicitar el link de recuperacion de contraseña.</h6>
+			<h6>Formulario de contacto, sugerencias y felicitaciones</h6>
 			<Form.Label className="text">Name</Form.Label>
 			<Form.Control type="text" name="user_name" />
 			<Form.Label className="text">Email</Form.Label>
 			<Form.Control type="email" name="user_email" />
-			{/* <Form.Label>Message</Form.Label>
-			<textarea name="message" /> */}
+			<Form.Label className="text">Dejanos tu mensaje aca</Form.Label>
+			<textarea className="container" name="message" />
 			<Form.Control className="mt-3" type="submit" value="Send" />
 		</Form>
 	);
