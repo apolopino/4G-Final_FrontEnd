@@ -11,7 +11,7 @@ const URLrecover = URLfront + "/solicitudrecuperacion" + "/hash";
 console.log(URLrecover);
 
 export const ContactUs = () => {
-	/* const { store, actions } = useContext(Context); */
+	const { store, actions } = useContext(Context);
 
 	//aqui va un IF que diga si el mail existe en el registro,
 	//ejecutar la accion que va al endpoint que genera la URL con hash Y QUE SE EJECUTE
@@ -21,13 +21,13 @@ export const ContactUs = () => {
 	function sendEmail(e) {
 		e.preventDefault();
 
-		/* const dataEmail = {
+		/* const user = {
 			to_name: "{email}",
 			from_name: "Life Planner",
 			message: "link de recuperacion password"
-		};
- */
-		/* actions.setRecuperarPassword(user); */
+		}; */
+
+		actions.setRecuperarPassword();
 
 		emailjs.sendForm("service_c68bj7m", "template_k8dnosa", e.target, "user_vIs5peWJ64GxsW5fuLdX5").then(
 			result => {
@@ -43,13 +43,14 @@ export const ContactUs = () => {
 	return (
 		<Form className="contact-form justify-content-md-center container mt-3" onSubmit={sendEmail}>
 			{/* <Form.Control type="hidden" name="name" /> */}
-			<h6>Ingresa tus datos para solicitar el link de recuperacion de contraseña.</h6>
+			<h6>Ingresa tus datos para solicitar el link de recuperacion de contraseña.123</h6>
 			<Form.Label className="text">Name</Form.Label>
 			<Form.Control type="text" name="user_name" />
 			<Form.Label className="text">Email</Form.Label>
 			<Form.Control type="email" name="user_email" />
 			{/* <Form.Label>Message</Form.Label>
 			<textarea name="message" /> */}
+			<Form.Control type="hidden" name="urlrecover" value={store.urlrecover} />
 			<Form.Control className="mt-3" type="submit" value="Send" />
 		</Form>
 	);

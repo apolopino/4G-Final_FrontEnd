@@ -6,7 +6,10 @@ const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io",
+
 			todoList: [],
+
 			user: {
 				expires: "",
 				token: "",
@@ -16,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			message: "",
+			urlrecover: "",
 			userList: [],
 
 			//Deprecated
@@ -337,14 +341,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-type": "application/json; charset=UTF-8" }
 					//AQUI RECIBO MI URL EN MI .THEN
 					//GUARDAR EN EL STORE EN UNA VARIABLE EXCLUSIVA PARA ELLO, PARA PODER SACARLO COMO DATO Y ENVIARLO EN EL MAIL
-				});
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ urlrecover: data });
+					});
 			},
-			setNuevaPassword: user => {
+			setNuevaPassword: (user, history) => {
+				console.log("!", user);
 				fetch(URLBACKEND + "/nueva_password", {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
-				});
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageLogged: data.msg });
+						history.push("/");
+					});
 			},
 
 			setShowOnboard: status => {
