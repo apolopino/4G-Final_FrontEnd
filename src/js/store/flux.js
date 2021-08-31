@@ -1,3 +1,4 @@
+import { element } from "prop-types";
 
 const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 
@@ -5,6 +6,7 @@ const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			todoList: [],
 			user: {
 				expires: "",
 				token: "",
@@ -59,6 +61,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setName: {},
 
+			activeDia: "",
+
 			activeDesafio: {},
 
 			desafiosList: [],
@@ -69,9 +73,85 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true
 		},
 		actions: {
-			// setDias: () => {
-			// 	console.log("se ha activado actions.setDias()");
-			// },
+			borrarTarea: (idtask, iduser) => {
+				const store = getStore();
+				let elementID = store.todoList.find(item => item.id === idtask).id;
+				console.log("el id de la tarea es", elementID);
+
+				console.log("el id del user es ", iduser);
+
+				let payload = {
+					taskID: elementID,
+					done: true
+				};
+
+				console.log("payload", payload);
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "PUT",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--backresp--", data);
+						getActions().obtenerTareas(iduser);
+					});
+			},
+
+			obtenerTareas: id => {
+				// llamar a la api
+				fetch(URLBACKEND + "/todousuario/" + id, {
+					method: "GET",
+					// body: JSON.stringify(id),
+					headers: { "content-type": "application/json" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						const store = getStore();
+
+						data.forEach(element => {
+							store.todoList.push(element);
+							// let todoDia = data.filter(element => element.dia === 1);
+							// console.log("variable todoDia (flux)", todoDia);
+						});
+						setStore(store);
+					});
+				// filtrar nuestras tareas?
+			},
+
+			nuevaTarea: (titulo, dia) => {
+				const store = getStore();
+				let userID = store.user.user.id;
+
+				let payload = {
+					actividad: titulo,
+					dia: dia,
+					uid: userID
+				};
+
+				setStore({ todoList: [] });
+				fetch(URLBACKEND + "/todousuario", {
+					method: "POST",
+					body: JSON.stringify(payload),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data_bknd--", data);
+						getActions().obtenerTareas(userID);
+					});
+
+				store.todoList.push({ title: titulo, done: false });
+				setStore(store);
+
+				// TODO: enviar nueva tarea a la api
+			},
+
+			activeDia: dia => {
+				setStore({ activeDia: dia });
+			},
+
 
 			activeDesafio: detalleDesafio => {
 				let duracion = detalleDesafio["dias del desafio"].length;
