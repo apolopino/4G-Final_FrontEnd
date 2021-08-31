@@ -64,7 +64,14 @@ export const Todo = () => {
 												{" "}
 												<input type="checkbox" defaultChecked={item.done} />{" "}
 											</div> */}
-											<span>{item.actividad}</span>
+											{item.done === true ? (
+												<span>
+													<s>{item.actividad}</s>
+												</span>
+											) : (
+												<span>{item.actividad}</span>
+											)}
+
 											<button
 												className="btn btn-light float-right"
 												onClick={() => {
