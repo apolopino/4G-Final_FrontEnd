@@ -1,11 +1,11 @@
 import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us15.gitpod.io";
+const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us15.gitpod.io",
+			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io/",
 
 			todoList: [],
 
@@ -103,6 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			obtenerTareas: id => {
 				// llamar a la api
+				setStore({ todoList: [] });
 				fetch(URLBACKEND + "/todousuario/" + id, {
 					method: "GET",
 					// body: JSON.stringify(id),
@@ -124,7 +125,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			nuevaTarea: (titulo, dia) => {
 				const store = getStore();
-				let userID = store.user.user.id;
+				let userID = JSON.parse(localStorage.getItem("user")).id;
+				// let userID = store.user.user.id;
 
 				let payload = {
 					actividad: titulo,
