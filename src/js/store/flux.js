@@ -7,8 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io/",
 
-			todoList: [],
-
 			user: {
 				expires: "",
 				token: "",
@@ -18,7 +16,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			message: "",
-			userList: [],
 
 			//Deprecated
 			routineDetail: {
@@ -61,15 +58,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
+			// Deprecated?
 			setName: {},
 
+			userList: [],
+
 			activeDia: "",
+
+			todoList: [],
 
 			activeDesafio: {},
 
 			desafiosList: [],
 
 			isLogged: false,
+
 			messageLogged: "",
 
 			showOnboard: true
@@ -328,7 +331,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						email: "",
 						userId: ""
 					},
-					isLogged: false
+					isLogged: false,
+					userList: [],
+					activeDia: "",
+					todoList: [],
+					activeDesafio: {},
+					desafiosList: []
 				});
 				history.push("/");
 			},
