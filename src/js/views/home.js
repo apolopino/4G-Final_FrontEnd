@@ -20,7 +20,7 @@ export const Home = () => {
 				</p>
 			</Jumbotron>
 
-			<div className="container-home">
+			<div className="container-homez">
 				<div className="row prev-img text-center">
 					<div className="col-sm-4">
 						<img

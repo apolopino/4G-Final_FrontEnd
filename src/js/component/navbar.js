@@ -161,7 +161,7 @@ export const NavbarModule = () => {
 					<Form>
 						<Modal.Body>
 							<Form.Group className="mb-3" controlId="registerName">
-								<Form.Label>Nombre</Form.Label>
+								<Form.Label>Nombre de Usuario</Form.Label>
 								<Form.Control
 									value={nombreReg}
 									onChange={e => setNombreReg(e.target.value)}
@@ -206,7 +206,7 @@ export const NavbarModule = () => {
 								Registrar
 							</Button>
 							<Button variant="secondary" onClick={handleRegisterClose}>
-								Cancel
+								Cancelar
 							</Button>
 						</Modal.Footer>
 					</Form>
