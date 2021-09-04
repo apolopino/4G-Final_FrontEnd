@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import "../../styles/password.scss";
 
 export const Recuperacion = () => {
 	//Store
@@ -17,7 +18,7 @@ export const Recuperacion = () => {
 	};
 
 	return (
-		<Form className="contact-form justify-content-md-center container mt-3">
+		<Form className="contact-form center col-xs-10 col-sm-8 col-md-4 mt-3">
 			<Form.Label className="text">Email</Form.Label>
 			<Form.Control
 				value={emailRec}

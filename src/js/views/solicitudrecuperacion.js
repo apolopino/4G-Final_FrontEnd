@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import "../../styles/password.scss";
 
 export const SolicitudRecuperacion = () => {
 	//Store
@@ -31,7 +32,7 @@ export const SolicitudRecuperacion = () => {
 	//anteriormente no podia acceder a esta URL pq el hash q recibia desde el BACK tenia puntos y el navegador no lo reconocia
 
 	return (
-		<Form className="contact-form justify-content-md-center container mt-3" onSubmit="">
+		<Form className="contact-form center col-xs-10 col-sm-8 col-md-4 container mt-3" onSubmit="">
 			{/* <Form.Control type="hidden" name="contact_number" />
 			<Form.Label>Name</Form.Label>
 			<Form.Control type="text" name="user_name" /> */}

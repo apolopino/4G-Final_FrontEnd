@@ -5,7 +5,7 @@ import { ContactUs } from "../component/emailjs";
 
 export const Contact = () => {
 	return (
-		<div className="container">
+		<div>
 			<ContactUs />
 		</div>
 	);
