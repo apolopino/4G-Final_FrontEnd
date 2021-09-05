@@ -24,7 +24,7 @@ export const ContactUs = () => {
 	}
 
 	return (
-		<Form className="contact-form justify-content-md-center container mt-3" onSubmit={sendEmail}>
+		<Form className="contact-form center col-xs-10 col-sm-8 col-md-4 mt-3" onSubmit={sendEmail}>
 			{/* <Form.Control type="hidden" name="name" /> */}
 			<h6>Formulario de contacto, sugerencias y felicitaciones</h6>
 			<Form.Label className="text">Name</Form.Label>
@@ -32,7 +32,7 @@ export const ContactUs = () => {
 			<Form.Label className="text">Email</Form.Label>
 			<Form.Control type="email" name="user_email" />
 			<Form.Label className="text">Dejanos tu mensaje aca</Form.Label>
-			<textarea className="container" name="message" />
+			<textarea className="container box" name="message" rows="5" />
 			<Form.Control className="mt-3" type="submit" value="Send" />
 		</Form>
 	);
