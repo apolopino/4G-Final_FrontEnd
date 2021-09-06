@@ -5,7 +5,7 @@ const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io",
+			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io",
 
 			user: {
 				expires: "",
@@ -186,17 +186,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let dias = store.activeDesafio["dias del desafio"];
 
 				dias.map((item, index) => {
+					// aca tendria que decirle: let numDia = item.numeroDia
+					let numDia = item["numeroDia"];
+					console.log("el numero del dia es", numDia);
+
 					let dailyTodo = item["to-dos del dia"];
 					let dailyExtras = item["receta/rutina"];
 
 					dailyTodo.map((item, index) => {
 						item.userID = userID;
 						item.done = false;
+						item.idDia = numDia;
+						// aca deberia setear el item.idDia = al let numDia que fije en la linea 189
 						toDo.push(item);
 					});
 
 					dailyExtras.map((item, index) => {
 						item.userID = userID;
+						item.dia = numDia;
 						extras.push(item);
 					});
 				});
@@ -209,12 +216,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"extras del usuario": extras
 				};
 
-				let localUser = {
-					desafio: desafio,
-					duracion: duracion,
-					"to-do del usuario": toDo,
-					"extras del usuario": extras
-				};
+				// console.log("el objeto a enviar es", objeto);
 
 				fetch(URLBACKEND + "/setchallenge", {
 					method: "PUT",
@@ -231,6 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						history.push("/dashboard");
 					});
+
 				// .then(data => {
 				// 	if (typeof Storage !== "undefined") {
 				// 		localStorage.setItem("user", JSON.stringify(data.user));
