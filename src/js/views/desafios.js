@@ -30,6 +30,8 @@ export const Desafios = () => {
 		function findChallenge(objeto) {
 			return objeto.id === desafioId;
 		}
+
+		console.log("el desafio activo es:", store.activeDesafio);
 	}, []);
 
 	// console.log("duracion ", store.activeDesafio.duracion);
