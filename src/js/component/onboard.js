@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { SpinnerSm } from "../component/spinner_sm.js";
 
 import { ChallengeCard } from "./challengeCard";
 
@@ -10,6 +11,7 @@ export const Onboard = () => {
 
 	useEffect(() => {
 		console.log("cargando actions/getdesafios");
+		actions.loadingDesafios();
 		actions.listaDesafios();
 	}, []);
 
@@ -26,7 +28,7 @@ export const Onboard = () => {
 			<div className="container text-light">
 				<div className="row p-5">
 					{console.log("los desafios son:", store.desafiosList)}
-
+					{store.loadingDesafios === true ? <SpinnerSm /> : ""}
 					{store.desafiosList.map((item, index) => {
 						return (
 							<ChallengeCard
