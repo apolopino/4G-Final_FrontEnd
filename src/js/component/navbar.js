@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Modal, Button, Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import { Spinner } from "../component/spinner";
 
 export const NavbarModule = () => {
 	// Store
@@ -23,23 +24,16 @@ export const NavbarModule = () => {
 	const handleRegisterClose = () => setRegisterShow(false);
 	const handleRegisterShow = () => setRegisterShow(true);
 
+	// History hook
 	const history = useHistory();
 
-	/* const handleLogin = () => {
-		handleClose();
-		actions.setShowOnboard(false);
-		history.push("/dashboard");
-	}; */
-
-	/* const handleRegister = () => {
-		handleRegisterClose();
-		actions.setShowOnboard(true);
-		history.push("/dashboard");
-	}; */
+	// Logging in state hook
+	const [loggedInState, setLoggedInState] = useState();
 
 	//LOGIN+REGISTER+LOGOUT
 	const handleLogin = e => {
 		e.preventDefault();
+		setLoggedInState("logging in");
 
 		const user = {
 			email: email,
@@ -75,7 +69,6 @@ export const NavbarModule = () => {
 	};
 
 	useEffect(() => {
-		/* if (!store.isLogged) history.push("/"); */
 		actions.getToken();
 	}, []);
 
@@ -112,6 +105,7 @@ export const NavbarModule = () => {
 	const modals = () => {
 		return (
 			<div>
+				{loggedInState === "logging in" ? <Spinner /> : ""}
 				{/* Login modal */}
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>

@@ -75,7 +75,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			messageLogged: "",
 
-			showOnboard: true
+			showOnboard: true,
+
+			error: ""
 		},
 		actions: {
 			borrarTarea: (idtask, iduser) => {
@@ -307,7 +309,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ message: data.msg });
 						}
 					})
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(
+						error => setStore({ error: "Login Failed" })
+						// console.log("Error loading message from backend", error)
+					);
 			},
 
 			setRegister: (user, history) => {
