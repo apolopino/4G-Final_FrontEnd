@@ -75,12 +75,6 @@ export const NavbarModule = () => {
 
 	useEffect(() => {
 		actions.getToken();
-		let status = store.error;
-		console.log("useeffect del navbar corriendo");
-		if (status === "Login Failed") {
-			setLoggedInState("");
-		}
-		// setLoggedInState("");
 	}, []);
 
 	const loginLinks = () => {

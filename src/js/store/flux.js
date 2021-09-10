@@ -77,6 +77,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			showOnboard: true,
 
+			loadingList: false,
+
 			error: ""
 		},
 		actions: {
@@ -108,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			obtenerTareas: id => {
 				// llamar a la api
-				setStore({ todoList: [] });
+				setStore({ todoList: [], loadingList: true });
 				fetch(URLBACKEND + "/todousuario/" + id, {
 					method: "GET",
 					// body: JSON.stringify(id),
@@ -117,11 +119,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => {
 						const store = getStore();
-
 						data.forEach(element => {
 							store.todoList.push(element);
-							// let todoDia = data.filter(element => element.dia === 1);
-							// console.log("variable todoDia (flux)", todoDia);
+							store.loadingList = false;
 						});
 						setStore(store);
 					});
@@ -369,6 +369,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("--data--", data);
 					});
 			},
+
 			setNuevaPassword: (user, history) => {
 				console.log("!", user);
 				fetch(URLBACKEND + "/nueva_password", {
