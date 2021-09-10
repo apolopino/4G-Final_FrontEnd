@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Modal, Button, Form } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import { Spinner } from "../component/spinner";
 
 export const NavbarModule = () => {
 	// Store
@@ -25,23 +26,19 @@ export const NavbarModule = () => {
 	const handleRegisterClose = () => setRegisterShow(false);
 	const handleRegisterShow = () => setRegisterShow(true);
 
+	// History hook
 	const history = useHistory();
 
-	/* const handleLogin = () => {
-		handleClose();
-		actions.setShowOnboard(false);
-		history.push("/dashboard");
-	}; */
+	// Logging in state hook
+	const [loggedInState, setLoggedInState] = useState();
 
-	/* const handleRegister = () => {
-		handleRegisterClose();
-		actions.setShowOnboard(true);
-		history.push("/dashboard");
-	}; */
+	//Registering state hook
+	const [registerState, setRegisterState] = useState();
 
 	//LOGIN+REGISTER+LOGOUT
 	const handleLogin = e => {
 		e.preventDefault();
+		setLoggedInState("logging in");
 
 		const user = {
 			email: email,
@@ -50,8 +47,6 @@ export const NavbarModule = () => {
 
 		actions.setLogin(user, history);
 		handleClose();
-		/* actions.setShowOnboard(false);
-		history.push("/dashboard"); */
 	};
 
 	const handleRegister = e => {
@@ -74,10 +69,11 @@ export const NavbarModule = () => {
 		e.preventDefault();
 		console.log(1);
 		actions.setLogout(history);
+		setLoggedInState("");
+		setRegisterState("");
 	};
 
 	useEffect(() => {
-		/* if (!store.isLogged) history.push("/"); */
 		actions.getToken();
 	}, []);
 
@@ -114,6 +110,9 @@ export const NavbarModule = () => {
 	const modals = () => {
 		return (
 			<div>
+				{/* Aca debiese llamar a un modal de error luego del Login Failed ?  */}
+				{loggedInState === "logging in" ? store.error === "" ? "" : <Spinner /> : ""}
+				{console.log("loggedInState:", loggedInState, "store.error:", store.error)}
 				{/* Login modal */}
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>
@@ -156,6 +155,7 @@ export const NavbarModule = () => {
 				</Modal>
 
 				{/* REGISTER MODAL */}
+				{registerState === "registering" ? <Spinner /> : ""}
 				<Modal show={registerShow} onHide={handleRegisterClose}>
 					<Modal.Header closeButton>
 						<Modal.Title>Registrarse</Modal.Title>

@@ -1,11 +1,12 @@
 import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io";
+
+const URLBACKEND = "https://final-4g-project.herokuapp.com";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io",
+			URLBACKEND: "https://final-4g-project.herokuapp.com",
 
 			user: {
 				expires: "",
@@ -75,7 +76,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			messageLogged: "",
 
-			showOnboard: true
+			showOnboard: true,
+
+			loadingList: false,
+
+			error: ""
 		},
 		actions: {
 			borrarTarea: (idtask, iduser) => {
@@ -106,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			obtenerTareas: id => {
 				// llamar a la api
-				setStore({ todoList: [] });
+				setStore({ todoList: [], loadingList: true });
 				fetch(URLBACKEND + "/todousuario/" + id, {
 					method: "GET",
 					// body: JSON.stringify(id),
@@ -115,11 +120,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => {
 						const store = getStore();
-
 						data.forEach(element => {
 							store.todoList.push(element);
-							// let todoDia = data.filter(element => element.dia === 1);
-							// console.log("variable todoDia (flux)", todoDia);
+							store.loadingList = false;
 						});
 						setStore(store);
 					});
@@ -166,8 +169,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			listaDesafios: () => {
+				// tomar el store y extraer el JWT
+				// const store = getStore();
+				// let jwt = store.user.token;
+
 				fetch(URLBACKEND + "/desafios", {
 					method: "GET"
+					// enviar el JWT en el header con la estrucutra de abajo
+					// headers: { Authorization: "Bearer " + jwt }
 				})
 					.then(res => res.json())
 					.then(json => {
@@ -284,7 +293,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								email: data.user.email,
 								userId: data.userId
 							};
-							setStore({ user: { ...dataUser }, isLogged: true });
+							setStore({ user: { ...dataUser }, isLogged: true, error: "" });
 
 							console.log("--USER--", dataUser);
 
@@ -299,9 +308,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						} else {
 							setStore({ message: data.msg });
+							setStore({ error: "Email / contraseña incorrectos" });
 						}
-					})
-					.catch(error => console.log("Error loading message from backend", error));
+					});
+				// .catch(
+				// 	// error => setStore({ error: "Login Failed" }),
+				// 	// console.log("fetech error catch: login failed"),
+				// 	// history.push("/")
+				// );
 			},
 
 			setRegister: (user, history) => {
@@ -356,6 +370,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("--data--", data);
 					});
 			},
+
 			setNuevaPassword: (user, history) => {
 				console.log("!", user);
 				fetch(URLBACKEND + "/nueva_password", {
@@ -401,6 +416,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(URL, OBJCONFIG)
 					.then(res => res.json()) //de texto plano a Json
 					.then(data => setStore({ routineDetail: data })); //guardo el detalle de la receta/rutina en el store
+			},
+
+			resetError: () => {
+				setStore({ error: "" });
 			}
 		}
 	};

@@ -4,12 +4,15 @@ import { useParams } from "react-router-dom";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/to-do.scss";
 import { Context } from "../store/appContext";
+import { SpinnerSm } from "../component/spinner_sm.js";
 
 export const Todo = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 	let dia = parseInt(params.id);
-	// actions.activeDia(dia);
+
+	// Creo el estado de loading
+	// const [loadingState, setLoadingState] = useState();
 
 	var [title, setTitle] = useState("");
 	const handleChange = event => {
@@ -21,18 +24,15 @@ export const Todo = () => {
 		actions.borrarTarea(idtask, id);
 	};
 
-	const handleChangeCheckbox = event => {
-		setTitle(event.target.value);
-	};
-
 	useEffect(() => {
 		let user = JSON.parse(localStorage.getItem("user")).id;
 		console.log("el user id es", user);
+		// setLoadingState(true);
 		actions.obtenerTareas(user);
-		console.log("el activeDia es", store.activeDia);
+		// console.log("el activeDia es", store.activeDia);
 	}, []);
 
-	console.log("el todolist en store es", store.todoList);
+	// console.log("el todolist en store es", store.todoList);
 
 	const handleKeyDown = event => {
 		console.log("evento", event);
@@ -43,10 +43,6 @@ export const Todo = () => {
 			setTitle("");
 		}
 	};
-
-	// let storeList = store.todoList;
-	// let diario = storeList.filter(element => element.dia === dia);
-	// console.log("elementos del dia", dia, ":", diario);
 
 	return (
 		<div className="container">
@@ -63,13 +59,10 @@ export const Todo = () => {
 								onChange={handleChange}
 							/>
 							<div className="todo-list">
+								{store.loadingList === true ? <SpinnerSm /> : ""}
 								{store.todoList.filter(element => element.dia === dia).map((item, index) => {
 									return (
 										<div key={index} className="todo-item">
-											{/* <div className="checker">
-												{" "}
-												<input type="checkbox" defaultChecked={item.done} />{" "}
-											</div> */}
 											{item.done === true ? (
 												<span>
 													<s>{item.actividad}</s>

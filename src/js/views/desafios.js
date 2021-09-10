@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import img1 from "/workspace/4G-Final_FrontEnd/src/img/Desafio.png";
-import { Container } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -17,7 +17,11 @@ export const Desafios = () => {
 	const params = useParams();
 	const history = useHistory();
 
-	let url = {};
+	//Modal hooks
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	useEffect(() => {
 		let object = store.desafiosList;
@@ -33,6 +37,38 @@ export const Desafios = () => {
 
 		console.log("el desafio activo es:", store.activeDesafio);
 	}, []);
+
+	// const inscribeDesafio = () => {
+	// 	actions.setChallenge(history)
+	// }
+	console.log("handle show", show);
+
+	const modal = () => {
+		return (
+			<div>
+				{/* <Button variant="primary" onClick={handleShow}>
+					Launch demo modal
+				</Button> */}
+
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>Inscribir desafío</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						Estás a punto de inscribir el desafío {store.activeDesafio.nombreDesafio}. Estas seguro?
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Cancelar
+						</Button>
+						<Button variant="primary" onClick={() => actions.setChallenge(history)}>
+							Inscribir
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
+		);
+	};
 
 	// console.log("duracion ", store.activeDesafio.duracion);
 	// console.log("objeto activeDesafio:", store.activeDesafio);
@@ -53,7 +89,7 @@ export const Desafios = () => {
 				<p className="lead">{store.activeDesafio.descripcion}</p>
 				<hr className="my-4" />
 				<p>Este desafío dura {store.activeDesafio.duracion} días</p>
-				<Button variant="primary" className="mt-auto" onClick={() => actions.setChallenge(history)}>
+				<Button variant="primary" className="mt-auto" onClick={handleShow}>
 					Inscribir desafío
 				</Button>
 			</div>
@@ -89,6 +125,7 @@ export const Desafios = () => {
 					</div>
 				</div>
 			</div>
+			{modal()}
 		</div>
 	);
 };

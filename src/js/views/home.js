@@ -2,11 +2,45 @@ import "../../styles/home.scss";
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { Jumbotron } from "react-bootstrap";
+import { Jumbotron, Modal, Button } from "react-bootstrap";
+import { Context } from "../store/appContext";
 import "../../styles/landing.scss";
 
 export const Home = () => {
 	const history = useHistory();
+	const { store, actions } = useContext(Context);
+
+	//Modal Hooks & controls
+	const [errorShow, setErrorShow] = useState(false);
+	const handleErrorClose = () => setErrorShow(false);
+	const handleErrorShow = () => {
+		setErrorShow(true);
+	};
+
+	const modalErrorClose = () => {
+		actions.resetError();
+		handleErrorClose();
+	};
+
+	const showErrorModal = () => {
+		console.log("show error modal triggered");
+		handleErrorShow();
+	};
+
+	const errorModal = () => {
+		return (
+			<div>
+				<Modal show={errorShow} onHide={modalErrorClose}>
+					<Modal.Body>{store.error}</Modal.Body>
+					<Modal.Footer>
+						<Button variant="primary" onClick={() => modalErrorClose()}>
+							Cerrar
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
+		);
+	};
 
 	return (
 		<div className="container-first center">
@@ -73,6 +107,13 @@ export const Home = () => {
 					</div>
 				</div>
 			</Jumbotron>
+			{errorModal()}
+
+			{errorShow === false
+				? store.error !== ""
+					? showErrorModal()
+					: console.log("triggered FALSE in store error check")
+				: ""}
 		</div>
 	);
 };
