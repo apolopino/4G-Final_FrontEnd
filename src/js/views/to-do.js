@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/to-do.scss";
 import { Context } from "../store/appContext";
-import { Spinner } from "../component/spinner.js";
+import { SpinnerSm } from "../component/spinner_sm.js";
 
 export const Todo = () => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +12,7 @@ export const Todo = () => {
 	let dia = parseInt(params.id);
 
 	// Creo el estado de loading
-	const [loadingState, setLoadingState] = useState();
+	// const [loadingState, setLoadingState] = useState();
 
 	var [title, setTitle] = useState("");
 	const handleChange = event => {
@@ -27,7 +27,7 @@ export const Todo = () => {
 	useEffect(() => {
 		let user = JSON.parse(localStorage.getItem("user")).id;
 		console.log("el user id es", user);
-		setLoadingState(true);
+		// setLoadingState(true);
 		actions.obtenerTareas(user);
 		// console.log("el activeDia es", store.activeDia);
 	}, []);
@@ -59,7 +59,7 @@ export const Todo = () => {
 								onChange={handleChange}
 							/>
 							<div className="todo-list">
-								{loadingState === true ? store.loadingList === true ? <Spinner /> : "" : ""}
+								{store.loadingList === true ? <SpinnerSm /> : ""}
 								{store.todoList.filter(element => element.dia === dia).map((item, index) => {
 									return (
 										<div key={index} className="todo-item">

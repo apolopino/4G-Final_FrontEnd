@@ -16,9 +16,17 @@
   
 }
 
+.spinnerDiv-sm {
+  background-color: #343a40;
+  height: 30vh;
+  justify-content: center;
+}
+
 .spinnerDiv {
   background-color: #343a40;
   height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes rotate {
