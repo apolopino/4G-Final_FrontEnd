@@ -38,6 +38,7 @@ export const NavbarModule = () => {
 	//LOGIN+REGISTER+LOGOUT
 	const handleLogin = e => {
 		e.preventDefault();
+		actions.setLoggingIn("logging in");
 		setLoggedInState("logging in");
 
 		const user = {
@@ -46,11 +47,13 @@ export const NavbarModule = () => {
 		};
 
 		actions.setLogin(user, history);
+
 		handleClose();
 	};
 
 	const handleRegister = e => {
 		e.preventDefault();
+		setRegisterState("registering");
 		if ((passwordReg1 === passwordReg2) & (passwordReg1.length >= 6)) {
 			const user = {
 				email: emailReg,
@@ -111,8 +114,7 @@ export const NavbarModule = () => {
 		return (
 			<div>
 				{/* Aca debiese llamar a un modal de error luego del Login Failed ?  */}
-				{loggedInState === "logging in" ? store.error === "" ? "" : <Spinner /> : ""}
-				{console.log("loggedInState:", loggedInState, "store.error:", store.error)}
+				{loggedInState === "logging in" ? store.globalstatus === "logging in" ? <Spinner /> : "" : ""}
 				{/* Login modal */}
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>

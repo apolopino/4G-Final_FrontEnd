@@ -1,6 +1,5 @@
 import { element } from "prop-types";
 
-
 const URLBACKEND = "https://final-4g-project.herokuapp.com";
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -79,6 +78,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			showOnboard: true,
 
 			loadingList: false,
+
+			globalstatus: "",
+
+			loadingDesafios: true,
 
 			error: ""
 		},
@@ -168,6 +171,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ activeDesafio: detalleDesafio });
 			},
 
+			loadingDesafios: () => {
+				setStore({ loadingDesafios: true });
+			},
+
 			listaDesafios: () => {
 				// tomar el store y extraer el JWT
 				// const store = getStore();
@@ -182,6 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(json => {
 						console.log("response from backend", json.desafios);
 						setStore({ desafiosList: json.desafios });
+						setStore({ loadingDesafios: false });
 					});
 			},
 
@@ -416,6 +424,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(URL, OBJCONFIG)
 					.then(res => res.json()) //de texto plano a Json
 					.then(data => setStore({ routineDetail: data })); //guardo el detalle de la receta/rutina en el store
+			},
+
+			setLoggingIn: status => {
+				setStore({ globalstatus: status });
+			},
+
+			resetStatus: () => {
+				setStore({ globalstatus: "" });
 			},
 
 			resetError: () => {

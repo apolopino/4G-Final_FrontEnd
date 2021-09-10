@@ -19,6 +19,7 @@ export const Home = () => {
 
 	const modalErrorClose = () => {
 		actions.resetError();
+		actions.resetStatus();
 		handleErrorClose();
 	};
 
