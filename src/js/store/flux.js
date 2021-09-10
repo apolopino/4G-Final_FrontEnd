@@ -1,11 +1,11 @@
 import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
+const URLBACKEND = "https://final-4g-project.herokuapp.com";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io",
+			URLBACKEND: "https://final-4g-project.herokuapp.com",
 
 			user: {
 				expires: "",
@@ -166,8 +166,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			listaDesafios: () => {
+				// tomar el store y extraer el JWT
+				// const store = getStore();
+				// let jwt = store.user.token;
+
 				fetch(URLBACKEND + "/desafios", {
 					method: "GET"
+					// enviar el JWT en el header con la estrucutra de abajo
+					// headers: { Authorization: "Bearer " + jwt }
 				})
 					.then(res => res.json())
 					.then(json => {
