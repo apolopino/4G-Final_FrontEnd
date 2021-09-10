@@ -1,6 +1,6 @@
 import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-aqua-rook-p24gybma.ws-us16.gitpod.io";
+const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us16.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
