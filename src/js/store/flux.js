@@ -307,12 +307,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						} else {
 							setStore({ message: data.msg });
+							setStore({ error: "Login Failed" });
+							console.log("else del fetch corriendo");
 						}
-					})
-					.catch(
-						error => setStore({ error: "Login Failed" })
-						// console.log("Error loading message from backend", error)
-					);
+					});
+				// .catch(
+				// 	// error => setStore({ error: "Login Failed" }),
+				// 	// console.log("fetech error catch: login failed"),
+				// 	// history.push("/")
+				// );
 			},
 
 			setRegister: (user, history) => {

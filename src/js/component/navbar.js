@@ -42,8 +42,6 @@ export const NavbarModule = () => {
 
 		actions.setLogin(user, history);
 		handleClose();
-		/* actions.setShowOnboard(false);
-		history.push("/dashboard"); */
 	};
 
 	const handleRegister = e => {
@@ -66,10 +64,17 @@ export const NavbarModule = () => {
 		e.preventDefault();
 		console.log(1);
 		actions.setLogout(history);
+		setLoggedInState("");
 	};
 
 	useEffect(() => {
 		actions.getToken();
+		let status = store.error;
+		console.log("useeffect del navbar corriendo");
+		if (status === "Login Failed") {
+			setLoggedInState("");
+		}
+		// setLoggedInState("");
 	}, []);
 
 	const loginLinks = () => {
