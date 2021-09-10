@@ -30,6 +30,9 @@ export const NavbarModule = () => {
 	// Logging in state hook
 	const [loggedInState, setLoggedInState] = useState();
 
+	//Registering state hook
+	const [registerState, setRegisterState] = useState();
+
 	//LOGIN+REGISTER+LOGOUT
 	const handleLogin = e => {
 		e.preventDefault();
@@ -46,6 +49,7 @@ export const NavbarModule = () => {
 
 	const handleRegister = e => {
 		e.preventDefault();
+		setRegisterState("registering");
 		if (passwordReg1 === passwordReg2) {
 			const user = {
 				email: emailReg,
@@ -56,6 +60,7 @@ export const NavbarModule = () => {
 			handleRegisterClose();
 			actions.setShowOnboard(true);
 		} else {
+			setRegisterState("");
 			setPasswordMsg("Las password no son iguales");
 		}
 	};
@@ -65,6 +70,7 @@ export const NavbarModule = () => {
 		console.log(1);
 		actions.setLogout(history);
 		setLoggedInState("");
+		setRegisterState("");
 	};
 
 	useEffect(() => {
@@ -110,7 +116,8 @@ export const NavbarModule = () => {
 	const modals = () => {
 		return (
 			<div>
-				{loggedInState === "logging in" ? <Spinner /> : ""}
+				{/* Aca debiese llamar a un modal de error luego del Login Failed ?  */}
+				{loggedInState === "logging in" ? store.error === "Login Failed" ? "" : <Spinner /> : ""}
 				{/* Login modal */}
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>
@@ -153,6 +160,7 @@ export const NavbarModule = () => {
 				</Modal>
 
 				{/* REGISTER MODAL */}
+				{registerState === "registering" ? <Spinner /> : ""}
 				<Modal show={registerShow} onHide={handleRegisterClose}>
 					<Modal.Header closeButton>
 						<Modal.Title>Registrarse</Modal.Title>

@@ -292,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								email: data.user.email,
 								userId: data.userId
 							};
-							setStore({ user: { ...dataUser }, isLogged: true });
+							setStore({ user: { ...dataUser }, isLogged: true, error: "" });
 
 							console.log("--USER--", dataUser);
 
@@ -308,7 +308,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						} else {
 							setStore({ message: data.msg });
 							setStore({ error: "Login Failed" });
-							console.log("else del fetch corriendo");
 						}
 					});
 				// .catch(
