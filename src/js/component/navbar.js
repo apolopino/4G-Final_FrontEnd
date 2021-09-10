@@ -111,7 +111,8 @@ export const NavbarModule = () => {
 		return (
 			<div>
 				{/* Aca debiese llamar a un modal de error luego del Login Failed ?  */}
-				{loggedInState === "logging in" ? store.error === "Login Failed" ? "" : <Spinner /> : ""}
+				{loggedInState === "logging in" ? store.error === "" ? "" : <Spinner /> : ""}
+				{console.log("loggedInState:", loggedInState, "store.error:", store.error)}
 				{/* Login modal */}
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>

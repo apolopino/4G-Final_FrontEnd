@@ -307,7 +307,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						} else {
 							setStore({ message: data.msg });
-							setStore({ error: "Login Failed" });
+							setStore({ error: "Email / contraseña incorrectos" });
 						}
 					});
 				// .catch(
@@ -415,6 +415,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(URL, OBJCONFIG)
 					.then(res => res.json()) //de texto plano a Json
 					.then(data => setStore({ routineDetail: data })); //guardo el detalle de la receta/rutina en el store
+			},
+
+			resetError: () => {
+				setStore({ error: "" });
 			}
 		}
 	};
