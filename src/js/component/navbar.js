@@ -6,6 +6,8 @@ import { Context } from "../store/appContext";
 export const NavbarModule = () => {
 	// Store
 	const { store, actions } = useContext(Context);
+
+	const [respuesta, setRespuesta] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [emailReg, setEmailReg] = useState("");
@@ -54,7 +56,7 @@ export const NavbarModule = () => {
 
 	const handleRegister = e => {
 		e.preventDefault();
-		if (passwordReg1 === passwordReg2) {
+		if ((passwordReg1 === passwordReg2) & (passwordReg1.length >= 6)) {
 			const user = {
 				email: emailReg,
 				password: passwordReg1,
@@ -64,7 +66,7 @@ export const NavbarModule = () => {
 			handleRegisterClose();
 			actions.setShowOnboard(true);
 		} else {
-			setPasswordMsg("Las password no son iguales");
+			setPasswordMsg("Las password no son iguales o no cumple con el minimo de caracteres");
 		}
 	};
 
@@ -198,6 +200,8 @@ export const NavbarModule = () => {
 									placeholder="Repetir Contraseña"
 								/>
 							</Form.Group>
+							<span>La contraseña debe contener un minimo de 6 caracteres</span>
+							<br />
 							<span style={{ color: "red" }}>{passwordMsg}</span>
 						</Modal.Body>
 
