@@ -10,19 +10,20 @@ export const SolicitudRecuperacion = () => {
 	const [emailRec, setEmailRec] = useState("");
 	const [passwordRec1, setPasswordRec1] = useState("");
 	const [passwordRec2, setPasswordRec2] = useState("");
+	const [passwordMsg, setPasswordMsg] = useState("");
 
 	const history = useHistory();
 
 	const handleRecover = e => {
 		e.preventDefault();
-		if (passwordRec1 === passwordRec2) {
+		if ((passwordRec1 === passwordRec2) & (passwordRec1.length >= 6)) {
 			const user = {
 				password: passwordRec1,
 				email: emailRec
 			};
 			actions.setNuevaPassword(user, history);
 		} else {
-			setPasswordMsg("Las password no son iguales");
+			setPasswordMsg("Las password no son iguales o no cumple con el minimo de caracteres");
 		}
 	};
 
@@ -59,6 +60,9 @@ export const SolicitudRecuperacion = () => {
 			/>
 			{/* <Form.Label>Message</Form.Label>
         <textarea name="message" /> */}
+			<span>La contraseña debe contener un minimo de 6 caracteres</span>
+			<br />
+			<span style={{ color: "red" }}>{passwordMsg}</span>
 			<Form.Control className="mt-3" type="submit" onClick={e => handleRecover(e)} />
 		</Form>
 	);

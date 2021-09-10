@@ -7,6 +7,7 @@ import "../../styles/password.scss";
 export const Recuperacion = () => {
 	//Store
 	const { store, actions } = useContext(Context);
+	/* const [respuesta, setRespuesta] = useState(""); */
 	const [emailRec, setEmailRec] = useState("");
 
 	const handleRecuperacion = e => {
@@ -15,6 +16,7 @@ export const Recuperacion = () => {
 			email: emailRec
 		};
 		actions.setRecuperarPassword(user);
+		/* setRespuesta("Correo enviado"); */
 	};
 
 	return (
@@ -27,6 +29,7 @@ export const Recuperacion = () => {
 				placeholder="Ingresa tu email"
 			/>
 			<Form.Control className="mt-3" type="submit" onClick={e => handleRecuperacion(e)} />
+			{/* <span style={{ color: "white" }}>{respuesta}</span> */}
 		</Form>
 	);
 };
