@@ -1,11 +1,11 @@
 import { element } from "prop-types";
 
-const URLBACKEND = "https://final-4g-project.herokuapp.com";
+const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us15.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://final-4g-project.herokuapp.com",
+			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us15.gitpod.io",
 
 			user: {
 				expires: "",
@@ -74,6 +74,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			isLogged: false,
 
 			messageLogged: "",
+
+			messageChallenge: "",
 
 			showOnboard: true,
 
@@ -281,7 +283,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
 			},
-
+			newChallenge: () => {
+				fetch(URLBACKEND + "/newchallenge", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageChallenge: data.msg });
+					});
+			},
+			setDesafio: desafios => {
+				fetch(URLBACKEND + "/desafios", {
+					method: "POST",
+					body: JSON.stringify(desafios),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageChallenge: data.msg });
+					});
+			},
 			setLogin: (user, history) => {
 				// el user recibido tiene email y pass
 				fetch(URLBACKEND + "/login", {
