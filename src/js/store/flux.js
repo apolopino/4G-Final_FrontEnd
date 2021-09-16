@@ -295,7 +295,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ messageChallenge: data.msg });
 					});
 			},
-			setDesafio: desafios => {
+			setDesafio: (desafios, history) => {
 				fetch(URLBACKEND + "/desafios", {
 					method: "POST",
 					body: JSON.stringify(desafios),
@@ -305,6 +305,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log("--data--", data);
 						setStore({ messageChallenge: data.msg });
+						history.push("/dashboard");
 					});
 			},
 			setLogin: (user, history) => {

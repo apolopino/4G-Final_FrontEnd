@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import { Context } from "../store/appContext";
 import "../../styles/formulario.scss";
 
@@ -18,6 +18,14 @@ export const FormularioDesafio = () => {
 
 	const history = useHistory();
 
+	//Modal hooks
+	const [showChallenge, setShowChallenge] = useState(false);
+
+	const handleCloseChallenge = () => setShowChallenge(false);
+	const handleShowChallenge = () => {
+		console.log("bla");
+		setShowChallenge(true);
+	};
 	//funcion de prueba
 	const handleDesafio = e => {
 		e.preventDefault();
@@ -37,7 +45,8 @@ export const FormularioDesafio = () => {
 				feat3: feat3,
 				photoURL: urlphoto
 			};
-			actions.setDesafio(desafios);
+			actions.setDesafio(desafios, history);
+			handleCloseChallenge();
 		} else {
 			setMsg("Falta informacion en alguno de los campos");
 		}
@@ -53,6 +62,27 @@ export const FormularioDesafio = () => {
 	//funcion que llame la accion para inyectar datos en el endpoint /desafios /dias /templatetodo /extras
 	//considerar algun IF
 	//esta pagina deberia ser accesible solo para usuarios que pueden crear desafios> anadir columna boolean a Users
+
+	const modal = () => {
+		return (
+			<div>
+				<Modal show={showChallenge} onHide={handleCloseChallenge}>
+					<Modal.Header closeButton>
+						<Modal.Title>Crear desafío</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>Estás a punto crear un nuevo desafio. Estas seguro?</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleCloseChallenge}>
+							Cancelar
+						</Button>
+						<Button variant="primary" onClick={handleDesafio}>
+							Crear
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
+		);
+	};
 
 	return (
 		<div className="contact-form center col-xs-10 col-sm-8 col-md-6 container mt-3">
@@ -87,36 +117,15 @@ export const FormularioDesafio = () => {
 					type="text"
 					placeholder="URL fotografia"
 				/>
-				<br />
 
-				{/* <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Example select</Form.Label>
-                <Form.Control as="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </Form.Control>
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlSelect2">
-                <Form.Label>Example multiple select</Form.Label>
-                <Form.Control as="select" multiple>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </Form.Control>
-            </Form.Group> */}
 				<br />
 				<span style={{ color: "red" }}>{msg}</span>
-				<Button className="col-12 mt-3 mb-5" variant="primary" onClick={handleDesafio}>
+				<Button className="col-12 mt-3 mb-5" variant="primary" onClick={handleShowChallenge}>
 					Ingresar desafio
 				</Button>
 			</Form>
 
-			<Form>
+			{/* <Form>
 				<h4>Dias</h4>
 				<Form.Group controlId="exampleForm.ControlSelect1">
 					<Form.Label>Extras del dia</Form.Label>
@@ -190,7 +199,8 @@ export const FormularioDesafio = () => {
 				<Button className="col-12 mt-3 mb-5" variant="primary" onClick={handlePost}>
 					Ingresar desafio
 				</Button>
-			</Form>
+			</Form> */}
+			{modal()}
 		</div>
 	);
 };
