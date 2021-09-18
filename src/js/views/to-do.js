@@ -47,9 +47,9 @@ export const Todo = () => {
 	return (
 		<div className="container">
 			<div className="row">
-				<div className="col-md-12">
-					<div className="card-to-do card-white">
-						<div className="card-body">
+				<div className="col-md-12 to-do-container">
+					<div className="card-to-do">
+						<div className="card-body to-do-card-body">
 							<input
 								type="text"
 								value={title}
@@ -64,22 +64,34 @@ export const Todo = () => {
 									.filter(element => element.dia === dia)
 									.map((item, index) => {
 										return (
-											<div key={index} className="todo-item">
-												{item.done === true ? (
-													<span>
-														<s>{item.actividad}</s>
-													</span>
-												) : (
-													<span>{item.actividad}</span>
-												)}
+											<div key={`row-${index}`} className="row todo-item align-items-center">
+												<div key={`col-${index}-1`} className="col-10">
+													<div key={index} className="">
+														{item.done === true ? (
+															<span className="text-dark">
+																<s>{item.actividad}</s>
+															</span>
+														) : (
+															<span>{item.actividad}</span>
+														)}
+													</div>
+												</div>
 
-												<button
-													className="btn btn-light float-right"
-													onClick={() => {
-														deleteItems(item.id);
-													}}>
-													<i className="fa fa-check" />
-												</button>
+												<div key={`col-${index}-2`} className="col-2">
+													{item.done === true ? (
+														<button className="btn btn-sm btn-secondary float-right">
+															<i className="fas fa-check text-light" />
+														</button>
+													) : (
+														<button
+															className="btn btn-sm btn-light float-right"
+															onClick={() => {
+																deleteItems(item.id);
+															}}>
+															<i className="fa fa-check" />
+														</button>
+													)}
+												</div>
 											</div>
 										);
 									})}

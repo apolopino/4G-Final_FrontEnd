@@ -64,20 +64,23 @@ export const Timeline = () => {
 						<Link to={`/to-do/${numDia}`}>
 							<Button
 								type="button"
-								className="btn btn-light btn-sm mr-2"
+								className="btn btn-light btn-sm mr-2 mb-2"
 								onClick={() => toDoDiario(numDia)}>
 								{`Ver to-do del día`} <i className="fas fa-tasks" />
 							</Button>
 						</Link>
 						<Link to={`detalle/rutina/${numDia}`}>
-							<Button type="button" className="btn btn-light btn-sm" onClick={() => rutinaDiaria(numDia)}>
+							<Button
+								type="button"
+								className="btn btn-light btn-sm mr-2 mb-2"
+								onClick={() => rutinaDiaria(numDia)}>
 								{`Ver rutina de ejercicio`} <i className="fas fa-dumbbell" />
 							</Button>
 						</Link>
 						<Link to={`detalle/receta/${numDia}`}>
 							<Button
 								type="button"
-								className="ml-2 btn btn-light btn-sm"
+								className="btn btn-light btn-sm mr-2 mb-2"
 								onClick={() => recetaDiaria(numDia)}>
 								{`Ver receta del dia`} <i className="fas fa-utensils" />
 							</Button>
@@ -96,6 +99,13 @@ export const Timeline = () => {
 	return (
 		<div className="timeline-wrapper">
 			<h4 className="mb-4">Desafío {`"${nombreDesafio}"`}</h4>
+			<div className="mb-5">
+				<p>
+					A continuación verás los días disponibles para este desafío. Cada día consiste en una to-do con
+					actividades predefinidas donde podrás agregar las tuyas, una receta y una rutina. Sigue cada día y
+					completa el desafío!
+				</p>
+			</div>
 			<div className="timeline">
 				{createElement()}
 				{/* <div className="timeline-container">
