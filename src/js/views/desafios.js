@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import img1 from "/workspace/4G-Final_FrontEnd/src/img/Desafio.png";
+
 import { Container, Modal } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";

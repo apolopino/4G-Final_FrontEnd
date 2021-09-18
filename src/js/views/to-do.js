@@ -60,27 +60,29 @@ export const Todo = () => {
 							/>
 							<div className="todo-list">
 								{store.loadingList === true ? <SpinnerSm /> : ""}
-								{store.todoList.filter(element => element.dia === dia).map((item, index) => {
-									return (
-										<div key={index} className="todo-item">
-											{item.done === true ? (
-												<span>
-													<s>{item.actividad}</s>
-												</span>
-											) : (
-												<span>{item.actividad}</span>
-											)}
+								{store.todoList
+									.filter(element => element.dia === dia)
+									.map((item, index) => {
+										return (
+											<div key={index} className="todo-item">
+												{item.done === true ? (
+													<span>
+														<s>{item.actividad}</s>
+													</span>
+												) : (
+													<span>{item.actividad}</span>
+												)}
 
-											<button
-												className="btn btn-light float-right"
-												onClick={() => {
-													deleteItems(item.id);
-												}}>
-												<i className="fa fa-check" />
-											</button>
-										</div>
-									);
-								})}
+												<button
+													className="btn btn-light float-right"
+													onClick={() => {
+														deleteItems(item.id);
+													}}>
+													<i className="fa fa-check" />
+												</button>
+											</div>
+										);
+									})}
 							</div>
 						</div>
 					</div>
