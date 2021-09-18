@@ -26,7 +26,7 @@ export const ContactUs = () => {
 	return (
 		<Form className="contact-form center col-xs-10 col-sm-8 col-md-4 mt-3" onSubmit={sendEmail}>
 			{/* <Form.Control type="hidden" name="name" /> */}
-			<h6>Formulario de contacto, sugerencias y felicitaciones</h6>
+			<h4 className="text-light mb-5">Formulario de contacto, sugerencias y felicitaciones</h4>
 			<Form.Label className="text">Name</Form.Label>
 			<Form.Control type="text" name="user_name" />
 			<Form.Label className="text">Email</Form.Label>
