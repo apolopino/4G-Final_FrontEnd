@@ -47,6 +47,11 @@ line::before {
     margin: 50px;
 }
 
+.feat-container {
+    min-height: 300px;
+    margin-bottom: 100px;
+}
+
 a {
     color: #4f1d75;
     text-decoration: none;
@@ -64,14 +69,9 @@ h2, .h2 {
     background: #585871;
 }
 
-h3, .h3 {
-    font-size: 1.75rem;
-    margin-top: 3px;
-    margin-bottom: 120px;
-}
-
-.p-5 {
-    padding: 3rem !important;
-    padding-top: 20px;
-    margin: -114px;
+@media (max-width: 450px) {
+    .lead {
+        font-size: 1.05rem;
+        font-weight: 400;
+    }
 }

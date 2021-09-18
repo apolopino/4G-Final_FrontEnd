@@ -25,7 +25,7 @@ export const Detalle = () => {
 	}, []);
 
 	return (
-		<div className="container">
+		<div className="container extra-wrapper">
 			<div className="row">
 				<div className="col-12 text-center">
 					<iframe

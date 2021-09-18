@@ -85,41 +85,43 @@ export const Desafios = () => {
 					backgroundColor: "#FFF",
 					backgroundSize: "cover"
 				}}>
-				<h1 className="display-4">{store.activeDesafio.nombreDesafio}</h1>
+				<h1 className="">{store.activeDesafio.nombreDesafio}</h1>
 				<p className="lead">{store.activeDesafio.descripcion}</p>
 				<hr className="my-4" />
 				<p>Este desafío dura {store.activeDesafio.duracion} días</p>
-				<Button variant="primary" className="mt-auto" onClick={handleShow}>
+				<Button variant="info" className="mt-auto btn-lg" onClick={handleShow}>
 					Inscribir desafío
 				</Button>
 			</div>
 
-			<div className="jumbotron jumbotron-desafios bg-muted">
-				<div className="container">
-					<h1 className="col text-light float-left mb-">Con este desafio:</h1>
+			<div className="container feat-container">
+				<div className="row">
+					<div className="col-12">
+						<h1>Con este desafio:</h1>
+					</div>
+				</div>
 
-					<div className="row">
-						<div className="col-sm-4">
-							<div className="card bg-dark text-light" style={{ width: "18rem" }}>
-								<div className="card-body">
-									<p className="card-text">{store.activeDesafio.feat1}</p>
-								</div>
+				<div className="row">
+					<div className="col-sm-4 mb-2">
+						<div className="card bg-dark text-light">
+							<div className="card-body">
+								<p className="card-text">{store.activeDesafio.feat1}</p>
 							</div>
 						</div>
+					</div>
 
-						<div className="col-sm-4">
-							<div className="card bg-dark text-light" style={{ width: "18rem" }}>
-								<div className="card-body">
-									<p className="card-text">{store.activeDesafio.feat2}</p>
-								</div>
+					<div className="col-sm-4 mb-2">
+						<div className="card bg-dark text-light">
+							<div className="card-body">
+								<p className="card-text">{store.activeDesafio.feat2}</p>
 							</div>
 						</div>
+					</div>
 
-						<div className="col-sm-4">
-							<div className="card bg-dark text-light" style={{ width: "18rem" }}>
-								<div className="card-body">
-									<p className="card-text">{store.activeDesafio.feat3}</p>
-								</div>
+					<div className="col-sm-4 mb-2">
+						<div className="card bg-dark text-light">
+							<div className="card-body">
+								<p className="card-text">{store.activeDesafio.feat3}</p>
 							</div>
 						</div>
 					</div>
