@@ -102,10 +102,12 @@ export const NavbarModule = () => {
 			<div className="ml-auto pr-5">
 				<Nav>
 					<Nav.Link href="/">Home</Nav.Link>
-					{localStorage.getItem("user") === null ? (
-						""
-					) : JSON.parse(localStorage.getItem("user")).email === "adaschuler@gmail.com" ? (
-						<Nav.Link href="/formulariodesafio">Crea un desafio</Nav.Link>
+					{store.isLogged === true ? (
+						store.user.email === "life.planner.web@gmail.com" ? (
+							<Nav.Link href="/formulariodesafio">Crea un desafio</Nav.Link>
+						) : (
+							""
+						)
 					) : (
 						""
 					)}

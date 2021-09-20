@@ -1,11 +1,11 @@
 import { element } from "prop-types";
 
-const URLBACKEND = "https://3001-bronze-impala-vib65y6n.ws-us15.gitpod.io";
+const URLBACKEND = "https://final-4g-project.herokuapp.com";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			URLBACKEND: "https://3001-bronze-impala-vib65y6n.ws-us15.gitpod.io",
+			URLBACKEND: "https://final-4g-project.herokuapp.com",
 
 			user: {
 				expires: "",
