@@ -75,6 +75,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			messageLogged: "",
 
+			messageChallenge: "",
+
 			showOnboard: true,
 
 			loadingList: false,
@@ -281,7 +283,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
 			},
-
+			newChallenge: () => {
+				fetch(URLBACKEND + "/newchallenge", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageChallenge: data.msg });
+					});
+			},
+			setDesafio: (desafios, history) => {
+				fetch(URLBACKEND + "/desafios", {
+					method: "POST",
+					body: JSON.stringify(desafios),
+					headers: { "Content-type": "application/json; charset=UTF-8" }
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("--data--", data);
+						setStore({ messageChallenge: data.msg });
+						history.push("/dashboard");
+					});
+			},
 			setLogin: (user, history) => {
 				// el user recibido tiene email y pass
 				fetch(URLBACKEND + "/login", {
