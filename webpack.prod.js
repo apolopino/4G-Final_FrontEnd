@@ -1,15 +1,48 @@
+// const merge = require('webpack-merge');
+// const common = require('./webpack.common.js');
+// const Dotenv = require('dotenv-webpack');
+// module.exports = merge(common, {
+//     mode: 'production',
+//     output: {
+//         publicPath: './'
+//     },
+//     plugins: [
+//         new Dotenv({
+//             safe: true,
+//             systemvars: true
+//         })
+//     ]
+// });
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const Dotenv = require('dotenv-webpack');
+const PrettierPlugin = require("prettier-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+
 module.exports = merge(common, {
     mode: 'production',
-    output: {
-        publicPath: './'
+    devtool: 'cheap-module-source-map',
+    devServer: {
+        contentBase:  './dist',
+        hot: true,
+        disableHostCheck: true,
+        historyApiFallback: true
     },
     plugins: [
-        new Dotenv({
-            safe: true,
-            systemvars: true
-        })
+        new FriendlyErrorsWebpackPlugin(),
+        new ErrorOverlayPlugin(),
+        new PrettierPlugin({
+            parser: "babylon",
+            printWidth: 120,             // Specify the length of line that the printer will wrap on.
+            tabWidth: 4,                // Specify the number of spaces per indentation-level.
+            useTabs: true,              // Indent lines with tabs instead of spaces.
+            bracketSpacing: true,
+            extensions: [ ".js", ".jsx" ],
+            jsxBracketSameLine: true,
+            semi: true,                 // Print semicolons at the ends of statements.
+            encoding: 'utf-8'           // Which encoding scheme to use on files
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 });

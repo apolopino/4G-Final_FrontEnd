@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { SpinnerSm } from "../component/spinner_sm.js";
+import "../../styles/onboard.scss";
 
 import { ChallengeCard } from "./challengeCard";
 
@@ -20,13 +21,13 @@ export const Onboard = () => {
 	return (
 		<div className="text-light">
 			<div className="row justify-content-center">
-				<h2>Bienvenido</h2>
+				<h2 className="welcome-heading">Bienvenido</h2>
 			</div>
 			<div className="row justify-content-center">
-				<h3>Para comenzar, elige un desafío</h3>
+				<h3 className="welcome-h3 mb-5">Para comenzar, elige un desafío</h3>
 			</div>
-			<div className="container text-light">
-				<div className="row p-5">
+			<div className="row">
+				<div className="row select-row">
 					{console.log("los desafios son:", store.desafiosList)}
 					{store.loadingDesafios === true ? <SpinnerSm /> : ""}
 					{store.desafiosList.map((item, index) => {
