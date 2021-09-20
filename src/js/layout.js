@@ -25,7 +25,7 @@ const Wrapper = ({ children }) => {
 	let location = useLocation();
 	let { pathname } = { ...location };
 
-		() => {
+		UseEffect(() => {
 			if (["/dashboard", "/detalle", "/desafio", "formulariodesafio"].includes(pathname)) {
 				/* return <div>{children}</div>; */
 				!store.isLogged ? history.push("/") : null;
