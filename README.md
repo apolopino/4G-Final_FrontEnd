@@ -1,3 +1,18 @@
+## FRONT-END LIFE PLANNER
+
+```
+Plataforma web para cultivar habitos y bienestar.
+<p>
+ <img src="https://github.com/apolopino/4G-Final_FrontEnd/tree/develop/src/img/lifeplannergif.gif"/>
+</p>
+```
+
+- App Deployed:
+```
+Front: https://4g-final-front.vercel.app/
+Back: https://final-4g-project.herokuapp.com
+```
+
 # WebApp boilerplate with React JS
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
 
