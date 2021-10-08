@@ -23,25 +23,14 @@ const Wrapper = ({ children }) => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
 	let location = useLocation();
-	let { pathname } = { ...location };
+	let path = window.location.pathname;
+	const protectedURL = ["/dashboard", "/detalle", "/desafio", "formulariodesafio"];
+	const conditionCheck = protectedURL.some(element => path.includes(element));
 
 	useEffect(() => {
-		if (["/dashboard", "/detalle", "/desafio", "formulariodesafio"].includes(pathname)) {
-			/* return <div>{children}</div>; */
-			console.log("if del useEffect del layout triggered");
-			store.isLogged ? history.push("/") : null;
-		} /* else {
-
-
-		} */
+		console.log("layout useEffect triggered");
+		store.isLogged === true ? null : conditionCheck ? history.push("/") : null;
 	}, [store.isLogged]);
-
-	let path = window.location.pathname;
-
-	let checker = path.includes("/dashboard");
-	console.log("the path includes dashboard?", checker);
-
-	console.log(window.location.pathname);
 
 	return <div>{children}</div>;
 };
