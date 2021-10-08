@@ -28,12 +28,20 @@ const Wrapper = ({ children }) => {
 	useEffect(() => {
 		if (["/dashboard", "/detalle", "/desafio", "formulariodesafio"].includes(pathname)) {
 			/* return <div>{children}</div>; */
-			!store.isLogged ? history.push("/") : null;
+			console.log("if del useEffect del layout triggered");
+			store.isLogged ? history.push("/") : null;
 		} /* else {
 
 
 		} */
-		}, [store.isLogged]);
+	}, [store.isLogged]);
+
+	let path = window.location.pathname;
+
+	let checker = path.includes("/dashboard");
+	console.log("the path includes dashboard?", checker);
+
+	console.log(window.location.pathname);
 
 	return <div>{children}</div>;
 };
